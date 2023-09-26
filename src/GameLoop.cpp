@@ -1,5 +1,7 @@
 #include "GameLoop.hpp"
 
+#include "../assets/testAssets/logo.h"
+
 GameLoop::GameLoop()
 {
     Init();
@@ -10,21 +12,27 @@ void GameLoop::Init()
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
-    // gameUtils.CalcScale(width, height);
-    debug.setFont(LoadFont("assets/fonts/Roboto.ttf"));
+    debug.setFont(font);
 
     SetExitKey(KEY_NULL);
     SetTargetFPS(60);
 
-    gameUtils.packTexture("assets/Capture.png", "assets/Capture.h");
+    // pack assets
+    // gameUtils.packTexture("assets/testAssets/logo.png", "../assets/testAssets/logo.h");
+    // gameUtils.packFont("assets/testAssets/Roboto.ttf", "../assets/testAssets/Roboto.h");
+
+    // load assets
+    logo = gameUtils.LoadImgFromFile(LOGO_DATA, LOGO_WIDTH, LOGO_HEIGHT, LOGO_FORMAT);
+
+    font = gameUtils.LoadFontFromFile();
 }
 
 void GameLoop::Update()
 {
     gameUtils.CalcScale(width, height);
 
-    // windowWidth = GetScreenWidth();
-    // windowHeight = GetScreenHeight();
+    windowWidth = GetScreenWidth();
+    windowHeight = GetScreenHeight();
     // SetWindowSize(windowWidth, windowHeight);
 }
 
@@ -49,17 +57,34 @@ void GameLoop::Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
+    // DrawTexture(logo, windowWidth / 2 - logo.width / 2, windowHeight / 2 - logo.height / 2, WHITE);
+
+    // Vector2 windowCenter{(static_cast<float>(windowWidth) / 2) - logo.width, static_cast<float>(windowHeight) / 2};
+    // DrawTextureEx(logo, windowCenter, 0, gameUtils.GetScale(), WHITE);
+
+    float logoSacle = gameUtils.GetScale() / 3;
+    Vector2 logoCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)};
+    DrawTextureEx(logo, logoCenter, 0, logoSacle, WHITE);
+
+    // Vector2 logoTextCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), ((static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)) + logo.height * logoSacle};
+    // DrawTextEx(font, "© 2023 | Made by Brett Wilson", logoTextCenter, 16, 2, WHITE);
+
+    std::string text = u8"\u00A9 2023 | Made by Brett Wilson";
+    Vector2 logoTextCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (((static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)) + logo.height * logoSacle) + 20};
+    float centerX = logoTextCenter.x + (logo.width * logoSacle / 2);
+    logoTextCenter.x = centerX - MeasureTextEx(font, text.c_str(), 16, 2).x / 2;
+    DrawTextEx(font, text.c_str(), logoTextCenter, 16, 2, WHITE);
+
+    if (useDebug == 0)
+    {
+        DebugStatements();
+    }
     EndDrawing();
 }
 
 void GameLoop::MainLoopHelper(void *userData)
 {
     GameLoop *gameLoop = static_cast<GameLoop *>(userData);
-
-    if (gameLoop->useDebug == 0)
-    {
-        gameLoop->DebugStatements();
-    }
 
     gameLoop->Update();
     gameLoop->Draw();
@@ -72,13 +97,7 @@ void GameLoop::Run()
 #else
     while (!WindowShouldClose())
     {
-        if (useDebug == 0)
-        {
-            DebugStatements();
-        }
-
         Update();
-
         Draw();
     }
 #endif

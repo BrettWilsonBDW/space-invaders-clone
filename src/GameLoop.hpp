@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "raylib.h"
 #include "Debug.h"
 #include "GameUtils.hpp"
@@ -27,4 +28,10 @@ private:
     Debug debug;
     int useDebug{};
     GameUtils gameUtils;
+    // Font font{LoadFont("assets/fonts/Roboto.ttf")};
+    // Font font = LoadFontEx("path/to/font.ttf", 24, NULL, 0);
+
+    Font font;
+
+    Texture2D logo;
 };
