@@ -16,6 +16,7 @@ void GameLoop::Init()
     SetExitKey(KEY_NULL);
     SetTargetFPS(60);
 
+    gameUtils.packTexture("assets/Capture.png", "assets/Capture.h");
 }
 
 void GameLoop::Update()

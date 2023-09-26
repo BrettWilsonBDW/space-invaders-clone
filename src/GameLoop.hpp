@@ -8,8 +8,8 @@
 #include <emscripten/emscripten.h>
 #endif
 
-
-class GameLoop {
+class GameLoop
+{
 public:
     GameLoop();
     void Init();
@@ -17,8 +17,9 @@ public:
     void Draw();
     void DebugStatements();
     void Run();
+
 private:
-    static void MainLoopHelper(void* userData);
+    static void MainLoopHelper(void *userData);
     int windowWidth{};
     int windowHeight{};
     int width = 1920;
