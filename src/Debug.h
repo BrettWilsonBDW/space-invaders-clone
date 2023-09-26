@@ -16,7 +16,10 @@ public:
     bool ToggleState();
     void ClearLines(int linesToClear);
     void PassItems(const char* format = "Debug Menu:\n", ...);
-    void DrawItems(int x, int y, int fontSize, int spacing = 2, Color color = WHITE);
+    void DrawItems(int x, int y, int fontSize, int useFont = 1, int spacing = 2, Color color = WHITE);
+    void setFont(Font setfont){
+        font = setfont;
+    }
 
 private:
     //toggle debug
@@ -24,6 +27,8 @@ private:
     bool toggleDebugMenu{false};
     char buffer[256]; // Assuming a maximum buffer size of 256 characters
     Font font = LoadFont("assets/fonts/Roboto.ttf");
+    // Font font;
 };
+
 
 #endif
