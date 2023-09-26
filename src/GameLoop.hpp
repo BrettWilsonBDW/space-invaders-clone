@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include "Debug.h"
+#include "GameUtils.hpp"
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -14,10 +15,15 @@ public:
     void Init();
     void Update();
     void Draw();
+    void DebugStatements();
     void Run();
 private:
     static void MainLoopHelper(void* userData);
     int windowWidth{};
     int windowHeight{};
+    int width = 1920;
+    int height = 1080;
     Debug debug;
+    int useDebug{};
+    GameUtils gameUtils;
 };

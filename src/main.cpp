@@ -4,9 +4,9 @@
 
 int main()
 {
-    int width = 1920;
-    int height = 1080;
-    InitWindow(width / 2, height / 2, "Game name");
+    int width = 1920 / 2;
+    int height = 1080 / 2;
+    InitWindow(width, height, "Space Invaders");
 
     GameLoop gameLoop;
 
