@@ -5,6 +5,13 @@ SceneManager::SceneManager()
 {
 }
 
+void SceneManager::InitScenes()
+{
+    // dont forget to set new imgs here
+    font = assetManager->GetFont();
+    logo = assetManager->Getlogo();
+}
+
 void SceneManager::SplashScreen()
 {
     float logoSacle = gameUtils->GetScale() / 3;

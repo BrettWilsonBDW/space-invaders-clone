@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include "GameUtils.hpp"
+#include "AssetManager.hpp"
 #include <string>
 
 class SceneManager
@@ -13,23 +14,22 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
+    void SetAssetManager(AssetManager* assetManagerPass)
+    {
+        assetManager = assetManagerPass;
+    }
     void SetWindowInfo(int width, int height)
     {
         windowWidth = width;
         windowHeight = height;
     }
-    void SetFont(Font fontPass)
-    {
-        font = fontPass;
-    }
-    void SetImgData(Texture2D ImagePass)
-    {
-        logo = ImagePass;
-    }
+    void InitScenes();
 private:
     GameUtils* gameUtils;
+    AssetManager* assetManager;
     int windowWidth;
     int windowHeight;
+    
     Font font;
     
     Texture2D logo;

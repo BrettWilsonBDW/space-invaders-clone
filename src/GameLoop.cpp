@@ -1,7 +1,5 @@
 #include "GameLoop.hpp"
 
-#include "../assets/testAssets/logo.h"
-
 GameLoop::GameLoop()
 {
     Init();
@@ -15,30 +13,18 @@ void GameLoop::Init()
     SetExitKey(KEY_NULL);
     SetTargetFPS(60);
 
-    // pack assets
-    // gameUtils.packTexture("assets/testAssets/logo.png", "../assets/testAssets/logo.h");
-    // gameUtils.packFont("assets/testAssets/Roboto.ttf", "../assets/testAssets/Roboto.h");
+    debug.SetFont(assetManager.GetFont());
 
-    // load assets
-    logo = gameUtils.LoadImgFromFile(LOGO_DATA, LOGO_WIDTH, LOGO_HEIGHT, LOGO_FORMAT);
-
-#if defined(PLATFORM_WEB)
-    font = LoadFont("assets/fonts/Roboto.ttf");
-#else
-    font = gameUtils.LoadFontFromFile();
-#endif
-
-    debug.SetFont(font);
-
-    gameScene.SetGameUtils(&gameUtils);
-    gameScene.SetFont(font);
-    gameScene.SetImgData(logo);
+    assetManager.SetGameUtils(&gameUtils);
+    sceneManager.SetGameUtils(&gameUtils);
+    sceneManager.SetAssetManager(&assetManager);
+    sceneManager.InitScenes();
 }
 
 void GameLoop::Unload()
 {
-    UnloadTexture(logo);
-    UnloadFont(font);
+    UnloadTexture(assetManager.Getlogo());
+    UnloadFont(assetManager.GetFont());
 }
 
 void GameLoop::Update()
@@ -50,7 +36,7 @@ void GameLoop::Update()
     // SetWindowSize(windowWidth, windowHeight);
 
     //update live window info for pos adjustments
-    gameScene.SetWindowInfo(windowWidth, windowHeight);
+    sceneManager.SetWindowInfo(windowWidth, windowHeight);
 }
 
 void GameLoop::DebugStatements()
@@ -74,7 +60,7 @@ void GameLoop::Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
-    gameScene.SplashScreen();
+    sceneManager.SplashScreen();
 
     if (useDebug == 0)
     {
