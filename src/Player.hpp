@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include "AssetManager.hpp"
+#include "GameUtils.hpp"
 
 class Player
 {
@@ -10,6 +11,10 @@ public:
     void SetAssetManager(AssetManager* assetManagerPass)
     {
         assetManager = assetManagerPass;
+    }
+    void SetGameUtils(GameUtils* gameUtilsPass)
+    {
+        gameUtils = gameUtilsPass;
     }
 
     void Init();
@@ -20,11 +25,12 @@ public:
     void DrawPlayer();
 private:
     AssetManager* assetManager;
+    GameUtils* gameUtils;
     // Texture2D ship{assetManager->GetShip()};
     Texture2D ship;
 
-    int width{};
-    int height{};
+    int windowWidth{};
+    int windowHeight{};
 };
 
 

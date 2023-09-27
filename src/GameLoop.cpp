@@ -20,6 +20,7 @@ void GameLoop::Init()
     sceneManager.SetGameUtils(&gameUtils);
     sceneManager.SetAssetManager(&assetManager);
     player.SetAssetManager(&assetManager);
+    player.SetGameUtils(&gameUtils);
     sceneManager.SetPlayer(&player);
     sceneManager.InitScenes();
     player.Init();
