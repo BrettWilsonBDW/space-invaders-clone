@@ -1,4 +1,5 @@
 #include "SceneManager.hpp"
+#include <iostream>
 
 SceneManager::SceneManager()
 {
@@ -35,4 +36,8 @@ void SceneManager::PauseMenu()
 {
     DrawTextEx(font, "Paused", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2}, 16, 2, WHITE);
     DrawTextEx(font, "Press ESC to resume", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2 + 20}, 16, 2, WHITE);
+}
+
+void SceneManager::gameScreen()
+{
 }

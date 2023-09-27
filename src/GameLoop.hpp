@@ -16,6 +16,7 @@ public:
     GameLoop();
     void Init();
     void Update();
+    void UpdateWhilePaused();
     void Draw();
     void DebugStatements();
     void Run();

@@ -7,6 +7,7 @@ GameLoop::GameLoop()
 
 void GameLoop::Init()
 {
+    //
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
@@ -23,6 +24,7 @@ void GameLoop::Init()
 
 void GameLoop::Unload()
 {
+    // unload assets
     UnloadTexture(assetManager.Getlogo());
     UnloadFont(assetManager.GetFont());
 
@@ -31,15 +33,17 @@ void GameLoop::Unload()
 
 void GameLoop::Update()
 {
-    gameUtils.CalcScale(width, height);
 
+}
+
+void GameLoop::UpdateWhilePaused()
+{
+    gameUtils.CalcScale(width, height);
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
-    // SetWindowSize(windowWidth, windowHeight);
-
-    // update live window info for pos adjustments
     sceneManager.SetWindowInfo(windowWidth, windowHeight);
 }
+
 
 void GameLoop::DebugStatements()
 {
@@ -62,7 +66,10 @@ void GameLoop::Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
-    sceneManager.SplashScreen();
+    if (!isPaused)
+    {
+        sceneManager.SplashScreen();
+    }
 
     if (isPaused)
     {
@@ -90,6 +97,7 @@ void GameLoop::MainLoopHelper(void *userData)
         gameLoop->Update();
     }
 
+    gameLoop->UpdateWhilePaused();
     gameLoop->Draw();
 }
 
@@ -110,6 +118,8 @@ void GameLoop::Run()
         {
             Update();
         }
+
+        UpdateWhilePaused();
         Draw();
     }
 

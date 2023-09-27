@@ -63,7 +63,7 @@ Texture2D GameUtils::LoadImgFromFile(void *DATA, int WIDTH, int HEIGHT, int FORM
  */
 Font GameUtils::LoadFontFromFile()
 {
-#include "../assets/testAssets/Roboto.h"
+#include "../assets/fonts/Roboto.h"
     Font font = {0};
 
     font.baseSize = 32;

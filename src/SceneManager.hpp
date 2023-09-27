@@ -11,6 +11,7 @@ public:
     SceneManager();
     void SplashScreen();
     void PauseMenu();
+    void gameScreen();
     void SetGameUtils(GameUtils* gameUtilsPass)
     {
         gameUtils = gameUtilsPass;

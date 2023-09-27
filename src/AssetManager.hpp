@@ -29,6 +29,7 @@ private:
     GameUtils* gameUtils;
     // GameUtils gameUtils;
 
-    Texture2D logo;
     Font font;
+    Texture2D logo;
+    Texture2D ship;
 };
