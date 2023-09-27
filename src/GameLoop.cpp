@@ -38,7 +38,8 @@ void GameLoop::Unload()
 
 void GameLoop::Update()
 {
-
+    player.UpdatePlayer();
+    player.playerControls();
 }
 
 void GameLoop::UpdateWhilePaused()
