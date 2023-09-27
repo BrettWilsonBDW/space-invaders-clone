@@ -22,13 +22,16 @@ public:
     void Unload();
 private:
     static void MainLoopHelper(void *userData);
+    GameUtils gameUtils;
+    SceneManager sceneManager;
+    AssetManager assetManager;
+    Debug debug;
+
     int windowWidth{};
     int windowHeight{};
     int width = 1920;
     int height = 1080;
-    Debug debug;
     int useDebug{};
-    GameUtils gameUtils;
-    SceneManager sceneManager;
-    AssetManager assetManager;
+
+    bool isPaused{};
 };

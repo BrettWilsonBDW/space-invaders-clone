@@ -10,6 +10,7 @@ class SceneManager
 public:
     SceneManager();
     void SplashScreen();
+    void PauseMenu();
     void SetGameUtils(GameUtils* gameUtilsPass)
     {
         gameUtils = gameUtilsPass;
@@ -24,11 +25,16 @@ public:
         windowHeight = height;
     }
     void InitScenes();
+    void Unload();
 private:
     GameUtils* gameUtils;
     AssetManager* assetManager;
     int windowWidth;
     int windowHeight;
+    // int pauseKeyState{};
+    // bool pauseMenuState{};
+
+    // bool isPaused{};
     
     Font font;
     

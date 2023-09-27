@@ -25,6 +25,8 @@ void GameLoop::Unload()
 {
     UnloadTexture(assetManager.Getlogo());
     UnloadFont(assetManager.GetFont());
+
+    sceneManager.Unload();
 }
 
 void GameLoop::Update()
@@ -35,7 +37,7 @@ void GameLoop::Update()
     windowHeight = GetScreenHeight();
     // SetWindowSize(windowWidth, windowHeight);
 
-    //update live window info for pos adjustments
+    // update live window info for pos adjustments
     sceneManager.SetWindowInfo(windowWidth, windowHeight);
 }
 
@@ -62,6 +64,11 @@ void GameLoop::Draw()
 
     sceneManager.SplashScreen();
 
+    if (isPaused)
+    {
+        sceneManager.PauseMenu();
+    }
+
     if (useDebug == 0)
     {
         DebugStatements();
@@ -73,7 +80,16 @@ void GameLoop::MainLoopHelper(void *userData)
 {
     GameLoop *gameLoop = static_cast<GameLoop *>(userData);
 
-    gameLoop->Update();
+    if (IsKeyPressed(KEY_ESCAPE))
+    {
+        gameLoop->isPaused = !gameLoop->isPaused;
+    }
+
+    if (!gameLoop->isPaused)
+    {
+        gameLoop->Update();
+    }
+
     gameLoop->Draw();
 }
 
@@ -82,10 +98,20 @@ void GameLoop::Run()
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop_arg(MainLoopHelper, this, 0, true);
 #else
+
     while (!WindowShouldClose())
     {
-        Update();
+        if (IsKeyPressed(KEY_ESCAPE))
+        {
+            isPaused = !isPaused;
+        }
+
+        if (!isPaused)
+        {
+            Update();
+        }
         Draw();
     }
+
 #endif
 }

@@ -15,11 +15,11 @@ public:
     void PackAllAssets();
 
     //set data
-    Texture2D Getlogo()
+    Texture2D& Getlogo()
     {
         return logo;
     }
-    Font GetFont()
+    Font& GetFont()
     {
         return font;
     }
