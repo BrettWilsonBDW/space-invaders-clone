@@ -9,16 +9,26 @@ void SceneManager::InitScenes()
     // dont forget to set new imgs here
     font = assetManager->GetFont();
     logo = assetManager->Getlogo();
+    background = assetManager->GetBackGround();
 }
 
 void SceneManager::Unload()
 {
     UnloadFont(font);
     UnloadTexture(logo);
+    UnloadTexture(background);
 }
+
+void SceneManager::DrawBackground()
+{
+    DrawTextureEx(background, Vector2{0, 0}, 0, (gameUtils->GetScale() * 1.5), WHITE);
+}
+
 
 void SceneManager::SplashScreen()
 {
+    DrawBackground();
+
     float logoSacle = gameUtils->GetScale() / 3;
     Vector2 logoCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)};
     DrawTextureEx(logo, logoCenter, 0, logoSacle, WHITE);
@@ -33,11 +43,15 @@ void SceneManager::SplashScreen()
 
 void SceneManager::PauseMenu()
 {
+    DrawBackground();
+
     DrawTextEx(font, "Paused", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2}, 16, 2, WHITE);
     DrawTextEx(font, "Press ESC to resume", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2 + 20}, 16, 2, WHITE);
 }
 
 void SceneManager::GameScreen()
 {
+    DrawBackground();
+
     player->DrawPlayer();
 }

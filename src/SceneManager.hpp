@@ -36,6 +36,7 @@ public:
     int windowWidth;
     int windowHeight;
 private:
+    void DrawBackground();
     GameUtils* gameUtils;
     AssetManager* assetManager;
     Player* player;
@@ -47,4 +48,5 @@ private:
     Font font;
     
     Texture2D logo;
+    Texture2D background;
 };

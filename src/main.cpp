@@ -7,7 +7,9 @@ int main()
     int width = 1920 / 2;
     int height = 1080 / 2;
 
+    // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(width, height, "Space Invaders");
 
     GameLoop gameLoop;

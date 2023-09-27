@@ -26,6 +26,10 @@ public:
     {
         return ship;
     }
+    Texture2D& GetBackGround()
+    {
+        return background;
+    }
 
 private:
     void PackAllAssets();
@@ -36,4 +40,5 @@ private:
     Font font;
     Texture2D logo;
     Texture2D ship;
+    Texture2D background;
 };

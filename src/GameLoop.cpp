@@ -7,12 +7,14 @@ GameLoop::GameLoop()
 
 void GameLoop::Init()
 {
+    // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    // SetConfigFlags(FLAG_VSYNC_HINT);
     //
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
     SetExitKey(KEY_NULL);
-    SetTargetFPS(60);
+    // SetTargetFPS(60);
 
     debug.SetFont(assetManager.GetFont());
 
@@ -51,7 +53,6 @@ void GameLoop::UpdateWhilePaused()
     player.updatePlayerPersistance();
 }
 
-
 void GameLoop::DebugStatements()
 {
     // debug  menu
@@ -64,7 +65,9 @@ void GameLoop::DebugStatements()
         debug.PassItems("Debug Menu:\n");
         debug.PassItems("FPS: %d\n", fps);
         debug.PassItems("Scale: %f\n", gameUtils.GetScale());
-        debug.DrawItems(3, 3, 16);
+        debug.DrawItems(3, 3, 16, 0, 2, RED);
+
+        DrawRectangleLines(player.GetPlayerRect().x, player.GetPlayerRect().y, player.GetPlayerRect().width, player.GetPlayerRect().height, RED);
     }
 }
 
