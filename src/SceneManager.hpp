@@ -4,6 +4,7 @@
 #include "GameUtils.hpp"
 #include "AssetManager.hpp"
 #include <string>
+#include "Player.hpp"
 
 class SceneManager
 {
@@ -11,7 +12,7 @@ public:
     SceneManager();
     void SplashScreen();
     void PauseMenu();
-    void gameScreen();
+    void GameScreen();
     void SetGameUtils(GameUtils* gameUtilsPass)
     {
         gameUtils = gameUtilsPass;
@@ -20,6 +21,10 @@ public:
     {
         assetManager = assetManagerPass;
     }
+    void SetPlayer(Player* playerPass)
+    {
+        player = playerPass;
+    }
     void SetWindowInfo(int width, int height)
     {
         windowWidth = width;
@@ -27,11 +32,13 @@ public:
     }
     void InitScenes();
     void Unload();
+
+    int windowWidth;
+    int windowHeight;
 private:
     GameUtils* gameUtils;
     AssetManager* assetManager;
-    int windowWidth;
-    int windowHeight;
+    Player* player;
     // int pauseKeyState{};
     // bool pauseMenuState{};
 

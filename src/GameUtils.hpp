@@ -17,6 +17,11 @@ public:
 
     float GetScale() { return scale; };
 
+    void UpdateWindowPos();
+
+    int windowSizeW = GetScreenWidth();
+    int windowSizeH = GetScreenHeight();
+
 private:
     int targetWidth{};
     int targetHeight{};

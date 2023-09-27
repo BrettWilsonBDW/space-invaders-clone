@@ -126,3 +126,9 @@ void GameUtils::packFont(const std::string &filePath, const std::string &outputF
     // Unload image
     UnloadFont(font);
 }
+
+void GameUtils::UpdateWindowPos()
+{
+    windowSizeW = GetScreenWidth();
+    windowSizeH = GetScreenHeight();
+}

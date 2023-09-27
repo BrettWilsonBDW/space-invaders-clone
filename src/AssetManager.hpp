@@ -12,7 +12,6 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
-    void PackAllAssets();
 
     //set data
     Texture2D& Getlogo()
@@ -23,8 +22,13 @@ public:
     {
         return font;
     }
+    Texture2D& GetShip()
+    {
+        return ship;
+    }
 
 private:
+    void PackAllAssets();
     void LoadAllAssets();
     GameUtils* gameUtils;
     // GameUtils gameUtils;

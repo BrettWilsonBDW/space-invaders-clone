@@ -1,10 +1,11 @@
 #pragma once
 
-
 #include "raylib.h"
 #include "Debug.h"
 #include "GameUtils.hpp"
 #include "SceneManager.hpp"
+#include "AssetManager.hpp"
+#include "Player.hpp"
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -27,6 +28,7 @@ private:
     SceneManager sceneManager;
     AssetManager assetManager;
     Debug debug;
+    Player player;
 
     int windowWidth{};
     int windowHeight{};

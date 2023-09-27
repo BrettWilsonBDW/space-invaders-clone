@@ -19,7 +19,10 @@ void GameLoop::Init()
     assetManager.SetGameUtils(&gameUtils);
     sceneManager.SetGameUtils(&gameUtils);
     sceneManager.SetAssetManager(&assetManager);
+    player.SetAssetManager(&assetManager);
+    sceneManager.SetPlayer(&player);
     sceneManager.InitScenes();
+    player.Init();
 }
 
 void GameLoop::Unload()
@@ -29,6 +32,7 @@ void GameLoop::Unload()
     UnloadFont(assetManager.GetFont());
 
     sceneManager.Unload();
+    player.Unload();
 }
 
 void GameLoop::Update()
@@ -42,6 +46,7 @@ void GameLoop::UpdateWhilePaused()
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
     sceneManager.SetWindowInfo(windowWidth, windowHeight);
+    player.updatePlayerPersistance();
 }
 
 
@@ -68,7 +73,8 @@ void GameLoop::Draw()
 
     if (!isPaused)
     {
-        sceneManager.SplashScreen();
+        // sceneManager.SplashScreen();
+        sceneManager.GameScreen();
     }
 
     if (isPaused)
