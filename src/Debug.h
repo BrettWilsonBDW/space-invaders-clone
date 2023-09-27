@@ -17,7 +17,7 @@ public:
     void ClearLines(int linesToClear);
     void PassItems(const char *format = "Debug Menu:\n", ...);
     void DrawItems(int x, int y, int fontSize, int useFont = 1, int spacing = 2, Color color = WHITE);
-    void setFont(Font setfont)
+    void SetFont(Font setfont)
     {
         font = setfont;
     }

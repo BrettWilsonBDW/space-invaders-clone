@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include "Debug.h"
 #include "GameUtils.hpp"
+#include "SceneManager.hpp"
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -18,7 +19,7 @@ public:
     void Draw();
     void DebugStatements();
     void Run();
-
+    void Unload();
 private:
     static void MainLoopHelper(void *userData);
     int windowWidth{};
@@ -28,10 +29,12 @@ private:
     Debug debug;
     int useDebug{};
     GameUtils gameUtils;
+    SceneManager gameScene;
     // Font font{LoadFont("assets/fonts/Roboto.ttf")};
     // Font font = LoadFontEx("path/to/font.ttf", 24, NULL, 0);
 
     Font font;
+
 
     Texture2D logo;
 };

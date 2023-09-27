@@ -12,8 +12,6 @@ void GameLoop::Init()
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
-    debug.setFont(font);
-
     SetExitKey(KEY_NULL);
     SetTargetFPS(60);
 
@@ -24,7 +22,23 @@ void GameLoop::Init()
     // load assets
     logo = gameUtils.LoadImgFromFile(LOGO_DATA, LOGO_WIDTH, LOGO_HEIGHT, LOGO_FORMAT);
 
+#if defined(PLATFORM_WEB)
+    font = LoadFont("assets/fonts/Roboto.ttf");
+#else
     font = gameUtils.LoadFontFromFile();
+#endif
+
+    debug.SetFont(font);
+
+    gameScene.SetGameUtils(&gameUtils);
+    gameScene.SetFont(font);
+    gameScene.SetImgData(logo);
+}
+
+void GameLoop::Unload()
+{
+    UnloadTexture(logo);
+    UnloadFont(font);
 }
 
 void GameLoop::Update()
@@ -34,6 +48,9 @@ void GameLoop::Update()
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
     // SetWindowSize(windowWidth, windowHeight);
+
+    //update live window info for pos adjustments
+    gameScene.SetWindowInfo(windowWidth, windowHeight);
 }
 
 void GameLoop::DebugStatements()
@@ -57,23 +74,7 @@ void GameLoop::Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
-    // DrawTexture(logo, windowWidth / 2 - logo.width / 2, windowHeight / 2 - logo.height / 2, WHITE);
-
-    // Vector2 windowCenter{(static_cast<float>(windowWidth) / 2) - logo.width, static_cast<float>(windowHeight) / 2};
-    // DrawTextureEx(logo, windowCenter, 0, gameUtils.GetScale(), WHITE);
-
-    float logoSacle = gameUtils.GetScale() / 3;
-    Vector2 logoCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)};
-    DrawTextureEx(logo, logoCenter, 0, logoSacle, WHITE);
-
-    // Vector2 logoTextCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), ((static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)) + logo.height * logoSacle};
-    // DrawTextEx(font, "© 2023 | Made by Brett Wilson", logoTextCenter, 16, 2, WHITE);
-
-    std::string text = u8"\u00A9 2023 | Made by Brett Wilson";
-    Vector2 logoTextCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (((static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)) + logo.height * logoSacle) + 20};
-    float centerX = logoTextCenter.x + (logo.width * logoSacle / 2);
-    logoTextCenter.x = centerX - MeasureTextEx(font, text.c_str(), 16, 2).x / 2;
-    DrawTextEx(font, text.c_str(), logoTextCenter, 16, 2, WHITE);
+    gameScene.SplashScreen();
 
     if (useDebug == 0)
     {

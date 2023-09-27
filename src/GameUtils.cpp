@@ -54,27 +54,16 @@ Texture2D GameUtils::LoadImgFromFile(void *DATA, int WIDTH, int HEIGHT, int FORM
     return img;
 }
 
-// Font GameUtils::LoadFontFromFile(int BASESIZE, int GLYPHCOUNT, int GLYPHPADDING, Texture2D TEXTURE, Rectangle *RECS, GlyphInfo *GLYPHS)
+/**
+ * Loads a font from a file.
+ *
+ * @return The loaded font.
+ *
+ * @throws ErrorType A description of the error that can occur during font loading.
+ */
 Font GameUtils::LoadFontFromFile()
 {
-    // Font font = {
-    //     .baseSize = BASESIZE,
-    //     .glyphCount = GLYPHCOUNT,
-    //     .glyphPadding = GLYPHPADDING,
-    //     .texture = TEXTURE,
-    //     .recs = RECS,
-    //     .glyphs = GLYPHS};
-
-    // Font loadedFont = LoadFontFromMemory(font);
-
-    // return loadedFont;
-
 #include "../assets/testAssets/Roboto.h"
-
-    // Font font = LoadFont_Roboto();
-
-    // return font;
-
     Font font = {0};
 
     font.baseSize = 32;
@@ -93,9 +82,6 @@ Font GameUtils::LoadFontFromFile()
 
     // Assign glyph recs and info data directly
     // WARNING: This font data must not be unloaded
-    // font.recs = fontRecs_Roboto;
-    // font.glyphs = fontGlyphs_Roboto;
-
     font.recs = const_cast<Rectangle *>(fontRecs_Roboto);
     font.glyphs = const_cast<GlyphInfo *>(fontGlyphs_Roboto);
 
