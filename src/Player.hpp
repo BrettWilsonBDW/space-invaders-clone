@@ -35,7 +35,6 @@ private:
     Rectangle playerRect{};
     Vector2 playerVector{};
     Vector2 playerScreenPos{};
-
 };
 
 

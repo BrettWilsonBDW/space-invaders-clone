@@ -30,12 +30,15 @@ void Player::playerControls()
 {
     if (IsKeyDown(KEY_A))
     {
-        playerVector.x -= 5 * scale / 5;
+        // playerVector.x -= 5 * scale / 5 * gameUtils->GetDeltaTime();
+        playerVector.x -= (75 * gameUtils->GetDeltaTime()) * scale;
+
     }
 
     if (IsKeyDown(KEY_D))
     {
-        playerVector.x += 5 * scale / 5;
+        // playerVector.x += 5 * scale / 5 * gameUtils->GetDeltaTime();
+        playerVector.x += (75 * gameUtils->GetDeltaTime()) * scale;
     }
 }
 

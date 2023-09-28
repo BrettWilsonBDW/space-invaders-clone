@@ -46,6 +46,7 @@ void GameLoop::Update()
 
 void GameLoop::UpdateWhilePaused()
 {
+    gameUtils.UpdateDeltaTime();
     gameUtils.CalcScale(width, height);
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
@@ -65,6 +66,9 @@ void GameLoop::DebugStatements()
         debug.PassItems("Debug Menu:\n");
         debug.PassItems("FPS: %d\n", fps);
         debug.PassItems("Scale: %f\n", gameUtils.GetScale());
+        debug.PassItems("H: %d\n", GetScreenHeight());
+        debug.PassItems("W: %d\n", GetScreenWidth());
+        debug.PassItems("DT: %f\n", gameUtils.GetDeltaTime());
         debug.DrawItems(3, 3, 16, 0, 2, RED);
 
         DrawRectangleLines(player.GetPlayerRect().x, player.GetPlayerRect().y, player.GetPlayerRect().width, player.GetPlayerRect().height, RED);

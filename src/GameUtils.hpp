@@ -17,12 +17,20 @@ public:
 
     float GetScale() { return scale; };
 
+    float GetDeltaTime()
+    {
+        return dt;
+    }
+
+    void UpdateDeltaTime();
+
     void UpdateWindowPos();
 
     int windowSizeW = GetScreenWidth();
     int windowSizeH = GetScreenHeight();
 
 private:
+    float dt{};
     int targetWidth{};
     int targetHeight{};
 

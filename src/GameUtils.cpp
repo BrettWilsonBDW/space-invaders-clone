@@ -127,6 +127,11 @@ void GameUtils::packFont(const std::string &filePath, const std::string &outputF
     UnloadFont(font);
 }
 
+void GameUtils::UpdateDeltaTime()
+{
+    dt = GetFrameTime();
+}
+
 void GameUtils::UpdateWindowPos()
 {
     windowSizeW = GetScreenWidth();
