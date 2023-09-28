@@ -5,6 +5,11 @@ GameLoop::GameLoop()
     Init();
 }
 
+/**
+ * Initializes the GameLoop.
+ *
+ * @throws ErrorType description of error
+ */
 void GameLoop::Init()
 {
     // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
@@ -28,6 +33,11 @@ void GameLoop::Init()
     player.Init();
 }
 
+/**
+ * Unloads the game assets and cleans up the memory.
+ *
+ * @throws ErrorType An error occurred while unloading the assets.
+ */
 void GameLoop::Unload()
 {
     // unload assets
@@ -38,12 +48,25 @@ void GameLoop::Unload()
     player.Unload();
 }
 
+/**
+ * Updates the game loop.
+ */
 void GameLoop::Update()
 {
     player.UpdatePlayer();
     player.playerControls();
 }
 
+
+/**
+ * Updates the game while it is paused.
+ *
+ * @param None
+ *
+ * @return None
+ *
+ * @throws None
+ */
 void GameLoop::UpdateWhilePaused()
 {
     gameUtils.UpdateDeltaTime();
@@ -54,6 +77,15 @@ void GameLoop::UpdateWhilePaused()
     player.updatePlayerPersistance();
 }
 
+/**
+ * DebugStatements is a function that displays debug information in the debug menu.
+ * It checks the toggle state of the debug menu and if it is enabled, it retrieves the 
+ * frames per second (FPS), scale, screen height, screen width, delta time, and player 
+ * rectangle information. It then passes this information to the debug menu and draws 
+ * the items on the screen.
+ *
+ * @throws None
+ */
 void GameLoop::DebugStatements()
 {
     // debug  menu
@@ -75,6 +107,11 @@ void GameLoop::DebugStatements()
     }
 }
 
+/**
+ * Draws the game scene.
+ *
+ * @throws ErrorType description of error
+ */
 void GameLoop::Draw()
 {
     BeginDrawing();
@@ -98,6 +135,15 @@ void GameLoop::Draw()
     EndDrawing();
 }
 
+/**
+ * Helper function for the main game loop.
+ *
+ * @param userData a pointer to user-defined data
+ *
+ * @return void
+ *
+ * @throws None
+ */
 void GameLoop::MainLoopHelper(void *userData)
 {
     GameLoop *gameLoop = static_cast<GameLoop *>(userData);
@@ -116,6 +162,11 @@ void GameLoop::MainLoopHelper(void *userData)
     gameLoop->Draw();
 }
 
+/**
+ * Runs the game loop.
+ *
+ * @throws ErrorType description of error
+ */
 void GameLoop::Run()
 {
 #if defined(PLATFORM_WEB)

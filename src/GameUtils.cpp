@@ -127,11 +127,21 @@ void GameUtils::packFont(const std::string &filePath, const std::string &outputF
     UnloadFont(font);
 }
 
+/**
+ * Updates the delta time of the game.
+ *
+ * @return void
+ */
 void GameUtils::UpdateDeltaTime()
 {
     dt = GetFrameTime();
 }
 
+/**
+ * Updates the window position.
+ *
+ * @return void
+ */
 void GameUtils::UpdateWindowPos()
 {
     windowSizeW = GetScreenWidth();

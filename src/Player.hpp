@@ -28,6 +28,7 @@ private:
     AssetManager* assetManager;
     GameUtils* gameUtils;
     Texture2D ship;
+    
     int windowWidth{};
     int windowHeight{};
     int scale{};

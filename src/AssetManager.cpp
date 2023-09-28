@@ -12,6 +12,14 @@ AssetManager::AssetManager()
     LoadAllAssets();
 }
 
+/**
+ * Packs all the assets.
+ *
+ * This function packs the assets by calling specific functions to pack each asset individually.
+ * The packed assets are saved in a different file format.
+ *
+ * @throws ErrorType If there is an error while packing the assets.
+ */
 void AssetManager::PackAllAssets()
 {
     // pack assets
@@ -21,6 +29,11 @@ void AssetManager::PackAllAssets()
     // gameUtils->packTexture("assets/spaceBackground.png", "../assets/spaceBackground.h");
 }
 
+/**
+ * Loads all the assets required for the game.
+ *
+ * @throws ErrorType description of error
+ */
 void AssetManager::LoadAllAssets()
 {
 #if defined(PLATFORM_WEB)
