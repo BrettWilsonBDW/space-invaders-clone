@@ -44,7 +44,7 @@ private:
 
     int windowWidth{};
     int windowHeight{};
-    int scale{};
+    float scale{};
     int playerSize{};
 
     Rectangle playerRect{};

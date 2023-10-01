@@ -53,11 +53,11 @@ void Player::CalcScale()
 
 void Player::UpdatePlayer()
 {
+    playerControls();
     shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
     shipDestRect = {static_cast<float>(playerPosX), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
 
     CalcScale();
-    playerControls();
 
     // playerPosX = static_cast<float>(windowWidth) / 2 - ship.width * scale / 2;
     // playerScreenPos.y = static_cast<float>(windowHeight) - ship.height * scale;
@@ -86,30 +86,30 @@ void Player::updatePlayerPersistance()
 
 void Player::playerControls()
 {
-    int speed = 150;
-    speed = scale * speed;
+    int speed = 1300;
+        speed = static_cast<int>(scale * speed);
 
-    float dt = gameUtils->GetDeltaTime();
+        float dt = GetFrameTime();
 
-    if (IsKeyDown(KEY_A))
-    {
-        float newPosition = playerPosX - static_cast<int>(speed * dt);
+        // Calculate the velocity based on input
+        Vector2 velocity = {0.0f, 0.0f};
 
-        if (newPosition >= 0)
+        if (IsKeyDown(KEY_A) && playerPosX > 0)
         {
-            playerPosX = newPosition;
+            velocity.x = -speed * dt;
         }
-    }
 
-    if (IsKeyDown(KEY_D))
-    {
-        float newPosition = playerPosX + static_cast<int>(speed * dt);
-
-        if (newPosition <= windowWidth - ship.width * scale)
+        if (IsKeyDown(KEY_D) && playerPosX <= windowWidth - ship.width * scale)
         {
-            playerPosX = newPosition;
+            velocity.x = speed * dt;
         }
-    }
+
+        // Calculate the target position based on velocity
+        Vector2 targetPosition = {playerPosX + velocity.x, 100}; // Assuming constant y position
+
+        // Use lerp to smoothly interpolate the position
+        float smoothingFactor = 0.1f; // Adjust as needed for desired smoothing
+        playerPosX = Lerp(playerPosX, targetPosition.x, smoothingFactor);
 }
 
 /**
@@ -126,4 +126,5 @@ void Player::DrawPlayer()
     // DrawTexturePro(ship, shipRect, shipDestRect, Vector2{ship}, 0, WHITE);
     // DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
     DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
+    // DrawTextureEx(ship, Vector2{static_cast<float>(playerPosX), 100}, 0, scale, WHITE);
 }

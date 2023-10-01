@@ -2,13 +2,32 @@
 #include "Debug.h"
 #include "GameLoop.hpp"
 
+// #if !defined(PLATFORM_WEB)
+// #ifdef __cplusplus
+// extern "C" {
+// #endif
+// #endif
+
+//   __declspec(dllexport) unsigned long NvOptimusEnablement = 1;
+//   __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
+
+// #ifdef __cplusplus
+// }
+// #endif
+
+#if defined(PLATFORM_DESKTOP)
+    #define GLSL_VERSION            330
+#else   // PLATFORM_ANDROID, PLATFORM_WEB
+    #define GLSL_VERSION            100
+#endif
+
 int main()
 {
     int width = 1920 / 2;
     int height = 1080 / 2;
 
     // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     // SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(width, height, "Space Invaders");
 

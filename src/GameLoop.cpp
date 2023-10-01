@@ -12,14 +12,16 @@ GameLoop::GameLoop()
  */
 void GameLoop::Init()
 {
+#if !defined(PLATFORM_WEB)
+    SetTargetFPS(60);  //never forget this... the web cant handle being locked to 60
+#endif
+
     // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     // SetConfigFlags(FLAG_VSYNC_HINT);
-    //
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
     SetExitKey(KEY_NULL);
-    SetTargetFPS(60);
 
     debug.SetFont(assetManager.GetFont());
 
@@ -46,6 +48,8 @@ void GameLoop::Unload()
 
     sceneManager.Unload();
     player.Unload();
+
+    CloseWindow();
 }
 
 /**
@@ -172,9 +176,8 @@ void GameLoop::MainLoopHelper(void *userData)
 void GameLoop::Run()
 {
 #if defined(PLATFORM_WEB)
-    emscripten_set_main_loop_arg(MainLoopHelper, this, 0, true);
+    emscripten_set_main_loop_arg(MainLoopHelper, this, 0, 1);
 #else
-
     while (!WindowShouldClose())
     {
         MainLoopHelper(this);
