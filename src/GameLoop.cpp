@@ -19,7 +19,7 @@ void GameLoop::Init()
     windowHeight = GetScreenHeight();
 
     SetExitKey(KEY_NULL);
-    // SetTargetFPS(60);
+    SetTargetFPS(60);
 
     debug.SetFont(assetManager.GetFont());
 
@@ -54,9 +54,8 @@ void GameLoop::Unload()
 void GameLoop::Update()
 {
     player.UpdatePlayer();
-    player.playerControls();
+    // player.playerControls();
 }
-
 
 /**
  * Updates the game while it is paused.
@@ -79,9 +78,9 @@ void GameLoop::UpdateWhilePaused()
 
 /**
  * DebugStatements is a function that displays debug information in the debug menu.
- * It checks the toggle state of the debug menu and if it is enabled, it retrieves the 
- * frames per second (FPS), scale, screen height, screen width, delta time, and player 
- * rectangle information. It then passes this information to the debug menu and draws 
+ * It checks the toggle state of the debug menu and if it is enabled, it retrieves the
+ * frames per second (FPS), scale, screen height, screen width, delta time, and player
+ * rectangle information. It then passes this information to the debug menu and draws
  * the items on the screen.
  *
  * @throws None
@@ -101,9 +100,11 @@ void GameLoop::DebugStatements()
         debug.PassItems("H: %d\n", GetScreenHeight());
         debug.PassItems("W: %d\n", GetScreenWidth());
         debug.PassItems("DT: %f\n", gameUtils.GetDeltaTime());
+        debug.PassItems("playerX: %d\n", player.GetplayerPosX());
         debug.DrawItems(3, 3, 16, 0, 2, RED);
 
         DrawRectangleLines(player.GetPlayerRect().x, player.GetPlayerRect().y, player.GetPlayerRect().width, player.GetPlayerRect().height, RED);
+        DrawLine(GetScreenWidth() / 2, 0, GetScreenWidth() / 2, GetScreenHeight(), RED);
     }
 }
 
@@ -121,11 +122,12 @@ void GameLoop::Draw()
     {
         // sceneManager.SplashScreen();
         sceneManager.GameScreen();
+        // player.DrawPlayer();
     }
 
     if (isPaused)
     {
-        sceneManager.PauseMenu();
+        // sceneManager.PauseMenu();
     }
 
     if (useDebug == 0)
@@ -175,18 +177,7 @@ void GameLoop::Run()
 
     while (!WindowShouldClose())
     {
-        if (IsKeyPressed(KEY_ESCAPE))
-        {
-            isPaused = !isPaused;
-        }
-
-        if (!isPaused)
-        {
-            Update();
-        }
-
-        UpdateWhilePaused();
-        Draw();
+        MainLoopHelper(this);
     }
 
 #endif

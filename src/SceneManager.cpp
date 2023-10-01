@@ -45,6 +45,8 @@ void SceneManager::Unload()
 void SceneManager::DrawBackground()
 {
     DrawTextureEx(background, Vector2{0, 0}, 0, (gameUtils->GetScale() * 1.5), WHITE);
+    // DrawTextureEx(background, Vector2{0, 0}, 0, (0.5 * 1.5), WHITE);
+
 }
 
 /**
@@ -99,4 +101,9 @@ void SceneManager::GameScreen()
     DrawBackground();
 
     player->DrawPlayer();
+}
+
+void SceneManager::DrawScenes()
+{
+    
 }

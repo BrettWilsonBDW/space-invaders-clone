@@ -1,4 +1,5 @@
 #include "Player.hpp"
+// #include "iostream"
 
 Player::Player()
 {
@@ -16,6 +17,13 @@ Player::Player()
 void Player::Init()
 {
     ship = assetManager->GetShip();
+
+    CalcScale();
+    playerSize = 8;
+    scale = (sScale * playerSize);
+
+    //start the player in the middle of the screen
+    playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
 }
 
 /**
@@ -28,71 +36,80 @@ void Player::Unload()
     UnloadTexture(ship);
 }
 
-/**
- * Updates the player's screen position based on the window size and ship dimensions.
- *
- * @param None
- *
- * @return None
- *
- * @throws None
- */
+void Player::CalcScale()
+{
+
+    int targetWidth = 1920;
+    int targetHeight = 1080;
+
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
+
+    float scaleX = (float)screenWidth / targetWidth;
+    float scaleY = (float)screenHeight / targetHeight;
+
+    sScale = std::min(scaleX, scaleY);
+}
+
 void Player::UpdatePlayer()
 {
-    playerScreenPos = {static_cast<float>(windowWidth) / 2 - ship.width * scale / 2, static_cast<float>(windowHeight) - ship.height * scale};
+    shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
+    shipDestRect = {static_cast<float>(playerPosX), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+
+    CalcScale();
+    playerControls();
+
+    // playerPosX = static_cast<float>(windowWidth) / 2 - ship.width * scale / 2;
+    // playerScreenPos.y = static_cast<float>(windowHeight) - ship.height * scale;
 }
 
-/**
- * Updates the player's persistence.
- *
- * @param None
- *
- * @return None
- *
- * @throws None
- */
 void Player::updatePlayerPersistance()
 {
-    int playerSize = 10;
-    scale = (gameUtils->GetScale() * playerSize);
+    // TODO reimplement scale
+
+    // int playerSize = 8;
+    // scale = (gameUtils->GetScale() * playerSize);
+    // int playerSize = 8;
+    scale = (sScale * playerSize);
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
+
+    int margin = 15;
+
+    playerRect = {
+        shipDestRect.x + margin,            // x coordinate: shift shipDestRect.x to the left by margin units - left
+        shipDestRect.y + margin,            // y coordinate: shift shipDestRect.y up by margin units - top
+        shipDestRect.width - (margin + 20), // width: decrease shipDestRect.width by (margin - 20) units - right
+        shipDestRect.height - (margin + 5)  // height: decrease shipDestRect.height by margin units - bottom
+    };
 }
 
-
-// Linear interpolation function
-float lerp(float start, float end, float t)
-{
-    return start + t * (end - start);
-}
-
-/**
- * Updates the player's position based on user input, using interpolation for smooth movement.
- *
- * @param None
- *
- * @return None
- *
- * @throws None
- */
 void Player::playerControls()
 {
-    int speed = 1000;
-    float interpolationFactor = 0.1f; // Adjust this value to control the smoothness of the movement
+    int speed = 150;
+    speed = scale * speed;
 
-    // Calculate the target position
-    float targetX = playerVector.x;
+    float dt = gameUtils->GetDeltaTime();
+
     if (IsKeyDown(KEY_A))
     {
-        targetX -= speed * gameUtils->GetDeltaTime() * scale;
-    }
-    if (IsKeyDown(KEY_D))
-    {
-        targetX += speed * gameUtils->GetDeltaTime() * scale;
+        float newPosition = playerPosX - static_cast<int>(speed * dt);
+
+        if (newPosition >= 0)
+        {
+            playerPosX = newPosition;
+        }
     }
 
-    // Apply interpolation
-    playerVector.x = lerp(playerVector.x, targetX, interpolationFactor);
+    if (IsKeyDown(KEY_D))
+    {
+        float newPosition = playerPosX + static_cast<int>(speed * dt);
+
+        if (newPosition <= windowWidth - ship.width * scale)
+        {
+            playerPosX = newPosition;
+        }
+    }
 }
 
 /**
@@ -106,19 +123,7 @@ void Player::playerControls()
  */
 void Player::DrawPlayer()
 {
-    Rectangle shipRect{0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
-    Rectangle shipDestRect{playerScreenPos.x + playerVector.x, playerScreenPos.y, static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
-
+    // DrawTexturePro(ship, shipRect, shipDestRect, Vector2{ship}, 0, WHITE);
+    // DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
     DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
-
-    int margin = 15;
-
-    // Create a rectangle representing the position and size of the player on the screen
-    // The playerRect is defined using the shipDestRect and margin variables
-    playerRect = {
-        shipDestRect.x + margin,            // x coordinate: shift shipDestRect.x to the left by margin units - left
-        shipDestRect.y + margin,            // y coordinate: shift shipDestRect.y up by margin units - top
-        shipDestRect.width - (margin + 20), // width: decrease shipDestRect.width by (margin - 20) units - right
-        shipDestRect.height - (margin + 5)  // height: decrease shipDestRect.height by margin units - bottom
-    };
 }

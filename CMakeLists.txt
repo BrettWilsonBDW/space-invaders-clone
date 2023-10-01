@@ -152,6 +152,18 @@ if(ASYNCIFY)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
 
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
+# SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
+# SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
+
+
+# if (CMAKE_BUILD_TYPE MATCHES "Debug")
+#     SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -O0 -DDEBUG")
+# endif()
+
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
+# SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
+
 ##########################################################################################
 # Project build settings
 ##########################################################################################
