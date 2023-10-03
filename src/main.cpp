@@ -38,7 +38,7 @@ int main()
     // width = 1920;
 
     // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     // SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(width, height, "Space Invaders");
 

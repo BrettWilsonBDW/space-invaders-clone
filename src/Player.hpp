@@ -17,23 +17,18 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
+    Rectangle GetPlayerRect() { return playerRect; };
+    int GetplayerPosX() { return playerPosX; }
 
     void Init();
     void Unload();
-    Rectangle GetPlayerRect() { return playerRect; };
     void updatePlayerPersistance();
     void UpdatePlayer();
     void playerControls();
     void CheckPlayerBounds();
+    void Shoot();
     void DrawPlayer();
 
-    int GetplayerPosX()
-    {
-        // return playerMove;
-        // return shipDestRect;
-
-        return playerPosX;
-    }
 
 private:
     void CalcScale();
@@ -60,4 +55,9 @@ private:
     int playerPosX{};
 
     float sScale{};
+
+    bool hasShot{};
+    bool canShootAgain{true};
+
+    Vector2 bulletVelocity{100, 100};
 };
