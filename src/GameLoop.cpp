@@ -13,7 +13,7 @@ GameLoop::GameLoop()
 void GameLoop::Init()
 {
 #if !defined(PLATFORM_WEB)
-    SetTargetFPS(60);  //never forget this... the web cant handle being locked to 60
+    SetTargetFPS(60); // never forget this... the web cant handle being locked to 60
 #endif
 
     // SetConfigFlags(FLAG_WINDOW_RESIZABLE);
@@ -23,6 +23,8 @@ void GameLoop::Init()
 
     SetExitKey(KEY_NULL);
 
+    gameUtils.CalcScale(1920, 1080);
+
     debug.SetFont(assetManager.GetFont());
 
     assetManager.SetGameUtils(&gameUtils);
@@ -31,6 +33,7 @@ void GameLoop::Init()
     player.SetAssetManager(&assetManager);
     player.SetGameUtils(&gameUtils);
     sceneManager.SetPlayer(&player);
+
     sceneManager.InitScenes();
     player.Init();
 }
@@ -57,8 +60,12 @@ void GameLoop::Unload()
  */
 void GameLoop::Update()
 {
+    windowWidth = GetScreenWidth();
+    windowHeight = GetScreenHeight();
+
+    SetWindowSize(windowWidth, windowHeight);
+
     player.UpdatePlayer();
-    // player.playerControls();
 }
 
 /**
@@ -125,13 +132,14 @@ void GameLoop::Draw()
     if (!isPaused)
     {
         // sceneManager.SplashScreen();
-        sceneManager.GameScreen();
+        // sceneManager.GameScreen();
+        sceneManager.DrawScenes();
         // player.DrawPlayer();
     }
 
     if (isPaused)
     {
-        // sceneManager.PauseMenu();
+        sceneManager.PauseMenu();
     }
 
     if (useDebug == 0)
@@ -162,6 +170,14 @@ void GameLoop::MainLoopHelper(void *userData)
     if (!gameLoop->isPaused)
     {
         gameLoop->Update();
+    }
+
+    if (gameLoop->isPaused)
+    {
+        if (IsKeyPressed(KEY_ONE))
+        {
+            ToggleFullscreen();
+        }
     }
 
     gameLoop->UpdateWhilePaused();

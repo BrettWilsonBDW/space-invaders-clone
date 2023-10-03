@@ -53,4 +53,8 @@ private:
     Texture2D background;
 
     // bool isPaused{};
+
+    bool splashScreen{true};
+
+    float runningTime{};
 };

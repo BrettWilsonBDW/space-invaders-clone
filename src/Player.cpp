@@ -18,11 +18,18 @@ void Player::Init()
 {
     ship = assetManager->GetShip();
 
-    CalcScale();
+    // CalcScale();
     playerSize = 8;
-    scale = (sScale * playerSize);
+    // scale = (sScale * playerSize);
+    // gameUtils->CalcScale(GetScreenWidth(), GetScreenHeight());
 
-    //start the player in the middle of the screen
+    scale = (gameUtils->GetScale() * playerSize);
+
+    // start the player in the middle of the screen
+    //  playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
+    //  playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
+    //  playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
+
     playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
 }
 
@@ -36,20 +43,19 @@ void Player::Unload()
     UnloadTexture(ship);
 }
 
-void Player::CalcScale()
-{
+// void Player::CalcScale()
+// {
+//     int targetWidth = 1920;
+//     int targetHeight = 1080;
 
-    int targetWidth = 1920;
-    int targetHeight = 1080;
+//     int screenWidth = GetScreenWidth();
+//     int screenHeight = GetScreenHeight();
 
-    int screenWidth = GetScreenWidth();
-    int screenHeight = GetScreenHeight();
+//     float scaleX = (float)screenWidth / targetWidth;
+//     float scaleY = (float)screenHeight / targetHeight;
 
-    float scaleX = (float)screenWidth / targetWidth;
-    float scaleY = (float)screenHeight / targetHeight;
-
-    sScale = std::min(scaleX, scaleY);
-}
+//     sScale = std::min(scaleX, scaleY);
+// }
 
 void Player::UpdatePlayer()
 {
@@ -57,7 +63,9 @@ void Player::UpdatePlayer()
     shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
     shipDestRect = {static_cast<float>(playerPosX), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
 
-    CalcScale();
+    // CalcScale();
+
+    // playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
 
     // playerPosX = static_cast<float>(windowWidth) / 2 - ship.width * scale / 2;
     // playerScreenPos.y = static_cast<float>(windowHeight) - ship.height * scale;
@@ -70,9 +78,13 @@ void Player::updatePlayerPersistance()
     // int playerSize = 8;
     // scale = (gameUtils->GetScale() * playerSize);
     // int playerSize = 8;
-    scale = (sScale * playerSize);
+    // scale = (sScale * playerSize);
+
+    scale = (gameUtils->GetScale() * playerSize);
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
+
+    // playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
 
     int margin = 15;
 
@@ -87,29 +99,44 @@ void Player::updatePlayerPersistance()
 void Player::playerControls()
 {
     int speed = 1300;
-        speed = static_cast<int>(scale * speed);
+    speed = static_cast<int>(scale * speed);
 
-        float dt = GetFrameTime();
+    float dt = GetFrameTime();
 
-        // Calculate the velocity based on input
-        Vector2 velocity = {0.0f, 0.0f};
+    // Calculate the velocity based on input
+    Vector2 velocity = {0.0f, 0.0f};
 
-        if (IsKeyDown(KEY_A) && playerPosX > 0)
+    if (IsKeyDown(KEY_A))
+    {
+        if (playerPosX > 0)
         {
             velocity.x = -speed * dt;
         }
+        else
+        {
+            velocity.x = 0;
+        }
+    }
 
-        if (IsKeyDown(KEY_D) && playerPosX <= windowWidth - ship.width * scale)
+    // if (IsKeyDown(KEY_D) && playerPosX <= windowWidth - ship.width * scale)
+    if (IsKeyDown(KEY_D))
+    {
+        if (playerPosX <= windowWidth - ship.width * scale)
         {
             velocity.x = speed * dt;
         }
+        else
+        {
+            velocity.x = 0;
+        }
+    }
 
-        // Calculate the target position based on velocity
-        Vector2 targetPosition = {playerPosX + velocity.x, 100}; // Assuming constant y position
+    // Calculate the target position based on velocity
+    Vector2 targetPosition = {playerPosX + velocity.x, 100}; // Assuming constant y position
 
-        // Use lerp to smoothly interpolate the position
-        float smoothingFactor = 0.1f; // Adjust as needed for desired smoothing
-        playerPosX = Lerp(playerPosX, targetPosition.x, smoothingFactor);
+    // Use lerp to smoothly interpolate the position
+    float smoothingFactor = 0.1f; // Adjust as needed for desired smoothing
+    playerPosX = Lerp(playerPosX, targetPosition.x, smoothingFactor);
 }
 
 /**

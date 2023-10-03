@@ -46,7 +46,6 @@ void SceneManager::DrawBackground()
 {
     DrawTextureEx(background, Vector2{0, 0}, 0, (gameUtils->GetScale() * 1.5), WHITE);
     // DrawTextureEx(background, Vector2{0, 0}, 0, (0.5 * 1.5), WHITE);
-
 }
 
 /**
@@ -56,7 +55,7 @@ void SceneManager::DrawBackground()
  */
 void SceneManager::SplashScreen()
 {
-    DrawBackground();
+    // DrawBackground();
 
     float logoSacle = gameUtils->GetScale() / 3;
     Vector2 logoCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)};
@@ -98,12 +97,27 @@ void SceneManager::PauseMenu()
  */
 void SceneManager::GameScreen()
 {
-    DrawBackground();
-
+    // DrawBackground();
     player->DrawPlayer();
 }
 
 void SceneManager::DrawScenes()
 {
+    DrawBackground();
+
+    runningTime += gameUtils->GetDeltaTime();
+
+    if (runningTime > (2.f))
+    {
+        splashScreen = false;
+    }
+
+    if (splashScreen)
+    {
+        SplashScreen();
+    }
     
+    // SplashScreen();
+
+    GameScreen();
 }
