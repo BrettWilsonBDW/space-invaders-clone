@@ -174,10 +174,10 @@ void GameLoop::MainLoopHelper(void *userData)
 
     if (gameLoop->isPaused)
     {
-        if (IsKeyPressed(KEY_ONE))
-        {
-            ToggleFullscreen();
-        }
+        // if (IsKeyPressed(KEY_ONE))
+        // {
+        //     ToggleFullscreen();
+        // }
     }
 
     gameLoop->UpdateWhilePaused();

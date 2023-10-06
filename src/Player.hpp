@@ -18,7 +18,7 @@ public:
         gameUtils = gameUtilsPass;
     }
     Rectangle GetPlayerRect() { return playerRect; };
-    int GetplayerPosX() { return playerPosX; }
+    int GetplayerPosX() { return playerPosX * gameUtils->GetScale(); }
 
     void Init();
     void Unload();
@@ -40,7 +40,7 @@ private:
     int windowWidth{};
     int windowHeight{};
     float scale{};
-    int playerSize{};
+    int playerSize{8};
 
     Rectangle playerRect{};
     Rectangle shipDestRect{};
@@ -60,4 +60,6 @@ private:
     bool canShootAgain{true};
 
     Vector2 bulletVelocity{100, 100};
+
+    int screenPos{};
 };

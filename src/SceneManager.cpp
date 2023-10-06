@@ -61,7 +61,7 @@ void SceneManager::SplashScreen()
     Vector2 logoCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)};
     DrawTextureEx(logo, logoCenter, 0, logoSacle, WHITE);
 
-    std::string text = u8"   2023 | Made by Brett Wilson";
+    std::string text = u8"   2023 | Made by Brett Wilson\n              with Raylib";
     Vector2 logoTextCenter{(static_cast<float>(windowWidth) / 2) - (logo.width * logoSacle / 2), (((static_cast<float>(windowHeight) / 2) - (logo.height * logoSacle / 2)) + logo.height * logoSacle) + 20};
     float centerX = logoTextCenter.x + (logo.width * logoSacle / 2);
     logoTextCenter.x = centerX - MeasureTextEx(font, text.c_str(), 16, 2).x / 2;
@@ -82,8 +82,73 @@ void SceneManager::PauseMenu()
 {
     DrawBackground();
 
+    if (IsKeyPressed(KEY_ONE))
+    {
+        int width = 360;
+        int height = 720;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_TWO))
+    {
+        int width = 1080;
+        int height = 1920;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_THREE))
+    {
+        int width = 1440;
+        int height = 2560;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_FOUR))
+    {
+        int width = 600;
+        int height = 1024;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_FIVE))
+    {
+        int width = 768;
+        int height = 1366;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_SIX))
+    {
+        int width = 1024;
+        int height = 2048;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_SEVEN))
+    {
+        int width = 1280;
+        int height = 720;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_EIGHT))
+    {
+        int width = 1920;
+        int height = 1080;
+        SetWindowSize(width, height);
+    }
+
+    if (IsKeyPressed(KEY_NINE))
+    {
+        int width = 2560;
+        int height = 1440;
+        SetWindowSize(width, height);
+    }
+
     DrawTextEx(font, "Paused", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2}, 16, 2, WHITE);
     DrawTextEx(font, "Press ESC to resume", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2 + 20}, 16, 2, WHITE);
+
+    DrawTextEx(font, "\n\n360x720\n\n1080x1920\n\n1440x2560\n\n600x1024\n\n768x1366\n\n1024x2048\n\n1280x720\n\n1920x1080\n\n2560x1440\n", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2 + 20}, 16, 2, WHITE);
 }
 
 /**
@@ -116,7 +181,7 @@ void SceneManager::DrawScenes()
     {
         SplashScreen();
     }
-    
+
     // SplashScreen();
 
     GameScreen();

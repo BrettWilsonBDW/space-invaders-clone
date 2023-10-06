@@ -18,10 +18,13 @@ void Player::Init()
 {
     ship = assetManager->GetShip();
 
-    playerSize = 8;
+    // playerSize = 8;
     scale = (gameUtils->GetScale() * playerSize);
 
-    playerPosX = static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2;
+    // playerPosX = (static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2);
+    playerPosX = (( static_cast<float>(GetScreenWidth() / 2)) - (ship.width * scale) / 2);
+
+    playerPosX = playerPosX / gameUtils->GetScale();
 }
 
 /**
@@ -43,8 +46,16 @@ void Player::UpdatePlayer()
         Shoot();
     }
 
+    // int temp = playerPosX;
+    // screenPos = temp * gameUtils->GetScale();
+    screenPos = playerPosX;
+
+    screenPos = screenPos * gameUtils->GetScale();
+
     shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
-    shipDestRect = {static_cast<float>(playerPosX), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+    // shipDestRect = {static_cast<float>(playerPosX), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+    shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+    // shipDestRect = {static_cast<float>(playerPosX * gameUtils->GetScale()), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
 }
 
 void Player::updatePlayerPersistance()
@@ -54,6 +65,13 @@ void Player::updatePlayerPersistance()
     scale = (gameUtils->GetScale() * playerSize);
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
+
+    // rest player if its off the screen
+    if (playerPosX * gameUtils->GetScale() > windowWidth)
+    {
+        playerPosX = windowWidth - (ship.width * scale) + 10;
+        // screenPos = windowWidth - (ship.width * scale) + 10;
+    }
 
     int margin = 15;
 
@@ -90,7 +108,7 @@ void Player::playerControls()
 
     if (IsKeyDown(KEY_D))
     {
-        if (playerPosX <= windowWidth - ship.width * scale)
+        if (playerPosX * gameUtils->GetScale() < windowWidth - ship.width * scale)
         {
             velocity.x = speed * dt;
         }
@@ -101,11 +119,13 @@ void Player::playerControls()
     }
 
     // Calculate the target position based on velocity
-    Vector2 targetPosition = {playerPosX + velocity.x, 100};
+    Vector2 targetPosition = {(playerPosX + velocity.x), 100};
 
     // Use lerp to smoothly interpolate the position
     float smoothingFactor = 0.1f; // Adjust as needed for desired smoothing
     playerPosX = Lerp(playerPosX, targetPosition.x, smoothingFactor);
+
+    // playerPosX = playerPosX * gameUtils->GetScale();
 
     if (canShootAgain)
     {
@@ -124,6 +144,7 @@ void Player::playerControls()
         }
     }
 }
+
 
 void Player::Shoot()
 {
