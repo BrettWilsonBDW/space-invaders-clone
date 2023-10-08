@@ -148,9 +148,11 @@ void Player::Shoot()
             bullet.canShootAgain = true;
         }
 
-        bullet.y -= speed * gameUtils->GetDeltaTime();
-
-        bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
+        if (bullet.canShootAgain)
+        {
+            bullet.y -= speed * gameUtils->GetDeltaTime();
+            bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
+        }
     }
 }
 
@@ -173,8 +175,7 @@ void Player::DrawPlayer()
         }
     }
 
-    //TODO fix jitter comes from the player is being drawn
-
+    // TODO fix jitter comes from the player is being drawn
 
     DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
 }
