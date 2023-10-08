@@ -41,29 +41,30 @@ void Player::UpdatePlayer()
 {
     playerControls();
 
-    // for (auto &bullet : bullets)
-    // {
-    //     if (bullet.hasShot)
-    //     {
-    //         Shoot();
-    //     }
-    // }
+    if (IsKeyPressed(KEY_SPACE))
+    {
+        if (!bullets[shootCtr].canShootAgain)
+        {
+            bullets[shootCtr].hasShot = true;
+            bullets[shootCtr].x = shipDestRect.x + shipDestRect.width / 2;
+            bullets[shootCtr].y = shipDestRect.y;
+        }
 
-    // if (hasShot)
-    // {
-    //     Shoot();
-    // }
+        shootCtr++;
 
-    // int temp = playerPosX;
-    // screenPos = temp * gameUtils->GetScale();
+        if (shootCtr >= maxBullets)
+        {
+            shootCtr = 0;
+        }
+    }
+    Shoot();
+
     screenPos = playerPosX;
 
     screenPos = (screenPos * gameUtils->GetScale());
 
     shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
-    // shipDestRect = {static_cast<float>(playerPosX), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
     shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
-    // shipDestRect = {static_cast<float>(playerPosX * gameUtils->GetScale()), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
 }
 
 void Player::updatePlayerPersistance()
@@ -127,100 +128,29 @@ void Player::playerControls()
         }
     }
 
-    // Calculate the target position based on velocity
-    // Vector2 targetPosition = {(playerPosX + velocity.x), 100};
-
-    // Use lerp to smoothly interpolate the position
-    // float smoothingFactor = 0.1f; // Adjust as needed for desired smoothing
-    // playerPosX = Lerp(playerPosX, targetPosition.x, smoothingFactor);
-
     playerPosX = static_cast<int>(playerPosX + static_cast<int>(velocity.x));
-
-    for (auto &bullet : bullets)
-    {
-        if (bullet.canShootAgain)
-        {
-            bullet.hasShot = false;
-            if (IsKeyPressed(KEY_SPACE))
-            {
-                bullet.x = shipDestRect.x + (shipDestRect.width / 2) - (2 * scale / 2);
-                bullet.y = shipDestRect.y + (shipDestRect.height / 2) - (30 * scale / 2);
-                bullet.hasShot = true;
-            }
-        }
-    }
-
-    // if (canShootAgain)
-    // {
-    //     hasShot = false;
-    //     if (IsKeyPressed(KEY_SPACE))
-    //     {
-    //         // hasShot = !hasShot;
-    //         hasShot = true;
-
-    //         // hasShot = !hasShot;
-
-    //         // bulletVelocity.x = shipDestRect.x + (shipDestRect.width / 2) - (2 * scale / 2);
-    //         // bulletVelocity.y = shipDestRect.y + (shipDestRect.height / 2) - (30 * scale / 2);
-
-    //         // Shoot();
-    //     }
 }
-
-// void Player::Shoot()
-// {
-//     for (auto &bullet : bullets)
-//     {
-//         bullet.y -= 100 * gameUtils->GetDeltaTime();
-
-//         if (bullet.y > 0)
-//         {
-//             bullet.canShootAgain = false;
-//         }
-//         else
-//         {
-//             bullet.canShootAgain = true;
-//         }
-
-//         bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
-//     }
-
-//     // bulletVelocity.y -= 500 * gameUtils->GetDeltaTime();
-
-//     // if (bulletVelocity.y > 0)
-//     // {
-//     //     canShootAgain = false;
-//     // }
-//     // else
-//     // {
-//     //     canShootAgain = true;
-//     // }
-
-//     // bulletRect = {bulletVelocity.x, bulletVelocity.y, 2 * scale, 5 * scale};
-// }
 
 void Player::Shoot()
 {
+    int speed{500};
     for (auto &bullet : bullets)
     {
-        if (bullet.hasShot)
+        if (bullet.y < 0)
         {
-            bullet.y -= 100 * gameUtils->GetDeltaTime();
-
-            if (bullet.y > 0)
-            {
-                bullet.canShootAgain = false;
-            }
-            else
-            {
-                bullet.canShootAgain = true;
-            }
-
-            bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
-
-            // Break out of the loop after updating the position of the bullet
-            // break;
+            // bullet.canShootAgain = true;
+            bullet.canShootAgain = false;
+            bullet.hasShot = false;
         }
+        else
+        {
+            // bullet.canShootAgain = false;
+            bullet.canShootAgain = true;
+        }
+
+        bullet.y -= speed * gameUtils->GetDeltaTime();
+
+        bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
     }
 }
 
@@ -237,16 +167,14 @@ void Player::DrawPlayer()
 {
     for (auto &bullet : bullets)
     {
-        // if (bullet.hasShot)
-        // {
+        if (bullet.hasShot)
+        {
             DrawRectangle(bullet.x, bullet.y, 2 * scale, 5 * scale, RED);
-        // }
+        }
     }
 
-    // if (hasShot)
-    // {
-    //     DrawRectangle(bulletVelocity.x, bulletVelocity.y, 2 * scale, 5 * scale, RED);
-    // }
+    //TODO fix jitter comes from the player is being drawn
+
 
     DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
 }

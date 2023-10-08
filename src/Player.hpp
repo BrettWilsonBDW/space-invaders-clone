@@ -19,6 +19,7 @@ public:
     }
     Rectangle GetPlayerRect() { return playerRect; };
     int GetplayerPosX() { return playerPosX * gameUtils->GetScale(); }
+    int GetBulletCount() { return shootCtr; }
 
     void Init();
     void Unload();
@@ -28,10 +29,10 @@ public:
     void CheckPlayerBounds();
     void Shoot();
     void DrawPlayer();
-
-
 private:
     void CalcScale();
+
+    //TODO clean up unused
 
     AssetManager *assetManager;
     GameUtils *gameUtils;
@@ -46,25 +47,18 @@ private:
     Rectangle shipDestRect{};
     Rectangle shipRect{};
 
-    Vector2 playerMove{};
-    bool hitBoundsLeft{};
-    bool hitBoundsRight{};
-
     int playerSpeed{};
     int playerVelocity{};
     int playerPosX{};
-
-    float sScale{};
+    int screenPos{};
 
     bool hasShot{};
     bool canShootAgain{true};
 
-    Vector2 bulletVelocity{100, 100};
+    //set  max amount of bullets allowed to be on the screen at once
+    static const int maxBullets{3};
 
-    int screenPos{};
-
-    Rectangle bulletRect{};
-
+    int shootCtr{};
 
     struct Bullets
     {
@@ -72,11 +66,12 @@ private:
         int y{};
         int width{};
         int height{};
+        int ctr{};
         bool hasShot{};
-        bool canShootAgain{true};
+        bool canShootAgain{};
         Rectangle rect;
     };
 
-    Bullets bullets[3];
+    Bullets bullets[maxBullets];
     
 };

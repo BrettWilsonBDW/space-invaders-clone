@@ -136,6 +136,8 @@ void SceneManager::DrawScenes()
 {
     DrawBackground();
 
+    GameScreen();
+
     runningTime += gameUtils->GetDeltaTime();
 
     if (runningTime > (2.f))
@@ -147,8 +149,4 @@ void SceneManager::DrawScenes()
     {
         SplashScreen();
     }
-
-    // SplashScreen();
-
-    GameScreen();
 }

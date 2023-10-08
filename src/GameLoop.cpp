@@ -112,6 +112,7 @@ void GameLoop::DebugStatements()
         debug.PassItems("W: %d\n", GetScreenWidth());
         debug.PassItems("DT: %f\n", gameUtils.GetDeltaTime());
         debug.PassItems("playerX: %d\n", player.GetplayerPosX());
+        debug.PassItems("num of bullets %d\n", player.GetBulletCount());
         debug.DrawItems(3, 3, 16, 0, 2, RED);
 
         DrawRectangleLines(player.GetPlayerRect().x, player.GetPlayerRect().y, player.GetPlayerRect().width, player.GetPlayerRect().height, RED);
