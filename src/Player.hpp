@@ -62,4 +62,21 @@ private:
     Vector2 bulletVelocity{100, 100};
 
     int screenPos{};
+
+    Rectangle bulletRect{};
+
+
+    struct Bullets
+    {
+        int x{};
+        int y{};
+        int width{};
+        int height{};
+        bool hasShot{};
+        bool canShootAgain{true};
+        Rectangle rect;
+    };
+
+    Bullets bullets[3];
+    
 };

@@ -1,5 +1,9 @@
 #include "SceneManager.hpp"
 
+#include <iostream>
+#include <sstream>
+#include <string>
+
 SceneManager::SceneManager()
 {
 }
@@ -82,73 +86,35 @@ void SceneManager::PauseMenu()
 {
     DrawBackground();
 
-    if (IsKeyPressed(KEY_ONE))
+    int windowSizes[][2] = {
+        {800, 400},   // KEY_ONE
+        {1920 / 2, 1080 / 2}, // KEY_TWO
+        {1440, 2560}, // KEY_THREE
+        {600, 1024},  // KEY_FOUR
+        {768, 1366},  // KEY_FIVE
+        {1024, 2048}, // KEY_SIX
+        {1280, 720},  // KEY_SEVEN
+        {1920, 1080}, // KEY_EIGHT
+        {2560, 1440}  // KEY_NINE
+    };
+
+    for (int key = KEY_ONE; key <= KEY_NINE; key++)
     {
-        int width = 360;
-        int height = 720;
-        SetWindowSize(width, height);
+        if (IsKeyPressed(key))
+        {
+            int width = windowSizes[key - KEY_ONE][0];
+            int height = windowSizes[key - KEY_ONE][1];
+            SetWindowSize(width, height);
+            SetWindowPosition(0, 5);
+        }
     }
 
-    if (IsKeyPressed(KEY_TWO))
-    {
-        int width = 1080;
-        int height = 1920;
-        SetWindowSize(width, height);
-    }
-
-    if (IsKeyPressed(KEY_THREE))
-    {
-        int width = 1440;
-        int height = 2560;
-        SetWindowSize(width, height);
-    }
-
-    if (IsKeyPressed(KEY_FOUR))
-    {
-        int width = 600;
-        int height = 1024;
-        SetWindowSize(width, height);
-    }
-
-    if (IsKeyPressed(KEY_FIVE))
-    {
-        int width = 768;
-        int height = 1366;
-        SetWindowSize(width, height);
-    }
-
-    if (IsKeyPressed(KEY_SIX))
-    {
-        int width = 1024;
-        int height = 2048;
-        SetWindowSize(width, height);
-    }
-
-    if (IsKeyPressed(KEY_SEVEN))
-    {
-        int width = 1280;
-        int height = 720;
-        SetWindowSize(width, height);
-    }
-
-    if (IsKeyPressed(KEY_EIGHT))
-    {
-        int width = 1920;
-        int height = 1080;
-        SetWindowSize(width, height);
-    }
-
-    if (IsKeyPressed(KEY_NINE))
-    {
-        int width = 2560;
-        int height = 1440;
-        SetWindowSize(width, height);
-    }
 
     DrawTextEx(font, "Paused", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2}, 16, 2, WHITE);
     DrawTextEx(font, "Press ESC to resume", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2 + 20}, 16, 2, WHITE);
 
-    DrawTextEx(font, "\n\n360x720\n\n1080x1920\n\n1440x2560\n\n600x1024\n\n768x1366\n\n1024x2048\n\n1280x720\n\n1920x1080\n\n2560x1440\n", Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2 + 20}, 16, 2, WHITE);
+    DrawTextEx(font, "\n\n1: 360x720\n\n2: 960x540\n\n3: 1440x2560\n\n4: 600x1024\n\n5: 768x1366\n\n6: 1024x2048\n\n7: 1280x720\n\n8: 1920x1080\n\n9: 2560x1440\n", Vector2{static_cast<float>(windowWidth) / 4, static_cast<float>(windowHeight) / 4}, 16, 2, WHITE);
+    // DrawTextEx(font, windowSizesString.str(), Vector2{static_cast<float>(windowWidth) / 2, static_cast<float>(windowHeight) / 2 + 20}, 16, 2, WHITE);
 }
 
 /**

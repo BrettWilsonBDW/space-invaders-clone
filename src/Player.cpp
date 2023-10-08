@@ -22,7 +22,7 @@ void Player::Init()
     scale = (gameUtils->GetScale() * playerSize);
 
     // playerPosX = (static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2);
-    playerPosX = (( static_cast<float>(GetScreenWidth() / 2)) - (ship.width * scale) / 2);
+    playerPosX = ((static_cast<float>(GetScreenWidth() / 2)) - (ship.width * scale) / 2);
 
     playerPosX = playerPosX / gameUtils->GetScale();
 }
@@ -41,16 +41,24 @@ void Player::UpdatePlayer()
 {
     playerControls();
 
-    if (hasShot)
-    {
-        Shoot();
-    }
+    // for (auto &bullet : bullets)
+    // {
+    //     if (bullet.hasShot)
+    //     {
+    //         Shoot();
+    //     }
+    // }
+
+    // if (hasShot)
+    // {
+    //     Shoot();
+    // }
 
     // int temp = playerPosX;
     // screenPos = temp * gameUtils->GetScale();
     screenPos = playerPosX;
 
-    screenPos = screenPos * gameUtils->GetScale();
+    screenPos = (screenPos * gameUtils->GetScale());
 
     shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
     // shipDestRect = {static_cast<float>(playerPosX), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
@@ -69,8 +77,8 @@ void Player::updatePlayerPersistance()
     // rest player if its off the screen
     if (playerPosX * gameUtils->GetScale() > windowWidth)
     {
-        playerPosX = windowWidth - (ship.width * scale) + 10;
-        // screenPos = windowWidth - (ship.width * scale) + 10;
+        // playerPosX = windowWidth - (ship.width * scale) + 10;
+        screenPos = windowWidth - (ship.width * scale) + 10;
     }
 
     int margin = 15;
@@ -86,8 +94,9 @@ void Player::updatePlayerPersistance()
 
 void Player::playerControls()
 {
-    int speed = 1300;
-    speed = static_cast<int>(scale * speed);
+    // int speed = 1300 * 6;
+    int speed = 1000;
+    // speed = static_cast<int>(scale * speed);
 
     float dt = GetFrameTime();
 
@@ -96,7 +105,7 @@ void Player::playerControls()
 
     if (IsKeyDown(KEY_A))
     {
-        if (playerPosX > 0)
+        if (playerPosX > 0 + 15)
         {
             velocity.x = -speed * dt;
         }
@@ -119,44 +128,99 @@ void Player::playerControls()
     }
 
     // Calculate the target position based on velocity
-    Vector2 targetPosition = {(playerPosX + velocity.x), 100};
+    // Vector2 targetPosition = {(playerPosX + velocity.x), 100};
 
     // Use lerp to smoothly interpolate the position
-    float smoothingFactor = 0.1f; // Adjust as needed for desired smoothing
-    playerPosX = Lerp(playerPosX, targetPosition.x, smoothingFactor);
+    // float smoothingFactor = 0.1f; // Adjust as needed for desired smoothing
+    // playerPosX = Lerp(playerPosX, targetPosition.x, smoothingFactor);
 
-    // playerPosX = playerPosX * gameUtils->GetScale();
+    playerPosX = static_cast<int>(playerPosX + static_cast<int>(velocity.x));
 
-    if (canShootAgain)
+    for (auto &bullet : bullets)
     {
-        hasShot = false;
-        if (IsKeyPressed(KEY_SPACE))
+        if (bullet.canShootAgain)
         {
-            // hasShot = !hasShot;
-            hasShot = true;
-
-            // hasShot = !hasShot;
-
-            bulletVelocity.x = shipDestRect.x + (shipDestRect.width / 2) - (2 * scale / 2);
-            bulletVelocity.y = shipDestRect.y + (shipDestRect.height / 2) - (30 * scale / 2);
-
-            // Shoot();
+            bullet.hasShot = false;
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                bullet.x = shipDestRect.x + (shipDestRect.width / 2) - (2 * scale / 2);
+                bullet.y = shipDestRect.y + (shipDestRect.height / 2) - (30 * scale / 2);
+                bullet.hasShot = true;
+            }
         }
     }
+
+    // if (canShootAgain)
+    // {
+    //     hasShot = false;
+    //     if (IsKeyPressed(KEY_SPACE))
+    //     {
+    //         // hasShot = !hasShot;
+    //         hasShot = true;
+
+    //         // hasShot = !hasShot;
+
+    //         // bulletVelocity.x = shipDestRect.x + (shipDestRect.width / 2) - (2 * scale / 2);
+    //         // bulletVelocity.y = shipDestRect.y + (shipDestRect.height / 2) - (30 * scale / 2);
+
+    //         // Shoot();
+    //     }
 }
 
+// void Player::Shoot()
+// {
+//     for (auto &bullet : bullets)
+//     {
+//         bullet.y -= 100 * gameUtils->GetDeltaTime();
+
+//         if (bullet.y > 0)
+//         {
+//             bullet.canShootAgain = false;
+//         }
+//         else
+//         {
+//             bullet.canShootAgain = true;
+//         }
+
+//         bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
+//     }
+
+//     // bulletVelocity.y -= 500 * gameUtils->GetDeltaTime();
+
+//     // if (bulletVelocity.y > 0)
+//     // {
+//     //     canShootAgain = false;
+//     // }
+//     // else
+//     // {
+//     //     canShootAgain = true;
+//     // }
+
+//     // bulletRect = {bulletVelocity.x, bulletVelocity.y, 2 * scale, 5 * scale};
+// }
 
 void Player::Shoot()
 {
-    bulletVelocity.y -= 500 * gameUtils->GetDeltaTime();
+    for (auto &bullet : bullets)
+    {
+        if (bullet.hasShot)
+        {
+            bullet.y -= 100 * gameUtils->GetDeltaTime();
 
-    if (bulletVelocity.y > 0)
-    {
-        canShootAgain = false;
-    }
-    else
-    {
-        canShootAgain = true;
+            if (bullet.y > 0)
+            {
+                bullet.canShootAgain = false;
+            }
+            else
+            {
+                bullet.canShootAgain = true;
+            }
+
+            bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
+
+            // Break out of the loop after updating the position of the bullet
+            // break;
+        }
     }
 }
 
@@ -171,10 +235,18 @@ void Player::Shoot()
  */
 void Player::DrawPlayer()
 {
-    if (hasShot)
+    for (auto &bullet : bullets)
     {
-        DrawRectangle(bulletVelocity.x, bulletVelocity.y, 2 * scale, 5 * scale, RED);
+        // if (bullet.hasShot)
+        // {
+            DrawRectangle(bullet.x, bullet.y, 2 * scale, 5 * scale, RED);
+        // }
     }
+
+    // if (hasShot)
+    // {
+    //     DrawRectangle(bulletVelocity.x, bulletVelocity.y, 2 * scale, 5 * scale, RED);
+    // }
 
     DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
 }
