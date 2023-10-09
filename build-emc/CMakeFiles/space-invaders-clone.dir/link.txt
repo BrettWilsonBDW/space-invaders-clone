@@ -1,0 +1,1 @@
+C:\emsdk\upstream\emscripten\em++.bat  -Wall -Os -O3 -DNDEBUG -s USE_GLFW=3 -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -Os -Wall -s TOTAL_MEMORY=67108864 -s FORCE_FILESYSTEM=1 --preload-file assets/ --shell-file ../src/minshell.html @CMakeFiles\space-invaders-clone.dir\objects1.rsp -o space-invaders-clone.html @CMakeFiles\space-invaders-clone.dir\linkLibs.rsp

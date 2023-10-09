@@ -1,4 +1,4 @@
 build
-build-emc
+# build-emc
 testAssets
 .vscode
