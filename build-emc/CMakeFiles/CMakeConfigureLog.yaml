@@ -21,8 +21,8 @@ events:
     checks:
       - "Performing Test COMPILER_HAS_THOSE_TOGGLES"
     directories:
-      source: "C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-vmq4b4"
-      binary: "C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-vmq4b4"
+      source: "C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-w575hi"
+      binary: "C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-w575hi"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_MODULE_PATH: "C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/_deps/raylib-src/cmake"
@@ -30,16 +30,16 @@ events:
       variable: "COMPILER_HAS_THOSE_TOGGLES"
       cached: true
       stdout: |
-        Change Dir: C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-vmq4b4
+        Change Dir: C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-w575hi
         
-        Run Build Command(s):C:/mingw64/bin/cmake.exe -E env VERBOSE=1 C:/mingw64/bin/mingw32-make.exe -f Makefile cmTC_d9f92/fast && C:/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_d9f92.dir\\build.make CMakeFiles/cmTC_d9f92.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-vmq4b4'
-        Building C object CMakeFiles/cmTC_d9f92.dir/src.c.o
-        C:\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_d9f92.dir/src.c.o -MF CMakeFiles\\cmTC_d9f92.dir\\src.c.o.d -o CMakeFiles\\cmTC_d9f92.dir\\src.c.o -c C:\\Users\\brend\\Desktop\\webdeploy\\space-invaders-clone\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-vmq4b4\\src.c
-        Linking C executable cmTC_d9f92.js
-        C:\\mingw64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_d9f92.dir\\link.txt --verbose=1
-        C:\\emsdk\\upstream\\emscripten\\emcc.bat @CMakeFiles\\cmTC_d9f92.dir\\objects1.rsp -o cmTC_d9f92.js 
-        mingw32-make[1]: Leaving directory 'C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-vmq4b4'
+        Run Build Command(s):C:/mingw64/bin/cmake.exe -E env VERBOSE=1 C:/mingw64/bin/mingw32-make.exe -f Makefile cmTC_a9ac8/fast && C:/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_a9ac8.dir\\build.make CMakeFiles/cmTC_a9ac8.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-w575hi'
+        Building C object CMakeFiles/cmTC_a9ac8.dir/src.c.o
+        C:\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_a9ac8.dir/src.c.o -MF CMakeFiles\\cmTC_a9ac8.dir\\src.c.o.d -o CMakeFiles\\cmTC_a9ac8.dir\\src.c.o -c C:\\Users\\brend\\Desktop\\webdeploy\\space-invaders-clone\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-w575hi\\src.c
+        Linking C executable cmTC_a9ac8.js
+        C:\\mingw64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_a9ac8.dir\\link.txt --verbose=1
+        C:\\emsdk\\upstream\\emscripten\\emcc.bat @CMakeFiles\\cmTC_a9ac8.dir\\objects1.rsp -o cmTC_a9ac8.js 
+        mingw32-make[1]: Leaving directory 'C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-w575hi'
         
       exitCode: 0
 ...
