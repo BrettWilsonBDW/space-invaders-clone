@@ -34,10 +34,14 @@ void GameLoop::Init()
     player.SetAssetManager(&assetManager);
     player.SetGameUtils(&gameUtils);
     sceneManager.SetPlayer(&player);
+    sceneManager.SetEnemies(&enemies);
     enemies.SetPlayer(&player);
+    enemies.SetAssetManager(&assetManager);
+    enemies.SetGameUtils(&gameUtils);
 
     sceneManager.InitScenes();
     player.Init();
+    enemies.Init();
 }
 
 /**
@@ -65,9 +69,10 @@ void GameLoop::Update()
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
-    SetWindowSize(windowWidth, windowHeight);
+    // SetWindowSize(windowWidth, windowHeight);
 
     player.UpdatePlayer();
+    enemies.Update();
 }
 
 /**
@@ -201,6 +206,5 @@ void GameLoop::Run()
     {
         MainLoopHelper(this);
     }
-
 #endif
 }
