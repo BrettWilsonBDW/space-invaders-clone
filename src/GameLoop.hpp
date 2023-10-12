@@ -6,6 +6,7 @@
 #include "SceneManager.hpp"
 #include "AssetManager.hpp"
 #include "Player.hpp"
+#include "Enemies.hpp"
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -29,6 +30,7 @@ private:
     AssetManager assetManager;
     Debug debug;
     Player player;
+    Enemies enemies;
 
     int windowWidth{};
     int windowHeight{};

@@ -5,6 +5,7 @@
 #include "AssetManager.hpp"
 #include <string>
 #include "Player.hpp"
+#include "Enemies.hpp"
 
 class SceneManager
 {
@@ -25,6 +26,10 @@ public:
     {
         player = playerPass;
     }
+    void SetEnemies(Enemies *enemiesPass)
+    {
+        enemies = enemiesPass;
+    }
     void SetWindowInfo(int width, int height)
     {
         windowWidth = width;
@@ -42,6 +47,7 @@ private:
     GameUtils *gameUtils;
     AssetManager *assetManager;
     Player *player;
+    Enemies *enemies;
     // int pauseKeyState{};
     // bool pauseMenuState{};
 

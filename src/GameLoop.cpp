@@ -27,12 +27,14 @@ void GameLoop::Init()
 
     debug.SetFont(assetManager.GetFont());
 
+    // share instances of classes across classes
     assetManager.SetGameUtils(&gameUtils);
     sceneManager.SetGameUtils(&gameUtils);
     sceneManager.SetAssetManager(&assetManager);
     player.SetAssetManager(&assetManager);
     player.SetGameUtils(&gameUtils);
     sceneManager.SetPlayer(&player);
+    enemies.SetPlayer(&player);
 
     sceneManager.InitScenes();
     player.Init();
