@@ -31,6 +31,7 @@ private:
     Player *player;
     AssetManager *assetManager;
     GameUtils *gameUtils;
+    Bullets *bullets;
 
     float scale{};
 };

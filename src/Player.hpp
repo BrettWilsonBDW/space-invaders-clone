@@ -5,6 +5,18 @@
 #include "AssetManager.hpp"
 #include "GameUtils.hpp"
 
+// struct Bullets
+// {
+//     int x{};
+//     int y{};
+//     int width{};
+//     int height{};
+//     int ctr{};
+//     bool hasShot{};
+//     bool canShootAgain{};
+//     Rectangle rect;
+// };
+
 class Player
 {
 public:
@@ -20,6 +32,13 @@ public:
     Rectangle GetPlayerRect() { return playerRect; };
     int GetplayerPosX() { return playerPosX * gameUtils->GetScale(); }
     int GetBulletCount() { return shootCtr; }
+    // Bullets GetBullets() { return bullets; }
+
+    // Return a pointer to the Bullets array in GetBullets()
+    Bullets *GetBullets()
+    {
+        return bullets;
+    }
 
     void Init();
     void Unload();
@@ -29,10 +48,11 @@ public:
     void CheckPlayerBounds();
     void Shoot();
     void DrawPlayer();
+
 private:
     void CalcScale();
 
-    //TODO clean up unused
+    // TODO clean up unused
 
     AssetManager *assetManager;
     GameUtils *gameUtils;
@@ -55,23 +75,10 @@ private:
     bool hasShot{};
     bool canShootAgain{true};
 
-    //set  max amount of bullets allowed to be on the screen at once
+    // set  max amount of bullets allowed to be on the screen at once
     static const int maxBullets{3};
 
     int shootCtr{};
 
-    struct Bullets
-    {
-        int x{};
-        int y{};
-        int width{};
-        int height{};
-        int ctr{};
-        bool hasShot{};
-        bool canShootAgain{};
-        Rectangle rect;
-    };
-
     Bullets bullets[maxBullets];
-    
 };

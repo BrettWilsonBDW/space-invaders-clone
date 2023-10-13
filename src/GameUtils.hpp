@@ -4,6 +4,20 @@
 #include <algorithm>
 #include <string>
 
+
+struct Bullets
+{
+    int x{};
+    int y{};
+    int width{};
+    int height{};
+    int ctr{};
+    bool hasShot{};
+    bool canShootAgain{};
+    Rectangle rect;
+};
+
+
 class GameUtils
 {
 public:
