@@ -3,6 +3,8 @@
 #include "raylib.h"
 #include <algorithm>
 #include <string>
+#include <iostream>
+
 
 
 struct Bullets
@@ -14,6 +16,7 @@ struct Bullets
     int ctr{};
     bool hasShot{};
     bool canShootAgain{};
+    bool collided{};
     Rectangle rect;
 };
 

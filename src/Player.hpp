@@ -32,13 +32,11 @@ public:
     Rectangle GetPlayerRect() { return playerRect; };
     int GetplayerPosX() { return playerPosX * gameUtils->GetScale(); }
     int GetBulletCount() { return shootCtr; }
-    // Bullets GetBullets() { return bullets; }
+    int GetMaxBullets() { return maxBulletCtr; }
 
     // Return a pointer to the Bullets array in GetBullets()
-    Bullets *GetBullets()
-    {
-        return bullets;
-    }
+    Bullets *GetBullets() { return bullets; }
+
 
     void Init();
     void Unload();
@@ -77,6 +75,8 @@ private:
 
     // set  max amount of bullets allowed to be on the screen at once
     static const int maxBullets{3};
+
+    int maxBulletCtr{maxBullets};
 
     int shootCtr{};
 

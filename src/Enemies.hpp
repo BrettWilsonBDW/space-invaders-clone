@@ -33,5 +33,9 @@ private:
     GameUtils *gameUtils;
     Bullets *bullets;
 
+    Texture2D enemy1{};
+
+    int maxBullets{};
+
     float scale{};
 };
