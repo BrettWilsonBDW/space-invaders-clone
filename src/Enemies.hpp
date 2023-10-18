@@ -25,6 +25,7 @@ public:
 
     void Init();
     void Update();
+    void CheckCollision();
     void Draw();
 
 private:
