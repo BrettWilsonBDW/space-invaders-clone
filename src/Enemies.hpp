@@ -35,6 +35,11 @@ private:
 
     Texture2D enemy1{};
 
+    Rectangle enemiesRect{};
+
+    Rectangle sourceRect{};
+    Rectangle enemiesDestRect{};
+
     int maxBullets{};
 
     float scale{};
