@@ -50,6 +50,12 @@ void Player::UpdatePlayer()
             bullets[shootCtr].y = shipDestRect.y;
         }
 
+        if (bullets[shootCtr].collided)
+        {
+            bullets[shootCtr].collided = false;
+        }
+        
+
         shootCtr++;
 
         if (shootCtr >= maxBullets)
@@ -137,7 +143,8 @@ void Player::Shoot()
     for (auto &bullet : bullets)
     {
         //TODO update bullet collided state from hitting the enemy
-        if (bullet.y < 0 && !bullet.collided)
+        // if (bullet.y < 0 && !bullet.collided)
+        if (bullet.y < 0)
         {
             // bullet.canShootAgain = true;
             bullet.canShootAgain = false;
@@ -170,7 +177,7 @@ void Player::DrawPlayer()
 {
     for (auto &bullet : bullets)
     {
-        if (bullet.hasShot)
+        if (bullet.hasShot && !bullet.collided)
         {
             DrawRectangle(bullet.x, bullet.y, 2 * scale, 5 * scale, RED);
         }

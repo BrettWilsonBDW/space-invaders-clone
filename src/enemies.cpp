@@ -2,7 +2,6 @@
 
 Enemies::Enemies()
 {
-    // Init();
 }
 
 void Enemies::Init()
@@ -20,10 +19,15 @@ void Enemies::CheckCollision()
 {
     for (int i = 0; i < maxBullets; i++)
     {
-        if (CheckCollisionRecs(enemiesRect, bullets[i].rect))
+        if (enemyIsActive)
         {
-            // std::cout << "collision of: " << i << std::endl;
-            enemyIsActive = false;
+            if (CheckCollisionRecs(enemiesRect, bullets[i].rect))
+            {
+                enemyIsActive = false;
+                // bullets[i].collided = true;
+                bullets[i].canShootAgain = false;
+                bullets[i].collided = true;
+            }
         }
     }
 }
@@ -36,9 +40,6 @@ void Enemies::PostionPlacement(int x, int y)
 
 void Enemies::Movement()
 {
-    // std::cout << GetScreenWidth() << " " << enemyX * scale << std::endl;
-
-    // if ((enemyX * scale) > GetScreenWidth() - (enemy1.width * 2) * scale)
     if ((enemyX * scale) > GetScreenWidth() - enemiesDestRect.width)
     {
         directionLR = true;
@@ -48,7 +49,7 @@ void Enemies::Movement()
     {
         directionLR = false;
     }
-    
+
     if (directionLR)
     {
         enemyX -= 10;
@@ -61,11 +62,9 @@ void Enemies::Movement()
 
 void Enemies::Update()
 {
-    // Movement();
 
     scale = gameUtils->GetScale();
 
-    // int factor = 0;
     float shipScale{scale * 5};
     sourceRect = {0, 0, static_cast<float>(enemy1.width), static_cast<float>(enemy1.height)};
     enemiesDestRect = {static_cast<float>(enemyX) * scale, enemyY * scale, static_cast<float>(enemy1.width * shipScale), static_cast<float>(enemy1.height * shipScale)};
