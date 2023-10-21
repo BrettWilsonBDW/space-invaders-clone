@@ -136,6 +136,7 @@ void Player::Shoot()
     int speed{500};
     for (auto &bullet : bullets)
     {
+        //TODO update bullet collided state from hitting the enemy
         if (bullet.y < 0 && !bullet.collided)
         {
             // bullet.canShootAgain = true;
