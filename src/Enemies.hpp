@@ -5,7 +5,6 @@
 #include "Player.hpp"
 #include "AssetManager.hpp"
 #include "GameUtils.hpp"
-// #include "SceneManager.hpp"
 
 class Enemies
 {
@@ -24,14 +23,10 @@ public:
         gameUtils = gameUtilsPass;
     }
 
-    // void SetSceneManager(SceneManager *sceneManagerPass)
-    // {
-    //     sceneManager = sceneManagerPass;
-    // }
 
     void Init();
     void CheckCollision();
-    void PostionPlacement();
+    void PostionPlacement(int x, int y);
     void Update();
     void Draw();
 
@@ -40,7 +35,6 @@ private:
     AssetManager *assetManager;
     GameUtils *gameUtils;
     Bullets *bullets;
-    // SceneManager *sceneManager;
 
     Texture2D enemy1{};
 
@@ -48,6 +42,9 @@ private:
 
     Rectangle sourceRect{};
     Rectangle enemiesDestRect{};
+
+    int enemyX{};
+    int enemyY{};
 
     bool enemyIsActive{true};
 

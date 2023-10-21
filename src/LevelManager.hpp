@@ -3,7 +3,6 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "Enemies.hpp"
-// #include "SceneManager.hpp"
 
 class LevelManager
 {
@@ -23,11 +22,6 @@ public:
         gameUtils = gameUtilsPass;
     }
 
-    // void SetSceneManager(SceneManager *sceneManagerPass)
-    // {
-    //     sceneManager = sceneManagerPass;
-    // }
-
     void Init();
     void Unload();
     void Update();
@@ -38,9 +32,6 @@ private:
     AssetManager *assetManager;
     GameUtils *gameUtils;
     Bullets *bullets;
-    // SceneManager *sceneManager;
-
-    // Enemies *enemies;
     Enemies *enemiesArray;
 
     int enemiesArraySize{};

@@ -38,8 +38,9 @@ void LevelManager::Update()
 {
     for (int i = 0; i < enemiesArraySize; i++)
     {
+        //TODO adjust placement logic
+        enemiesArray[i].PostionPlacement(300 + i * 300, 300);
         enemiesArray[i].Update();
-        // enemiesArray[i].Draw();
     }
 }
 
@@ -50,19 +51,3 @@ void LevelManager::Draw()
         enemiesArray[i].Draw();
     }
 }
-
-// TODO implement this
-
-// IDEA: Build an array of enemies and pass in information about their placement. Handle the passing of the instances from GameLoop as seen below.
-
-// MyClass *arr; // Declare a pointer to MyClass
-
-// int size;
-// std::cout << "Enter the size of the array: ";
-// std::cin >> size;
-
-// arr = new MyClass[size]; // Allocate memory for the array
-
-// // Use the array as needed
-
-// delete[] arr; // Deallocate the memory when done

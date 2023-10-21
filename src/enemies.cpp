@@ -28,6 +28,12 @@ void Enemies::CheckCollision()
     }
 }
 
+void Enemies::PostionPlacement(int x, int y)
+{
+    enemyX = x;
+    enemyY = y;
+}
+
 void Enemies::Update()
 {
     scale = gameUtils->GetScale();
@@ -36,7 +42,7 @@ void Enemies::Update()
     float shipScale{scale * 5};
     sourceRect = {0, 0, static_cast<float>(enemy1.width), static_cast<float>(enemy1.height)};
     // enemiesDestRect = {static_cast<float>((300 * scale) + factor), static_cast<float>((300 * scale)), static_cast<float>((50 * scale) * shipScale), static_cast<float>((50 * scale) * shipScale)};
-    enemiesDestRect = {static_cast<float>(300) * scale, 300 * scale, static_cast<float>(enemy1.width * shipScale), static_cast<float>(enemy1.height * shipScale)};
+    enemiesDestRect = {static_cast<float>(enemyX) * scale, enemyY * scale, static_cast<float>(enemy1.width * shipScale), static_cast<float>(enemy1.height * shipScale)};
 
     int margin = 10;
     // collision rect
