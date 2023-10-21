@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "Debug.h"
+#include "debug.hpp"
 #include "GameLoop.hpp"
 
 // #if !defined(PLATFORM_WEB)

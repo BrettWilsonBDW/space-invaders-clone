@@ -1,5 +1,4 @@
-#ifndef DEBUG_H
-#define DEBUG_H
+#pragma once
 
 #include <iostream>
 #include "raylib.h"
@@ -31,4 +30,3 @@ private:
     // Font font;
 };
 
-#endif

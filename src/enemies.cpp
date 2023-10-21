@@ -38,7 +38,8 @@ void Enemies::Movement()
 {
     // std::cout << GetScreenWidth() << " " << enemyX * scale << std::endl;
 
-    if ((enemyX * scale) > GetScreenWidth() - enemy1.width * 2)
+    // if ((enemyX * scale) > GetScreenWidth() - (enemy1.width * 2) * scale)
+    if ((enemyX * scale) > GetScreenWidth() - enemiesDestRect.width)
     {
         directionLR = true;
     }
