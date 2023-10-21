@@ -130,7 +130,8 @@ void SceneManager::GameScreen()
 {
     // DrawBackground();
     player->DrawPlayer();
-    enemies->Draw();
+    // enemies->Draw();
+    levelManager->Draw();
 }
 
 void SceneManager::DrawScenes()

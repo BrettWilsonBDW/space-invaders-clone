@@ -34,14 +34,22 @@ void GameLoop::Init()
     player.SetAssetManager(&assetManager);
     player.SetGameUtils(&gameUtils);
     sceneManager.SetPlayer(&player);
-    sceneManager.SetEnemies(&enemies);
-    enemies.SetPlayer(&player);
-    enemies.SetAssetManager(&assetManager);
-    enemies.SetGameUtils(&gameUtils);
+
+    // sceneManager.SetEnemies(&enemies);
+    // enemies.SetPlayer(&player);
+    // enemies.SetAssetManager(&assetManager);
+    // enemies.SetGameUtils(&gameUtils);
+
+    sceneManager.SetLevelManager(&levelManager);
+
+    levelManager.SetPlayer(&player);
+    levelManager.SetAssetManager(&assetManager);
+    levelManager.SetGameUtils(&gameUtils);
 
     sceneManager.InitScenes();
     player.Init();
-    enemies.Init();
+    levelManager.Init();
+    // enemies.Init();
 }
 
 /**
@@ -57,6 +65,7 @@ void GameLoop::Unload()
 
     sceneManager.Unload();
     player.Unload();
+    levelManager.Unload();
 
     CloseWindow();
 }
@@ -72,7 +81,8 @@ void GameLoop::Update()
     // SetWindowSize(windowWidth, windowHeight);
 
     player.UpdatePlayer();
-    enemies.Update();
+    // enemies.Update();
+    levelManager.Update();
 }
 
 /**
@@ -143,6 +153,8 @@ void GameLoop::Draw()
         // sceneManager.GameScreen();
         sceneManager.DrawScenes();
         // player.DrawPlayer();
+
+        // levelManager.Draw();
     }
 
     if (isPaused)

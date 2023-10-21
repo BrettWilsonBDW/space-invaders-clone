@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "AssetManager.hpp"
 #include "GameUtils.hpp"
+// #include "SceneManager.hpp"
 
 class Enemies
 {
@@ -23,9 +24,15 @@ public:
         gameUtils = gameUtilsPass;
     }
 
+    // void SetSceneManager(SceneManager *sceneManagerPass)
+    // {
+    //     sceneManager = sceneManagerPass;
+    // }
+
     void Init();
-    void Update();
     void CheckCollision();
+    void PostionPlacement();
+    void Update();
     void Draw();
 
 private:
@@ -33,6 +40,7 @@ private:
     AssetManager *assetManager;
     GameUtils *gameUtils;
     Bullets *bullets;
+    // SceneManager *sceneManager;
 
     Texture2D enemy1{};
 
@@ -40,6 +48,8 @@ private:
 
     Rectangle sourceRect{};
     Rectangle enemiesDestRect{};
+
+    bool enemyIsActive{true};
 
     int maxBullets{};
 

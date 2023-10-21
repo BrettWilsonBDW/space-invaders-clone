@@ -2,6 +2,7 @@
 
 Enemies::Enemies()
 {
+    // Init();
 }
 
 void Enemies::Init()
@@ -17,34 +18,14 @@ void Enemies::Init()
 
 void Enemies::CheckCollision()
 {
-
-    // for (int i = 0; i < maxBullets; i++)
-    // {
-    //     if (CheckCollisionRecs(enemiesRect, bullets[i]->rect))
-    //     {
-    //         std::cout << "collision" << std::endl;
-    //     }
-    // }
-
     for (int i = 0; i < maxBullets; i++)
     {
         if (CheckCollisionRecs(enemiesRect, bullets[i].rect))
         {
-            std::cout << "collision of: " << i << std::endl;
+            // std::cout << "collision of: " << i << std::endl;
+            enemyIsActive = false;
         }
     }
-
-    // for (int i = 0; i < maxBullets; i++)
-    // {
-    //     if (CheckCollisionRecs(enemiesRect, bullets->rect))
-    //     {
-    //         std::cout << "collision" << std::endl;
-    //     }
-    // }
-
-    // Bullets bob = bullets[0];
-
-    // std::cout << bob.rect.x << std::endl;
 }
 
 void Enemies::Update()
@@ -71,43 +52,9 @@ void Enemies::Update()
 
 void Enemies::Draw()
 {
-    // for (int i = 0; i < maxBullets; i++)
-    // {
-    //     std::cout << i << " : [" << bullets[i].y << "] ";
-    // }
-
-    // std::cout << " info: " << bullets->rect.x << " " << bullets->rect.y << " " << bullets->rect.width << " " << bullets->rect.height << std::endl;
-
-    // float shipScale{scale * 6};
-
-    // // int factor = 100 * scale;
-    // int factor = 0;
-    // for (int i = 0; i < 10; i++)
-    // {
-    //     // Rectangle enemiesRect = {(300 * scale) + i * factor, (300 * scale), (50 * scale) + i * factor, (50 * scale) + i * factor};
-    //     // DrawRectangleRec(enemiesRect, RED);
-
-    //     // shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
-    //     // shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
-
-    //     Rectangle sourceRect = {0, 0, static_cast<float>(enemy1.width), static_cast<float>(enemy1.height)};
-    //     Rectangle enemiesDestRect = {static_cast<float>((300 * scale) + factor), static_cast<float>((300 * scale)), static_cast<float>((50 * scale) * shipScale), static_cast<float>((50 * scale) * shipScale)};
-    //     // DrawRectangleRec(enemiesRect, RED);
-
-    //     // DrawTexture(enemy1, (300 * scale) + factor, (300 * scale), WHITE);
-    //     DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
-    //     // factor += 100 * scale;
-    //     factor += 100;
-    // }
-
-    // Rectangle enemiesRect = {300 * scale, 300 * scale, 50 * scale, 50 * scale};
-    // DrawRectangleRec(enemiesRect, RED);
-
-    // int factor = 0;
-    // float shipScale{scale * 6};
-    // Rectangle sourceRect = {0, 0, static_cast<float>(enemy1.width), static_cast<float>(enemy1.height)};
-    // Rectangle enemiesDestRect = {static_cast<float>((300 * scale) + factor), static_cast<float>((300 * scale)), static_cast<float>((50 * scale) * shipScale), static_cast<float>((50 * scale) * shipScale)};
-
-    DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
-    DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
+    if (enemyIsActive)
+    {
+        DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
+        DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
+    }
 }

@@ -4,8 +4,7 @@
 #include <algorithm>
 #include <string>
 #include <iostream>
-
-
+// #include "LevelManager.hpp"
 
 struct Bullets
 {
@@ -20,7 +19,6 @@ struct Bullets
     Rectangle rect;
 };
 
-
 class GameUtils
 {
 public:
@@ -29,8 +27,8 @@ public:
     Texture2D LoadImgFromFile(void *DATA, int WIDTH, int HEIGHT, int FORMAT);
     // Font LoadFontFromFile(int BASESIZE, int GLYPHCOUNT, int GLYPHPADDING, Texture2D TEXTURE, Rectangle *RECS, GlyphInfo *GLYPHS);
     Font LoadFontFromFile();
-    void packTexture(const std::string &filePath, const std::string& outputFilename);
-    void packFont(const std::string &filePath, const std::string& outputFilename);
+    void packTexture(const std::string &filePath, const std::string &outputFilename);
+    void packFont(const std::string &filePath, const std::string &outputFilename);
 
     float GetScale() { return scale; };
 
