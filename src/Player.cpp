@@ -136,7 +136,7 @@ void Player::Shoot()
     int speed{500};
     for (auto &bullet : bullets)
     {
-        if (bullet.y < 0)
+        if (bullet.y < 0 && !bullet.collided)
         {
             // bullet.canShootAgain = true;
             bullet.canShootAgain = false;

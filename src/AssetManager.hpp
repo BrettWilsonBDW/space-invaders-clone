@@ -30,6 +30,10 @@ public:
     {
         return background;
     }
+    Texture2D& GetEnemy1()
+    {
+        return enemy1;
+    }
 
 private:
     void PackAllAssets();
@@ -41,4 +45,5 @@ private:
     Texture2D logo;
     Texture2D ship;
     Texture2D background;
+    Texture2D enemy1;
 };

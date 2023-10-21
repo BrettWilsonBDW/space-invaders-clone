@@ -27,6 +27,7 @@ void GameLoop::Init()
 
     debug.SetFont(assetManager.GetFont());
 
+    // share instances of classes across classes
     assetManager.SetGameUtils(&gameUtils);
     sceneManager.SetGameUtils(&gameUtils);
     sceneManager.SetAssetManager(&assetManager);
@@ -34,8 +35,21 @@ void GameLoop::Init()
     player.SetGameUtils(&gameUtils);
     sceneManager.SetPlayer(&player);
 
+    // sceneManager.SetEnemies(&enemies);
+    // enemies.SetPlayer(&player);
+    // enemies.SetAssetManager(&assetManager);
+    // enemies.SetGameUtils(&gameUtils);
+
+    sceneManager.SetLevelManager(&levelManager);
+
+    levelManager.SetPlayer(&player);
+    levelManager.SetAssetManager(&assetManager);
+    levelManager.SetGameUtils(&gameUtils);
+
     sceneManager.InitScenes();
     player.Init();
+    levelManager.Init();
+    // enemies.Init();
 }
 
 /**
@@ -51,6 +65,7 @@ void GameLoop::Unload()
 
     sceneManager.Unload();
     player.Unload();
+    levelManager.Unload();
 
     CloseWindow();
 }
@@ -63,9 +78,11 @@ void GameLoop::Update()
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
-    SetWindowSize(windowWidth, windowHeight);
+    // SetWindowSize(windowWidth, windowHeight);
 
     player.UpdatePlayer();
+    // enemies.Update();
+    levelManager.Update();
 }
 
 /**
@@ -136,6 +153,8 @@ void GameLoop::Draw()
         // sceneManager.GameScreen();
         sceneManager.DrawScenes();
         // player.DrawPlayer();
+
+        // levelManager.Draw();
     }
 
     if (isPaused)
@@ -199,6 +218,5 @@ void GameLoop::Run()
     {
         MainLoopHelper(this);
     }
-
 #endif
 }

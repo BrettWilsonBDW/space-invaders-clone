@@ -1,10 +1,10 @@
 CMakeFiles/space-invaders-clone.dir/src/Player.cpp.o: \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\Player.cpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\Player.hpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\_deps\raylib-src\src\raylib.h \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Player.cpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Player.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\raylib.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
   C:\emsdk\upstream\lib\clang\18\include\stdarg.h \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\_deps\raylib-src\src\raymath.h \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\raymath.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\math.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\math.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \
@@ -158,8 +158,8 @@ CMakeFiles/space-invaders-clone.dir/src/Player.cpp.o: \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\stdlib.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\stdlib.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\alloca.h \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\AssetManager.hpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\GameUtils.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\AssetManager.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\GameUtils.hpp \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\algorithm \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__debug \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__algorithm\adjacent_find.h \

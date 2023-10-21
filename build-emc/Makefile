@@ -56,10 +56,10 @@ RM = C:\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\brend\Desktop\webdeploy\space-invaders-clone
+CMAKE_SOURCE_DIR = C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc
+CMAKE_BINARY_DIR = C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -77,7 +77,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	C:\mingw64\bin\cpack.exe --config ./CPackSourceConfig.cmake C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/CPackSourceConfig.cmake
+	C:\mingw64\bin\cpack.exe --config ./CPackSourceConfig.cmake C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -151,9 +151,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\CMakeFiles C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,7 +177,7 @@ preinstall/fast:
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -P C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\CMakeFiles\VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
@@ -268,6 +268,30 @@ src/Debug.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/Debug.cpp.s
 .PHONY : src/Debug.cpp.s
 
+src/Enemies.o: src/Enemies.cpp.o
+.PHONY : src/Enemies.o
+
+# target to build an object file
+src/Enemies.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/Enemies.cpp.o
+.PHONY : src/Enemies.cpp.o
+
+src/Enemies.i: src/Enemies.cpp.i
+.PHONY : src/Enemies.i
+
+# target to preprocess a source file
+src/Enemies.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/Enemies.cpp.i
+.PHONY : src/Enemies.cpp.i
+
+src/Enemies.s: src/Enemies.cpp.s
+.PHONY : src/Enemies.s
+
+# target to generate assembly for a file
+src/Enemies.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/Enemies.cpp.s
+.PHONY : src/Enemies.cpp.s
+
 src/GameLoop.o: src/GameLoop.cpp.o
 .PHONY : src/GameLoop.o
 
@@ -315,6 +339,30 @@ src/GameUtils.s: src/GameUtils.cpp.s
 src/GameUtils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/GameUtils.cpp.s
 .PHONY : src/GameUtils.cpp.s
+
+src/LevelManager.o: src/LevelManager.cpp.o
+.PHONY : src/LevelManager.o
+
+# target to build an object file
+src/LevelManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/LevelManager.cpp.o
+.PHONY : src/LevelManager.cpp.o
+
+src/LevelManager.i: src/LevelManager.cpp.i
+.PHONY : src/LevelManager.i
+
+# target to preprocess a source file
+src/LevelManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/LevelManager.cpp.i
+.PHONY : src/LevelManager.cpp.i
+
+src/LevelManager.s: src/LevelManager.cpp.s
+.PHONY : src/LevelManager.s
+
+# target to generate assembly for a file
+src/LevelManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/LevelManager.cpp.s
+.PHONY : src/LevelManager.cpp.s
 
 src/Player.o: src/Player.cpp.o
 .PHONY : src/Player.o
@@ -411,12 +459,18 @@ help:
 	@echo ... src/Debug.o
 	@echo ... src/Debug.i
 	@echo ... src/Debug.s
+	@echo ... src/Enemies.o
+	@echo ... src/Enemies.i
+	@echo ... src/Enemies.s
 	@echo ... src/GameLoop.o
 	@echo ... src/GameLoop.i
 	@echo ... src/GameLoop.s
 	@echo ... src/GameUtils.o
 	@echo ... src/GameUtils.i
 	@echo ... src/GameUtils.s
+	@echo ... src/LevelManager.o
+	@echo ... src/LevelManager.i
+	@echo ... src/LevelManager.s
 	@echo ... src/Player.o
 	@echo ... src/Player.i
 	@echo ... src/Player.s
@@ -437,7 +491,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\CMakeFiles\VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

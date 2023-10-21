@@ -1,6 +1,6 @@
 CMakeFiles/space-invaders-clone.dir/src/Debug.cpp.o: \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\Debug.cpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\Debug.h \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Debug.cpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Debug.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \
@@ -667,4 +667,4 @@ CMakeFiles/space-invaders-clone.dir/src/Debug.cpp.o: \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
   C:\emsdk\upstream\lib\clang\18\include\stdarg.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\cstdarg \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\_deps\raylib-src\src\raylib.h
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\raylib.h

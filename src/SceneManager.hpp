@@ -5,6 +5,8 @@
 #include "AssetManager.hpp"
 #include <string>
 #include "Player.hpp"
+#include "Enemies.hpp"
+#include "LevelManager.hpp"
 
 class SceneManager
 {
@@ -13,6 +15,7 @@ public:
     void SplashScreen();
     void PauseMenu();
     void GameScreen();
+
     void SetGameUtils(GameUtils *gameUtilsPass)
     {
         gameUtils = gameUtilsPass;
@@ -24,6 +27,14 @@ public:
     void SetPlayer(Player *playerPass)
     {
         player = playerPass;
+    }
+    void SetEnemies(Enemies *enemiesPass)
+    {
+        enemies = enemiesPass;
+    }
+    void SetLevelManager(LevelManager *levelManagerPass)
+    {
+        levelManager = levelManagerPass;
     }
     void SetWindowInfo(int width, int height)
     {
@@ -42,6 +53,8 @@ private:
     GameUtils *gameUtils;
     AssetManager *assetManager;
     Player *player;
+    Enemies *enemies;
+    LevelManager *levelManager;
     // int pauseKeyState{};
     // bool pauseMenuState{};
 

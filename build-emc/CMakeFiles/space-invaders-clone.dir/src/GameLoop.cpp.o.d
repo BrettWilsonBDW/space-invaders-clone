@@ -1,10 +1,10 @@
 CMakeFiles/space-invaders-clone.dir/src/GameLoop.cpp.o: \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\GameLoop.cpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\GameLoop.hpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\_deps\raylib-src\src\raylib.h \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\GameLoop.cpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\GameLoop.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\raylib.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
   C:\emsdk\upstream\lib\clang\18\include\stdarg.h \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\Debug.h \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Debug.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \
@@ -669,11 +669,13 @@ CMakeFiles/space-invaders-clone.dir/src/GameLoop.cpp.o: \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\streambuf \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__bsd_locale_fallbacks.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\cstdarg \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\GameUtils.hpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\SceneManager.hpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\AssetManager.hpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\src\Player.hpp \
-  C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\_deps\raylib-src\src\raymath.h \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\GameUtils.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\SceneManager.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\AssetManager.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Player.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\raymath.h \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Enemies.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\LevelManager.hpp \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\emscripten.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\em_asm.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\em_macros.h \

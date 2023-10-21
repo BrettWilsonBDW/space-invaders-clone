@@ -52,10 +52,10 @@ RM = C:\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\brend\Desktop\webdeploy\space-invaders-clone
+CMAKE_SOURCE_DIR = C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc
+CMAKE_BINARY_DIR = C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc
 
 # Utility rule file for copyAssetsOver.
 
@@ -66,8 +66,8 @@ include CMakeFiles/copyAssetsOver.dir/compiler_depend.make
 include CMakeFiles/copyAssetsOver.dir/progress.make
 
 CMakeFiles/copyAssetsOver:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Copying assets to build directory"
-	C:\mingw64\bin\cmake.exe -E copy_directory C:/Users/brend/Desktop/webdeploy/space-invaders-clone/assets C:/Users/brend/Desktop/webdeploy/space-invaders-clone/build-emc/assets
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Copying assets to build directory"
+	C:\mingw64\bin\cmake.exe -E copy_directory C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/assets C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/assets
 
 copyAssetsOver: CMakeFiles/copyAssetsOver
 copyAssetsOver: CMakeFiles/copyAssetsOver.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/copyAssetsOver.dir/clean:
 .PHONY : CMakeFiles/copyAssetsOver.dir/clean
 
 CMakeFiles/copyAssetsOver.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\brend\Desktop\webdeploy\space-invaders-clone C:\Users\brend\Desktop\webdeploy\space-invaders-clone C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc C:\Users\brend\Desktop\webdeploy\space-invaders-clone\build-emc\CMakeFiles\copyAssetsOver.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles\copyAssetsOver.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/copyAssetsOver.dir/depend
 

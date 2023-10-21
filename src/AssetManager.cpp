@@ -4,6 +4,7 @@
 #include "../assets/logo.h"
 #include "../assets/playership.h"
 #include "../assets/spaceBackground.h"
+#include "../assets/enemy1.h"
 
 
 AssetManager::AssetManager()
@@ -27,6 +28,7 @@ void AssetManager::PackAllAssets()
     // gameUtils->packFont("assets/testAssets/Roboto.ttf", "../assets/testAssets/Roboto.h");
     // gameUtils->packTexture("assets/playership.png", "../assets/playership.h");
     // gameUtils->packTexture("assets/spaceBackground.png", "../assets/spaceBackground.h");
+    // gameUtils->packTexture("assets/enemy1.png", "../assets/enemy1.h");
 }
 
 /**
@@ -45,4 +47,5 @@ void AssetManager::LoadAllAssets()
     logo = gameUtils->LoadImgFromFile(LOGO_DATA, LOGO_WIDTH, LOGO_HEIGHT, LOGO_FORMAT);
     ship = gameUtils->LoadImgFromFile(PLAYERSHIP_DATA, PLAYERSHIP_WIDTH, PLAYERSHIP_HEIGHT, PLAYERSHIP_FORMAT);
     background = gameUtils->LoadImgFromFile(SPACEBACKGROUND_DATA, SPACEBACKGROUND_WIDTH, SPACEBACKGROUND_HEIGHT, SPACEBACKGROUND_FORMAT);
+    enemy1 = gameUtils->LoadImgFromFile(ENEMY1_DATA, ENEMY1_WIDTH, ENEMY1_HEIGHT, ENEMY1_FORMAT);
 }
