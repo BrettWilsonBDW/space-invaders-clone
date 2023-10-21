@@ -34,14 +34,39 @@ void Enemies::PostionPlacement(int x, int y)
     enemyY = y;
 }
 
+void Enemies::Movement()
+{
+    // std::cout << GetScreenWidth() << " " << enemyX * scale << std::endl;
+
+    if ((enemyX * scale) > GetScreenWidth() - enemy1.width * 2)
+    {
+        directionLR = true;
+    }
+
+    if (enemyX * scale < 0)
+    {
+        directionLR = false;
+    }
+    
+    if (directionLR)
+    {
+        enemyX -= 10;
+    }
+    else
+    {
+        enemyX += 10;
+    }
+}
+
 void Enemies::Update()
 {
+    // Movement();
+
     scale = gameUtils->GetScale();
 
     // int factor = 0;
     float shipScale{scale * 5};
     sourceRect = {0, 0, static_cast<float>(enemy1.width), static_cast<float>(enemy1.height)};
-    // enemiesDestRect = {static_cast<float>((300 * scale) + factor), static_cast<float>((300 * scale)), static_cast<float>((50 * scale) * shipScale), static_cast<float>((50 * scale) * shipScale)};
     enemiesDestRect = {static_cast<float>(enemyX) * scale, enemyY * scale, static_cast<float>(enemy1.width * shipScale), static_cast<float>(enemy1.height * shipScale)};
 
     int margin = 10;
