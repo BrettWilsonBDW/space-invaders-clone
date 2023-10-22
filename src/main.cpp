@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "Debug.h"
+#include "debug.hpp"
 #include "GameLoop.hpp"
 
 // #if !defined(PLATFORM_WEB)
@@ -42,6 +42,8 @@ int main()
     // SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(width, height, "Space Invaders");
 
+
+    //gameloop handles calling all other classes as well web build
     GameLoop gameLoop;
 
     gameLoop.Run();

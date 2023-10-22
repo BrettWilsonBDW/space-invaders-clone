@@ -17,6 +17,8 @@ void LevelManager::Init()
 
         enemiesArray[i].Init();
 
+        // TODO adjust placement logic
+        enemiesArray[i].PostionPlacement(300 + i * 200, 100);
     }
 }
 
@@ -29,8 +31,8 @@ void LevelManager::Update()
 {
     for (int i = 0; i < enemiesArraySize; i++)
     {
-        //TODO adjust placement logic
-        enemiesArray[i].PostionPlacement(300 + i * 300, 300);
+        // enemiesArray[i].PostionPlacement(300 + i * 300, 300);
+        enemiesArray[i].Movement();
         enemiesArray[i].Update();
     }
 }
