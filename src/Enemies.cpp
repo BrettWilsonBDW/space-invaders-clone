@@ -19,7 +19,7 @@ void Enemies::CheckCollision()
 {
     for (int i = 0; i < maxBullets; i++)
     {
-        if (enemyIsActive)
+        if (enemyIsActive && bullets[i].collided == false)
         {
             if (CheckCollisionRecs(enemiesRect, bullets[i].rect))
             {

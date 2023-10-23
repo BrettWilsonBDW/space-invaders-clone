@@ -21,7 +21,7 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 
 include(ExternalProject)
 ExternalProject_Add(raylib-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/raysan5/raylib.git" "GIT_TAG" "master" "GIT_SHALLOW" "TRUE" "GIT_PROGRESS" "TRUE"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/raysan5/raylib.git" "GIT_TAG" "4.5.0" "GIT_SHALLOW" "TRUE" "GIT_PROGRESS" "TRUE"
                     SOURCE_DIR          "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/_deps/raylib-src"
                     BINARY_DIR          "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/_deps/raylib-build"
                     CONFIGURE_COMMAND   ""

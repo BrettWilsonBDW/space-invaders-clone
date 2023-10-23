@@ -20,19 +20,19 @@ _deps/raylib-build/raylib/CMakeFiles/raylib.dir/raudio.c.o: \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\limits.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\math.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\math.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdlib.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdlib.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\alloca.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\string.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\string.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\strings.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\stdio.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\wasi\api.h \
   C:\emsdk\upstream\lib\clang\18\include\stdint.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\stdint.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\stdint.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\strings.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\wchar.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\wchar.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdlib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdlib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\alloca.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\string.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\string.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\sys\time.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\sys\select.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\sys\stat.h \
@@ -48,7 +48,6 @@ _deps/raylib-build/raylib/CMakeFiles/raylib.dir/raudio.c.o: \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\version.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\errno.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\errno.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\dlfcn.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\sys\types.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\endian.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\unistd.h \

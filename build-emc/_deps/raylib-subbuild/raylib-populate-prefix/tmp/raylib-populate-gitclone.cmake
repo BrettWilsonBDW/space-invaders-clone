@@ -41,12 +41,12 @@ endif()
 
 execute_process(
   COMMAND "C:/Program Files/Git/cmd/git.exe" 
-          checkout "master" --
+          checkout "4.5.0" --
   WORKING_DIRECTORY "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/_deps/raylib-src"
   RESULT_VARIABLE error_code
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to checkout tag: 'master'")
+  message(FATAL_ERROR "Failed to checkout tag: '4.5.0'")
 endif()
 
 set(init_submodules TRUE)

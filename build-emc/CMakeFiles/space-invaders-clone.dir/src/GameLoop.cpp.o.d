@@ -4,7 +4,7 @@ CMakeFiles/space-invaders-clone.dir/src/GameLoop.cpp.o: \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\raylib.h \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
   C:\emsdk\upstream\lib\clang\18\include\stdarg.h \
-  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\debug.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Debug.hpp \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \

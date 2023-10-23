@@ -1,6 +1,6 @@
 CMakeFiles/space-invaders-clone.dir/src/Debug.cpp.o: \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Debug.cpp \
-  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\debug.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Debug.hpp \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \

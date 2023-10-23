@@ -32,4 +32,4 @@ _deps/raylib-build/raylib/CMakeFiles/raylib.dir/rtextures.c.o: \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\external\qoi.h \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\external\stb_image_write.h \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\external\stb_perlin.h \
-  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\external\stb_image_resize2.h
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\external\stb_image_resize.h

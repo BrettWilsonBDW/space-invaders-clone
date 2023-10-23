@@ -35,7 +35,8 @@ set(BUILD_GAMES    OFF CACHE BOOL "" FORCE) # don't build the supplied example g
 add_git_dependency(
     raylib
     https://github.com/raysan5/raylib.git
-    master
+    # master
+    4.5.0
     ${useRaylib}
 )
 

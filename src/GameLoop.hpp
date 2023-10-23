@@ -1,7 +1,7 @@
 #pragma once
 
 #include "raylib.h"
-#include "debug.hpp"
+#include "Debug.hpp"
 #include "GameUtils.hpp"
 #include "SceneManager.hpp"
 #include "AssetManager.hpp"
