@@ -6,7 +6,7 @@ LevelManager::LevelManager()
 
 void LevelManager::Init()
 {
-    enemiesArraySize = 5;
+    enemiesArraySize = 10;
     enemiesArray = new Enemies[enemiesArraySize];
 
     for (int i = 0; i < enemiesArraySize; i++)
