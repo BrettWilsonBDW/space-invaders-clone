@@ -27,6 +27,7 @@ public:
     void Init();
     void CheckCollision();
     void PostionPlacement(int x, int y);
+    void Shoot();
     void Movement();
     void Update();
     void Draw();

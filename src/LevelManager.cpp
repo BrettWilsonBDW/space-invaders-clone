@@ -32,6 +32,7 @@ void LevelManager::Update()
     for (int i = 0; i < enemiesArraySize; i++)
     {
         // enemiesArray[i].PostionPlacement(300 + i * 300, 300);
+        enemiesArray[i].Shoot();
         enemiesArray[i].Movement();
         enemiesArray[i].Update();
     }

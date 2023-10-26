@@ -15,6 +15,12 @@ void Enemies::Init()
     maxBullets = player->GetMaxBullets();
 }
 
+void Enemies::Shoot()
+{
+    Bullets newBullet{};
+    std::cout << newBullet.x << std::endl;
+}
+
 void Enemies::CheckCollision()
 {
     for (int i = 0; i < maxBullets; i++)

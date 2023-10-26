@@ -21,7 +21,6 @@ void Player::Init()
     // playerSize = 8;
     scale = (gameUtils->GetScale() * playerSize);
 
-    // playerPosX = (static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2);
     playerPosX = ((static_cast<float>(GetScreenWidth() / 2)) - (ship.width * scale) / 2);
 
     playerPosX = playerPosX / gameUtils->GetScale();
@@ -75,7 +74,7 @@ void Player::UpdatePlayer()
 
 void Player::updatePlayerPersistance()
 {
-    // TODO reimplement scale
+    // TODO reimplement scale to be only called once not every frame same for calcScale (on window change)
 
     scale = (gameUtils->GetScale() * playerSize);
     windowWidth = GetScreenWidth();
@@ -142,17 +141,13 @@ void Player::Shoot()
     int speed{500};
     for (auto &bullet : bullets)
     {
-        //TODO update bullet collided state from hitting the enemy
-        // if (bullet.y < 0 && !bullet.collided)
         if (bullet.y < 0)
         {
-            // bullet.canShootAgain = true;
             bullet.canShootAgain = false;
             bullet.hasShot = false;
         }
         else
         {
-            // bullet.canShootAgain = false;
             bullet.canShootAgain = true;
         }
 
@@ -183,7 +178,7 @@ void Player::DrawPlayer()
         }
     }
 
-    // TODO fix jitter comes from the player is being drawn
+    // TODO fix jitter comes from the player is being drawn something to do with sub pixels aka the sprite is too small
 
     DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
 }
