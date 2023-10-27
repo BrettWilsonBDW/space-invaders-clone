@@ -9,7 +9,8 @@
 struct Bullets
 {
     int x{};
-    int y{};
+    // int y{};
+    float y{};
     int width{};
     int height{};
     int ctr{};

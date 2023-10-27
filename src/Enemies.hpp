@@ -22,6 +22,10 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
+    void SetDeltaTime(float dtPass)
+    {
+        dt = dtPass;
+    }
 
 
     void Init();
@@ -56,4 +60,6 @@ private:
     int maxBullets{};
 
     float scale{};
+
+    float dt{};
 };

@@ -75,6 +75,7 @@ void GameLoop::Unload()
  */
 void GameLoop::Update()
 {
+    float dt = gameUtils.GetDeltaTime();
     windowWidth = GetScreenWidth();
     windowHeight = GetScreenHeight();
 
@@ -82,7 +83,7 @@ void GameLoop::Update()
 
     player.UpdatePlayer();
     // enemies.Update();
-    levelManager.Update();
+    levelManager.Update(dt);
 }
 
 /**

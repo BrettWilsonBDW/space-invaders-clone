@@ -27,12 +27,13 @@ void LevelManager::Unload()
     delete[] enemiesArray;
 }
 
-void LevelManager::Update()
+void LevelManager::Update(float dt)
 {
     for (int i = 0; i < enemiesArraySize; i++)
     {
         // enemiesArray[i].PostionPlacement(300 + i * 300, 300);
-        enemiesArray[i].Shoot();
+        enemiesArray[i].SetDeltaTime(dt);
+        enemiesArray[i].Shoot(true);
         enemiesArray[i].Movement();
         enemiesArray[i].Update();
     }

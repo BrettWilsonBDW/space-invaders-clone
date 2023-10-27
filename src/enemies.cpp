@@ -26,23 +26,25 @@ void Enemies::Init()
 
 void Enemies::Shoot(bool shoot)
 {
-    shoot = true;
-    if (!enemyBullet.hasShot)
+    if (enemyIsActive)
     {
-        enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
-        enemyBullet.y = (enemiesDestRect.y) + 110 * scale;
+        int speed{500};
+        shoot = true;
+        if (!enemyBullet.hasShot)
+        {
+            enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
+            enemyBullet.y = (enemiesDestRect.y) + 110 * scale;
+        }
+
+        enemyBullet.hasShot = true;
+        enemyBullet.y += speed * dt;
+        // enemyBullet.y += 10;
+
+        if (enemyBullet.y > GetScreenHeight())
+        {
+            enemyBullet.hasShot = false;
+        }
     }
-
-    // enemyBullet.x = (enemiesDestRect.x);
-    // enemyBullet.y = (enemyY + (enemy1.height * 2)) * scale;
-
-    // enemyBullet.y -= 1 * gameUtils->GetDeltaTime();
-    enemyBullet.y -= 1;
-    // std::cout << enemyBullet.y << std::endl;
-    // std::cout << enemyBullet.x << std::endl;
-
-    // DrawRectangle(enemyBullet.x, enemyBullet.y, enemyBullet.width, enemyBullet.height, RED);
-    // DrawRectangle(300, 300, 50, 100, RED);
 }
 
 void Enemies::CheckCollision()
@@ -92,7 +94,6 @@ void Enemies::Movement()
 
 void Enemies::Update()
 {
-
     scale = gameUtils->GetScale();
 
     float shipScale{scale * 5};
@@ -117,8 +118,9 @@ void Enemies::Draw()
     {
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
         DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
+        DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
     }
 
     // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
-    DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
+    // DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
 }

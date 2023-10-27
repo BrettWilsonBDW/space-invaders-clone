@@ -24,7 +24,7 @@ public:
 
     void Init();
     void Unload();
-    void Update();
+    void Update(float dt);
     void Draw();
 
 private:
