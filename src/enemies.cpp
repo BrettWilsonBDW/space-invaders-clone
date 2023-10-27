@@ -13,12 +13,36 @@ void Enemies::Init()
     // get bullets data from the player class
     bullets = player->GetBullets();
     maxBullets = player->GetMaxBullets();
+
+    enemyBullet.x = enemyX;
+    enemyBullet.y = enemyY;
+    enemyBullet.width = 0;
+    enemyBullet.height = 0;
+    enemyBullet.ctr = 0;
+    enemyBullet.hasShot = false;
+    enemyBullet.canShootAgain = false;
+    enemyBullet.collided = false;
 }
 
-void Enemies::Shoot()
+void Enemies::Shoot(bool shoot)
 {
-    Bullets newBullet{};
-    std::cout << newBullet.x << std::endl;
+    shoot = true;
+    if (!enemyBullet.hasShot)
+    {
+        enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
+        enemyBullet.y = (enemiesDestRect.y) + 110 * scale;
+    }
+
+    // enemyBullet.x = (enemiesDestRect.x);
+    // enemyBullet.y = (enemyY + (enemy1.height * 2)) * scale;
+
+    // enemyBullet.y -= 1 * gameUtils->GetDeltaTime();
+    enemyBullet.y -= 1;
+    // std::cout << enemyBullet.y << std::endl;
+    // std::cout << enemyBullet.x << std::endl;
+
+    // DrawRectangle(enemyBullet.x, enemyBullet.y, enemyBullet.width, enemyBullet.height, RED);
+    // DrawRectangle(300, 300, 50, 100, RED);
 }
 
 void Enemies::CheckCollision()
@@ -94,4 +118,7 @@ void Enemies::Draw()
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
         DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
     }
+
+    // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
+    DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
 }

@@ -27,7 +27,7 @@ public:
     void Init();
     void CheckCollision();
     void PostionPlacement(int x, int y);
-    void Shoot();
+    void Shoot(bool shoot);
     void Movement();
     void Update();
     void Draw();
@@ -37,6 +37,7 @@ private:
     AssetManager *assetManager;
     GameUtils *gameUtils;
     Bullets *bullets;
+    Bullets enemyBullet{};
 
     Texture2D enemy1{};
 
