@@ -39,4 +39,9 @@ private:
 
     float timePassed{};
 
+    int ranNum{};
+
+    float threshold{};
+
+
 };

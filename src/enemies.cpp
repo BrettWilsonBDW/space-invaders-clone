@@ -20,7 +20,7 @@ void Enemies::Init()
     enemyBullet.height = 0;
     enemyBullet.ctr = 0;
     enemyBullet.hasShot = false;
-    enemyBullet.canShootAgain = false;
+    enemyBullet.canShootAgain = true;
     enemyBullet.collided = false;
 }
 
@@ -43,6 +43,7 @@ void Enemies::Shoot(bool shoot)
         if (enemyBullet.y > GetScreenHeight())
         {
             enemyBullet.hasShot = false;
+            enemyBullet.canShootAgain = false;
         }
 
         enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
@@ -132,7 +133,13 @@ void Enemies::Draw()
     {
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
         DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
-        DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
+
+        if (!enemyBullet.x == 0 || !enemyBullet.y == 0)
+        {
+            /* code */
+            DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
+        }
+        
     }
 
     // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
