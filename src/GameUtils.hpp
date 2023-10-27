@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 // #include "LevelManager.hpp"
+#include <cstdlib>
+#include <ctime>
 
 struct Bullets
 {
@@ -37,6 +39,8 @@ public:
     {
         return dt;
     }
+
+    int GetRandomNumber(int min, int max);
 
     void UpdateDeltaTime();
 

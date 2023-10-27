@@ -44,6 +44,20 @@ void Enemies::Shoot(bool shoot)
         {
             enemyBullet.hasShot = false;
         }
+
+        enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
+
+        if (CheckCollisionRecs(player->GetPlayerRect(), enemyBullet.rect))
+        {
+            std::cout << "collided" << std::endl;
+            player->setPlayerCollisionState(true);
+        }
+        else
+        {
+            std::cout << "not collided" << std::endl;
+            player->setPlayerCollisionState(false);
+        }
+        
     }
 }
 

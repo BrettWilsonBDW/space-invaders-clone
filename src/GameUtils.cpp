@@ -147,3 +147,11 @@ void GameUtils::UpdateWindowPos()
     windowSizeW = GetScreenWidth();
     windowSizeH = GetScreenHeight();
 }
+
+
+int GameUtils::GetRandomNumber(int min, int max)
+{
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    int randomNumber = std::rand() % (max - min + 1) + min;
+    return randomNumber;
+}

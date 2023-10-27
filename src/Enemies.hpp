@@ -36,12 +36,15 @@ public:
     void Update();
     void Draw();
 
+    Bullets enemyBullet{};
+
+
 private:
     Player *player;
     AssetManager *assetManager;
     GameUtils *gameUtils;
     Bullets *bullets;
-    Bullets enemyBullet{};
+    // Bullets enemyBullet{};
 
     Texture2D enemy1{};
 

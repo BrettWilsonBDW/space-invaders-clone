@@ -70,6 +70,14 @@ void Player::UpdatePlayer()
 
     shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
     shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+
+
+    //collision logic
+    if (playerCollision)
+    {
+        playerCollisionCtr++;
+    }
+    
 }
 
 void Player::updatePlayerPersistance()

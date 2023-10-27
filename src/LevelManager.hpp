@@ -27,6 +27,7 @@ public:
     void Update(float dt);
     void Draw();
 
+
 private:
     Player *player;
     AssetManager *assetManager;
@@ -35,4 +36,7 @@ private:
     Enemies *enemiesArray;
 
     int enemiesArraySize{};
+
+    float timePassed{};
+
 };
