@@ -31,6 +31,10 @@ public:
         return enemyIsActive;
     }
 
+    void SetShootState(bool state)
+    {
+        toggleShootState = state;
+    }
 
     void Init();
     void CheckCollision();
@@ -69,4 +73,6 @@ private:
     float scale{};
 
     float dt{};
+
+    bool toggleShootState{};
 };

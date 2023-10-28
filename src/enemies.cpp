@@ -54,6 +54,7 @@ void Enemies::Shoot(bool shoot)
         {
             enemyBullet.hasShot = false;
             enemyBullet.canShootAgain = false;
+            toggleShootState = false;
         }
 
         enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
@@ -134,6 +135,12 @@ void Enemies::Update()
     };
 
     CheckCollision();
+
+    if (toggleShootState)
+    {
+        Shoot(true);
+    }
+    
 }
 
 void Enemies::Draw()

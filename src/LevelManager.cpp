@@ -61,7 +61,8 @@ void LevelManager::Update(float dt)
 
     if (enemyAliveArray[ranNum] == 1)
     {
-        enemiesArray[ranNum].Shoot(true);
+        // enemiesArray[ranNum].Shoot(true);
+        enemiesArray[ranNum].SetShootState(true);
     }
     else
     {
