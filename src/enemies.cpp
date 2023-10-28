@@ -24,52 +24,34 @@ void Enemies::Init()
     enemyBullet.collided = false;
 }
 
-
-//TODO make this toggle shoot instead of classing the function else where
 void Enemies::Shoot(bool shoot)
 {
-    // if (enemyIsActive)
-    // if (enemyIsActive || enemyBullet.canShootAgain)
-    // {
-        int speed{500};
-        // shoot = true;
-        if (!enemyBullet.hasShot)
-        {
-            enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
-            enemyBullet.y = (enemiesDestRect.y) + 110 * scale;
-        }
 
-        enemyBullet.hasShot = true;
-        // enemyBullet.canShootAgain = true;
-        enemyBullet.y += speed * dt;
-        // enemyBullet.y += 10;
+    int speed{500};
+    if (!enemyBullet.hasShot)
+    {
+        enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
+        enemyBullet.y = (enemiesDestRect.y) + 110 * scale;
+    }
 
-        // if (!shoot)
-        // {
-        //     enemyBullet.hasShot = false;
-        // }
-        
+    enemyBullet.hasShot = true;
+    // enemyBullet.canShootAgain = true;
+    enemyBullet.y += speed * dt;
 
-        if (enemyBullet.y > GetScreenHeight())
-        {
-            enemyBullet.hasShot = false;
-            enemyBullet.canShootAgain = false;
-            toggleShootState = false;
-        }
+    if (enemyBullet.y > GetScreenHeight())
+    {
+        enemyBullet.hasShot = false;
+        enemyBullet.canShootAgain = false;
+        toggleShootState = false;
+    }
 
-        enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
+    enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
 
-        if (CheckCollisionRecs(player->GetPlayerRect(), enemyBullet.rect))
-        {
-            // std::cout << "collided" << std::endl;
-            player->SetPlayerCollisionState(true);
-        }
-        // else
-        // {
-        //     // std::cout << "not collided" << std::endl;
-        //     player->SetPlayerCollisionState(false);
-        // }
-    // }
+    if (CheckCollisionRecs(player->GetPlayerRect(), enemyBullet.rect))
+    {
+        // std::cout << "collided" << std::endl;
+        player->SetPlayerCollisionState(true);
+    }
 }
 
 void Enemies::CheckCollision()
@@ -139,8 +121,8 @@ void Enemies::Update()
     if (toggleShootState)
     {
         Shoot(true);
+        // toggleShootState = false;
     }
-    
 }
 
 void Enemies::Draw()

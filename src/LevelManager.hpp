@@ -21,6 +21,11 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
+    int GetRanNum()
+    
+    {
+        return ranNum;
+    }
 
     void Init();
     void Unload();

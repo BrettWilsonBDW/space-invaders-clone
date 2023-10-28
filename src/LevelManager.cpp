@@ -33,13 +33,13 @@ void LevelManager::Unload()
 
 void LevelManager::Update(float dt)
 {
+    //TODO gain more control over how many bullets are on the screen
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
     timePassed += dt;
     threshold = 10.0f / 60.0f;
-    // threshold = 0.0001f;
 
-    // TODO skip dead enemies
     if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.hasShot)
-    // if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.canShootAgain)
     {
         ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
         timePassed = 0;
@@ -51,22 +51,18 @@ void LevelManager::Update(float dt)
         enemiesArray[i].Movement();
         enemiesArray[i].Update();
 
-        if (enemiesArray[i].GetAliveState() == false)
+        if (!enemiesArray[i].GetAliveState())
         {
             enemyAliveArray[i] = 0;
         }
     }
 
-    // std::cout << ranNum << std::endl;
-
     if (enemyAliveArray[ranNum] == 1)
     {
-        // enemiesArray[ranNum].Shoot(true);
         enemiesArray[ranNum].SetShootState(true);
     }
     else
     {
-        // enemiesArray[ranNum].Shoot(false);
         ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
     }
 
