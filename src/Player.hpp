@@ -33,7 +33,8 @@ public:
     int GetplayerPosX() { return playerPosX * gameUtils->GetScale(); }
     int GetBulletCount() { return shootCtr; }
     int GetMaxBullets() { return maxBulletCtr; }
-    void setPlayerCollisionState(bool collision) { playerCollision = collision; }
+    void SetPlayerCollisionState(bool collision) { playerCollision = collision; }
+    // void SetPlayerCollisionState(bool collision) { playerCollision = collision; }
 
     // Return a pointer to the Bullets array in GetBullets()
     Bullets *GetBullets() { return bullets; }
@@ -45,6 +46,7 @@ public:
     void playerControls();
     void CheckPlayerBounds();
     void Shoot();
+    void CheckPlayerCollision();
     void DrawPlayer();
 
     int playerCollisionCtr{};

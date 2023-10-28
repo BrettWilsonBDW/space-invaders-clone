@@ -34,8 +34,8 @@ void LevelManager::Unload()
 void LevelManager::Update(float dt)
 {
     timePassed += dt;
-    // threshold = 10.0f / 60.0f;
-    threshold = 0.1f;
+    threshold = 10.0f / 60.0f;
+    // threshold = 0.0001f;
 
     // TODO skip dead enemies
     if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.hasShot)

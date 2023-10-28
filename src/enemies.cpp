@@ -62,13 +62,13 @@ void Enemies::Shoot(bool shoot)
         if (CheckCollisionRecs(player->GetPlayerRect(), enemyBullet.rect))
         {
             // std::cout << "collided" << std::endl;
-            player->setPlayerCollisionState(true);
+            player->SetPlayerCollisionState(true);
         }
-        else
-        {
-            // std::cout << "not collided" << std::endl;
-            player->setPlayerCollisionState(false);
-        }
+        // else
+        // {
+        //     // std::cout << "not collided" << std::endl;
+        //     player->SetPlayerCollisionState(false);
+        // }
     // }
 }
 

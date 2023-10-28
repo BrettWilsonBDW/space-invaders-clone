@@ -73,11 +73,11 @@ void Player::UpdatePlayer()
 
 
     //collision logic
-    if (playerCollision)
-    {
-        playerCollisionCtr++;
-    }
-    
+    // if (playerCollision)
+    // {
+    //     playerCollisionCtr++;
+    // }
+    CheckPlayerCollision();
 }
 
 void Player::updatePlayerPersistance()
@@ -167,6 +167,20 @@ void Player::Shoot()
     }
 }
 
+
+void Player::CheckPlayerCollision()
+{
+    if (playerCollision)
+    {
+        // DrawText("Player Collision", GetScreenWidth() / 2, GetScreenHeight() / 2, 20, RED);
+        // DrawText("Player Collision", 300, 300, 20, RED);
+        // std::cout << "Player Collision" << std::endl;
+        playerCollisionCtr++;
+        playerCollision = false;
+        // std::cout << playerCollisionCtr << std::endl;
+    }
+}
+
 /**
  * Draws the player on the screen.
  *
@@ -189,4 +203,9 @@ void Player::DrawPlayer()
     // TODO fix jitter comes from the player is being drawn something to do with sub pixels aka the sprite is too small
 
     DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
+
+    if (playerCollision)
+    {
+        DrawText("Player Collision", GetScreenWidth() / 2, GetScreenHeight() / 2, 20, RED);
+    } 
 }
