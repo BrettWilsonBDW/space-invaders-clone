@@ -26,6 +26,10 @@ public:
     {
         dt = dtPass;
     }
+    bool GetAliveState()
+    {
+        return enemyIsActive;
+    }
 
 
     void Init();

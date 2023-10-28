@@ -43,5 +43,5 @@ private:
 
     float threshold{};
 
-
+    int *enemyAliveArray{};
 };

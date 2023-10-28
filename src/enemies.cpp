@@ -24,12 +24,15 @@ void Enemies::Init()
     enemyBullet.collided = false;
 }
 
+
+//TODO make this toggle shoot instead of classing the function else where
 void Enemies::Shoot(bool shoot)
 {
-    if (enemyIsActive)
-    {
+    // if (enemyIsActive)
+    // if (enemyIsActive || enemyBullet.canShootAgain)
+    // {
         int speed{500};
-        shoot = true;
+        // shoot = true;
         if (!enemyBullet.hasShot)
         {
             enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
@@ -37,8 +40,15 @@ void Enemies::Shoot(bool shoot)
         }
 
         enemyBullet.hasShot = true;
+        // enemyBullet.canShootAgain = true;
         enemyBullet.y += speed * dt;
         // enemyBullet.y += 10;
+
+        // if (!shoot)
+        // {
+        //     enemyBullet.hasShot = false;
+        // }
+        
 
         if (enemyBullet.y > GetScreenHeight())
         {
@@ -50,16 +60,15 @@ void Enemies::Shoot(bool shoot)
 
         if (CheckCollisionRecs(player->GetPlayerRect(), enemyBullet.rect))
         {
-            std::cout << "collided" << std::endl;
+            // std::cout << "collided" << std::endl;
             player->setPlayerCollisionState(true);
         }
         else
         {
-            std::cout << "not collided" << std::endl;
+            // std::cout << "not collided" << std::endl;
             player->setPlayerCollisionState(false);
         }
-        
-    }
+    // }
 }
 
 void Enemies::CheckCollision()
@@ -133,15 +142,12 @@ void Enemies::Draw()
     {
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
         DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
-
-        if (!enemyBullet.x == 0 || !enemyBullet.y == 0)
-        {
-            /* code */
-            DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
-        }
-        
     }
 
+    if (!enemyBullet.x == 0 || !enemyBullet.y == 0)
+    {
+        DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
+    }
     // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
     // DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
 }

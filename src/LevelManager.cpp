@@ -8,6 +8,7 @@ void LevelManager::Init()
 {
     enemiesArraySize = 5;
     enemiesArray = new Enemies[enemiesArraySize];
+    enemyAliveArray = new int[enemiesArraySize];
 
     for (int i = 0; i < enemiesArraySize; i++)
     {
@@ -19,61 +20,60 @@ void LevelManager::Init()
 
         // TODO adjust placement logic
         enemiesArray[i].PostionPlacement(300 + i * 200, 100);
+
+        enemyAliveArray[i] = 1;
     }
 }
 
 void LevelManager::Unload()
 {
     delete[] enemiesArray;
+    delete[] enemyAliveArray;
 }
 
 void LevelManager::Update(float dt)
 {
-    // float timePassed{};
     timePassed += dt;
-    threshold = 10.0f / 60.0f;
+    // threshold = 10.0f / 60.0f;
+    threshold = 0.1f;
 
-    // int ranNum{};
-    
-    //TODO skip dead enemies
+    // TODO skip dead enemies
     if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.hasShot)
+    // if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.canShootAgain)
     {
-        ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize + 1);
+        ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
         timePassed = 0;
     }
 
-    // int ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize + 1);
     for (int i = 0; i < enemiesArraySize; i++)
     {
-        // gameUtils->GetRandomNumber(0, enemiesArraySize + 1);
-        // enemiesArray[i].PostionPlacement(300 + i * 300, 300);
         enemiesArray[i].SetDeltaTime(dt);
-        // if (timePassed > 0.50 && !enemiesArray[i].enemyBullet.hasShot)
-        // {
-        //     enemiesArray[gameUtils->GetRandomNumber(0, enemiesArraySize + 1)].Shoot(true);
-        //     // enemiesArray[ranNum].Shoot(true);
-        //     timePassed = 0;
-        // }
-
-        // enemiesArray[ranNum].Shoot(true);
-        // enemiesArray[0 + i].Shoot(true);
-        // TODO fix below to have random shots from random enemy
-        // enemiesArray[i].Shoot(true);
         enemiesArray[i].Movement();
         enemiesArray[i].Update();
+
+        if (enemiesArray[i].GetAliveState() == false)
+        {
+            enemyAliveArray[i] = 0;
+        }
     }
 
-    // if (enemiesArray->enemyBullet.canShootAgain)
-    // {
-    //     enemiesArray[ranNum].Shoot(true);
-    //     enemiesArray->enemyBullet.canShootAgain = false;
-    // }
+    // std::cout << ranNum << std::endl;
 
-    // if (enemiesArray->enemyBullet.y > GetScreenHeight())
+    if (enemyAliveArray[ranNum] == 1)
+    {
+        enemiesArray[ranNum].Shoot(true);
+    }
+    else
+    {
+        // enemiesArray[ranNum].Shoot(false);
+        ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
+    }
+
+    // for (int i = 0; i < enemiesArraySize; i++)
     // {
-    enemiesArray[ranNum].Shoot(true);
-    // enemiesArray->enemyBullet.canShootAgain = false;
+    //     std::cout << i << ": " << enemyAliveArray[i] << " ";
     // }
+    // std::cout << std::endl;
 }
 
 void LevelManager::Draw()
