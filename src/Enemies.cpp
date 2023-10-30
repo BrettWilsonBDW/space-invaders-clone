@@ -13,6 +13,51 @@ void Enemies::Init()
     // get bullets data from the player class
     bullets = player->GetBullets();
     maxBullets = player->GetMaxBullets();
+
+    enemyBullet.x = enemyX;
+    enemyBullet.y = enemyY;
+    enemyBullet.width = 0;
+    enemyBullet.height = 0;
+    enemyBullet.ctr = 0;
+    enemyBullet.hasShot = false;
+    enemyBullet.canShootAgain = true;
+    enemyBullet.collided = false;
+}
+
+void Enemies::Shoot(bool shoot)
+{
+
+    int speed{500};
+    if (!enemyBullet.hasShot)
+    {
+        enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
+        enemyBullet.y = (enemiesDestRect.y) + 110 * scale;
+    }
+
+    enemyBullet.hasShot = true;
+    // enemyBullet.canShootAgain = true;
+    enemyBullet.y += speed * dt;
+
+    if (enemyBullet.y > GetScreenHeight())
+    {
+        enemyBullet.hasShot = false;
+        enemyBullet.canShootAgain = false;
+        toggleShootState = false;
+    }
+
+    if (player->GetBulletCollisionState())
+    {
+        enemyBullet.hasShot = false;
+    }
+    
+
+    enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
+
+    if (CheckCollisionRecs(player->GetPlayerRect(), enemyBullet.rect))
+    {
+        // std::cout << "collided" << std::endl;
+        player->SetPlayerCollisionState(true);
+    }
 }
 
 void Enemies::CheckCollision()
@@ -27,6 +72,7 @@ void Enemies::CheckCollision()
                 // bullets[i].collided = true;
                 bullets[i].canShootAgain = false;
                 bullets[i].collided = true;
+                
             }
         }
     }
@@ -62,7 +108,6 @@ void Enemies::Movement()
 
 void Enemies::Update()
 {
-
     scale = gameUtils->GetScale();
 
     float shipScale{scale * 5};
@@ -79,13 +124,28 @@ void Enemies::Update()
     };
 
     CheckCollision();
+
+    
+    if (toggleShootState)
+    {
+        Shoot(true);
+        // toggleShootState = false;
+    }
 }
 
 void Enemies::Draw()
 {
+    if (!enemyBullet.x == 0 || !enemyBullet.y == 0)
+    {
+        DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
+    }
+
     if (enemyIsActive)
     {
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
         DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
     }
+
+    // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
+    // DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
 }

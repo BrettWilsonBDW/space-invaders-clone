@@ -21,7 +21,6 @@ void Player::Init()
     // playerSize = 8;
     scale = (gameUtils->GetScale() * playerSize);
 
-    // playerPosX = (static_cast<float>(GetScreenWidth() / 2) - (ship.width * scale) / 2);
     playerPosX = ((static_cast<float>(GetScreenWidth() / 2)) - (ship.width * scale) / 2);
 
     playerPosX = playerPosX / gameUtils->GetScale();
@@ -35,68 +34,6 @@ void Player::Init()
 void Player::Unload()
 {
     UnloadTexture(ship);
-}
-
-void Player::UpdatePlayer()
-{
-    playerControls();
-
-    if (IsKeyPressed(KEY_SPACE))
-    {
-        if (!bullets[shootCtr].canShootAgain)
-        {
-            bullets[shootCtr].hasShot = true;
-            bullets[shootCtr].x = shipDestRect.x + shipDestRect.width / 2;
-            bullets[shootCtr].y = shipDestRect.y;
-        }
-
-        if (bullets[shootCtr].collided)
-        {
-            bullets[shootCtr].collided = false;
-        }
-        
-
-        shootCtr++;
-
-        if (shootCtr >= maxBullets)
-        {
-            shootCtr = 0;
-        }
-    }
-    Shoot();
-
-    screenPos = playerPosX;
-
-    screenPos = (screenPos * gameUtils->GetScale());
-
-    shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
-    shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
-}
-
-void Player::updatePlayerPersistance()
-{
-    // TODO reimplement scale
-
-    scale = (gameUtils->GetScale() * playerSize);
-    windowWidth = GetScreenWidth();
-    windowHeight = GetScreenHeight();
-
-    // rest player if its off the screen
-    if (playerPosX * gameUtils->GetScale() > windowWidth)
-    {
-        // playerPosX = windowWidth - (ship.width * scale) + 10;
-        screenPos = windowWidth - (ship.width * scale) + 10;
-    }
-
-    int margin = 15;
-
-    // collision rect
-    playerRect = {
-        shipDestRect.x + margin,            // - left
-        shipDestRect.y + margin,            // - top
-        shipDestRect.width - (margin + 20), // - right
-        shipDestRect.height - (margin + 5)  // - bottom
-    };
 }
 
 void Player::playerControls()
@@ -142,17 +79,13 @@ void Player::Shoot()
     int speed{500};
     for (auto &bullet : bullets)
     {
-        //TODO update bullet collided state from hitting the enemy
-        // if (bullet.y < 0 && !bullet.collided)
         if (bullet.y < 0)
         {
-            // bullet.canShootAgain = true;
             bullet.canShootAgain = false;
             bullet.hasShot = false;
         }
         else
         {
-            // bullet.canShootAgain = false;
             bullet.canShootAgain = true;
         }
 
@@ -162,6 +95,109 @@ void Player::Shoot()
             bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
         }
     }
+}
+
+void Player::CheckPlayerCollision()
+{
+    if (playerCollision)
+    {
+        bulletCollisionState = true;
+        playerCollision = false;
+        TrackPlayerLives();
+    }
+    else
+    {
+        bulletCollisionState = false;
+    }
+}
+
+void Player::TrackPlayerLives()
+{
+    lifeCtr++;
+
+    // for some reason collision increments are in 2, the below is to combat this
+    if (lifeCtr >= 2)
+    {
+        lifeCtrDown--;
+        lifeCtr = 0;
+    }
+
+    if (lifeCtrDown == 0)
+    {
+        playerIsAlive = false;
+    }
+}
+
+void Player::UpdatePlayer()
+{
+    if (playerIsAlive)
+    {
+        playerControls();
+
+        if (IsKeyPressed(KEY_SPACE))
+        {
+            if (!bullets[shootCtr].canShootAgain)
+            {
+                bullets[shootCtr].hasShot = true;
+                bullets[shootCtr].x = shipDestRect.x + shipDestRect.width / 2;
+                bullets[shootCtr].y = shipDestRect.y;
+            }
+
+            if (bullets[shootCtr].collided)
+            {
+                bullets[shootCtr].collided = false;
+            }
+
+            shootCtr++;
+
+            if (shootCtr >= maxBullets)
+            {
+                shootCtr = 0;
+            }
+        }
+        Shoot();
+
+        screenPos = playerPosX;
+
+        screenPos = (screenPos * gameUtils->GetScale());
+
+        shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
+        shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+
+        CheckPlayerCollision();
+    }
+
+    if (IsKeyDown(KEY_R) && IsKeyDown(KEY_P))
+    {
+        playerIsAlive = true;
+        lifeCtrDown = 3;
+    }
+}
+
+void Player::updatePlayerPersistance()
+{
+    // TODO reimplement scale to be only called once not every frame same for calcScale (on window change)
+
+    scale = (gameUtils->GetScale() * playerSize);
+    windowWidth = GetScreenWidth();
+    windowHeight = GetScreenHeight();
+
+    // rest player if its off the screen
+    if (playerPosX * gameUtils->GetScale() > windowWidth)
+    {
+        // playerPosX = windowWidth - (ship.width * scale) + 10;
+        screenPos = windowWidth - (ship.width * scale) + 10;
+    }
+
+    int margin = 15;
+
+    // collision rect
+    playerRect = {
+        shipDestRect.x + margin,            // - left
+        shipDestRect.y + margin,            // - top
+        shipDestRect.width - (margin + 20), // - right
+        shipDestRect.height - (margin + 5)  // - bottom
+    };
 }
 
 /**
@@ -183,7 +219,19 @@ void Player::DrawPlayer()
         }
     }
 
-    // TODO fix jitter comes from the player is being drawn
+    // TODO fix jitter comes from the player is being drawn something to do with sub pixels aka the sprite is too small
 
-    DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
+    if (playerIsAlive)
+    {
+        // draw player
+        DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
+
+        // draw player lives
+        DrawText(("Player Lives: " + std::to_string(lifeCtrDown)).c_str(), (GetScreenWidth() - 165), 10, 20, WHITE);
+    }
+
+    if (!playerIsAlive)
+    {
+        DrawText("You are dead", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+    }
 }

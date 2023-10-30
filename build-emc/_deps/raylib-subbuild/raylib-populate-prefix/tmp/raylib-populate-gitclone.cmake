@@ -25,7 +25,7 @@ set(error_code 1)
 set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" 
+    COMMAND "C:/Program Files/Git/cmd/git.exe"
             clone --no-checkout --depth 1 --no-single-branch --progress --config "advice.detachedHead=false" "https://github.com/raysan5/raylib.git" "raylib-src"
     WORKING_DIRECTORY "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/_deps"
     RESULT_VARIABLE error_code
@@ -40,7 +40,7 @@ if(error_code)
 endif()
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe" 
+  COMMAND "C:/Program Files/Git/cmd/git.exe"
           checkout "4.5.0" --
   WORKING_DIRECTORY "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/_deps/raylib-src"
   RESULT_VARIABLE error_code

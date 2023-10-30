@@ -21,11 +21,17 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
+    int GetRanNum()
+    
+    {
+        return ranNum;
+    }
 
     void Init();
     void Unload();
-    void Update();
+    void Update(float dt);
     void Draw();
+
 
 private:
     Player *player;
@@ -35,4 +41,15 @@ private:
     Enemies *enemiesArray;
 
     int enemiesArraySize{};
+
+    float timePassed{};
+
+    int ranNum{};
+
+    float threshold{};
+
+    int *enemyAliveArray{};
+    int amtDead{};
+
+    bool gameWinState{};
 };

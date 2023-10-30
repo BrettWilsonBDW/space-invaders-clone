@@ -22,20 +22,37 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
+    void SetDeltaTime(float dtPass)
+    {
+        dt = dtPass;
+    }
+    bool GetAliveState()
+    {
+        return enemyIsActive;
+    }
 
+    void SetShootState(bool state)
+    {
+        toggleShootState = state;
+    }
 
     void Init();
     void CheckCollision();
     void PostionPlacement(int x, int y);
+    void Shoot(bool shoot);
     void Movement();
     void Update();
     void Draw();
+
+    Bullets enemyBullet{};
+
 
 private:
     Player *player;
     AssetManager *assetManager;
     GameUtils *gameUtils;
     Bullets *bullets;
+    // Bullets enemyBullet{};
 
     Texture2D enemy1{};
 
@@ -54,4 +71,8 @@ private:
     int maxBullets{};
 
     float scale{};
+
+    float dt{};
+
+    bool toggleShootState{};
 };
