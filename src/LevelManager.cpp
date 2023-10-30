@@ -39,10 +39,11 @@ void LevelManager::Update(float dt)
     timePassed += dt;
     threshold = 10.0f / 60.0f;
 
-    if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.hasShot)
+    // if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.hasShot)
+    if (!enemiesArray[ranNum].enemyBullet.hasShot)
     {
         ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
-        timePassed = 0;
+        // timePassed = 0;
     }
 
     for (int i = 0; i < enemiesArraySize; i++)
@@ -57,9 +58,10 @@ void LevelManager::Update(float dt)
         }
     }
 
-    if (enemyAliveArray[ranNum] == 1)
+    if (enemyAliveArray[ranNum] == 1 && timePassed >= threshold)
     {
         enemiesArray[ranNum].SetShootState(true);
+        timePassed = 0;
     }
     else
     {

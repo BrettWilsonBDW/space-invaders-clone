@@ -36,76 +36,6 @@ void Player::Unload()
     UnloadTexture(ship);
 }
 
-void Player::UpdatePlayer()
-{
-    playerControls();
-
-    if (IsKeyPressed(KEY_SPACE))
-    {
-        if (!bullets[shootCtr].canShootAgain)
-        {
-            bullets[shootCtr].hasShot = true;
-            bullets[shootCtr].x = shipDestRect.x + shipDestRect.width / 2;
-            bullets[shootCtr].y = shipDestRect.y;
-        }
-
-        if (bullets[shootCtr].collided)
-        {
-            bullets[shootCtr].collided = false;
-        }
-        
-
-        shootCtr++;
-
-        if (shootCtr >= maxBullets)
-        {
-            shootCtr = 0;
-        }
-    }
-    Shoot();
-
-    screenPos = playerPosX;
-
-    screenPos = (screenPos * gameUtils->GetScale());
-
-    shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
-    shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
-
-
-    //collision logic
-    // if (playerCollision)
-    // {
-    //     playerCollisionCtr++;
-    // }
-    CheckPlayerCollision();
-}
-
-void Player::updatePlayerPersistance()
-{
-    // TODO reimplement scale to be only called once not every frame same for calcScale (on window change)
-
-    scale = (gameUtils->GetScale() * playerSize);
-    windowWidth = GetScreenWidth();
-    windowHeight = GetScreenHeight();
-
-    // rest player if its off the screen
-    if (playerPosX * gameUtils->GetScale() > windowWidth)
-    {
-        // playerPosX = windowWidth - (ship.width * scale) + 10;
-        screenPos = windowWidth - (ship.width * scale) + 10;
-    }
-
-    int margin = 15;
-
-    // collision rect
-    playerRect = {
-        shipDestRect.x + margin,            // - left
-        shipDestRect.y + margin,            // - top
-        shipDestRect.width - (margin + 20), // - right
-        shipDestRect.height - (margin + 5)  // - bottom
-    };
-}
-
 void Player::playerControls()
 {
     // int speed = 1300 * 6;
@@ -167,18 +97,107 @@ void Player::Shoot()
     }
 }
 
-
 void Player::CheckPlayerCollision()
 {
     if (playerCollision)
     {
-        // DrawText("Player Collision", GetScreenWidth() / 2, GetScreenHeight() / 2, 20, RED);
-        // DrawText("Player Collision", 300, 300, 20, RED);
-        // std::cout << "Player Collision" << std::endl;
-        playerCollisionCtr++;
+        bulletCollisionState = true;
         playerCollision = false;
-        // std::cout << playerCollisionCtr << std::endl;
+        TrackPlayerLives();
     }
+    else
+    {
+        bulletCollisionState = false;
+    }
+}
+
+void Player::TrackPlayerLives()
+{
+    lifeCtr++;
+
+    //for some reason collision increments are in 2, the below is to combat this
+    if (lifeCtr >= 2)
+    {
+        lifeCtrDown--;
+        lifeCtr = 0;
+    }
+
+    if (lifeCtrDown == 0)
+    {
+        playerIsAlive = false;
+    } 
+}
+
+void Player::UpdatePlayer()
+{
+    playerControls();
+
+    if (IsKeyPressed(KEY_SPACE))
+    {
+        if (!bullets[shootCtr].canShootAgain)
+        {
+            bullets[shootCtr].hasShot = true;
+            bullets[shootCtr].x = shipDestRect.x + shipDestRect.width / 2;
+            bullets[shootCtr].y = shipDestRect.y;
+        }
+
+        if (bullets[shootCtr].collided)
+        {
+            bullets[shootCtr].collided = false;
+        }
+
+        shootCtr++;
+
+        if (shootCtr >= maxBullets)
+        {
+            shootCtr = 0;
+        }
+    }
+    Shoot();
+
+    screenPos = playerPosX;
+
+    screenPos = (screenPos * gameUtils->GetScale());
+
+    shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
+    shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+
+    if (IsKeyDown(KEY_R) && IsKeyDown(KEY_P))
+    {
+        playerIsAlive = true;
+        lifeCtrDown = 3;
+    }
+
+    if (playerIsAlive)
+    {
+        CheckPlayerCollision();
+    }
+}
+
+void Player::updatePlayerPersistance()
+{
+    // TODO reimplement scale to be only called once not every frame same for calcScale (on window change)
+
+    scale = (gameUtils->GetScale() * playerSize);
+    windowWidth = GetScreenWidth();
+    windowHeight = GetScreenHeight();
+
+    // rest player if its off the screen
+    if (playerPosX * gameUtils->GetScale() > windowWidth)
+    {
+        // playerPosX = windowWidth - (ship.width * scale) + 10;
+        screenPos = windowWidth - (ship.width * scale) + 10;
+    }
+
+    int margin = 15;
+
+    // collision rect
+    playerRect = {
+        shipDestRect.x + margin,            // - left
+        shipDestRect.y + margin,            // - top
+        shipDestRect.width - (margin + 20), // - right
+        shipDestRect.height - (margin + 5)  // - bottom
+    };
 }
 
 /**
@@ -202,10 +221,17 @@ void Player::DrawPlayer()
 
     // TODO fix jitter comes from the player is being drawn something to do with sub pixels aka the sprite is too small
 
-    DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
+    if (playerIsAlive)
+    {
+        // draw player
+        DrawTexturePro(ship, shipRect, shipDestRect, Vector2{static_cast<float>((ship.width / 2) / scale), static_cast<float>((ship.height / 2) / scale)}, 0, WHITE);
+
+        // draw player lives
+        DrawText(("Player Lives: " + std::to_string(lifeCtrDown)).c_str(), (GetScreenWidth() - 165), 10, 20, WHITE);
+    }
 
     if (playerCollision)
     {
         DrawText("Player Collision", GetScreenWidth() / 2, GetScreenHeight() / 2, 20, RED);
-    } 
+    }
 }

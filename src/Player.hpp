@@ -35,18 +35,20 @@ public:
     int GetMaxBullets() { return maxBulletCtr; }
     void SetPlayerCollisionState(bool collision) { playerCollision = collision; }
     // void SetPlayerCollisionState(bool collision) { playerCollision = collision; }
+    bool GetBulletCollisionState() { return bulletCollisionState; }
 
     // Return a pointer to the Bullets array in GetBullets()
     Bullets *GetBullets() { return bullets; }
 
     void Init();
     void Unload();
-    void updatePlayerPersistance();
-    void UpdatePlayer();
     void playerControls();
     void CheckPlayerBounds();
     void Shoot();
     void CheckPlayerCollision();
+    void TrackPlayerLives();
+    void UpdatePlayer();
+    void updatePlayerPersistance();
     void DrawPlayer();
 
     int playerCollisionCtr{};
@@ -87,4 +89,11 @@ private:
     Bullets bullets[maxBullets];
 
     bool playerCollision{};
+
+    int lifeCtr{};
+    int maxLives{3};
+    int lifeCtrDown{maxLives};
+
+    bool bulletCollisionState{};
+    bool playerIsAlive{true};
 };

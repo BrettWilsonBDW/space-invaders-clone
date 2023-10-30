@@ -45,6 +45,12 @@ void Enemies::Shoot(bool shoot)
         toggleShootState = false;
     }
 
+    if (player->GetBulletCollisionState())
+    {
+        enemyBullet.hasShot = false;
+    }
+    
+
     enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
 
     if (CheckCollisionRecs(player->GetPlayerRect(), enemyBullet.rect))
@@ -118,6 +124,7 @@ void Enemies::Update()
 
     CheckCollision();
 
+    
     if (toggleShootState)
     {
         Shoot(true);
@@ -127,16 +134,17 @@ void Enemies::Update()
 
 void Enemies::Draw()
 {
+    if (!enemyBullet.x == 0 || !enemyBullet.y == 0)
+    {
+        DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
+    }
+
     if (enemyIsActive)
     {
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
         DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
     }
 
-    if (!enemyBullet.x == 0 || !enemyBullet.y == 0)
-    {
-        DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
-    }
     // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
     // DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
 }
