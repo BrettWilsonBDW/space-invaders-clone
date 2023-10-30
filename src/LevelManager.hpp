@@ -49,4 +49,7 @@ private:
     float threshold{};
 
     int *enemyAliveArray{};
+    int amtDead{};
+
+    bool gameWinState{};
 };

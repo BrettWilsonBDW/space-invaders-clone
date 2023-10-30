@@ -33,17 +33,15 @@ void LevelManager::Unload()
 
 void LevelManager::Update(float dt)
 {
-    //TODO gain more control over how many bullets are on the screen
+    // TODO gain more control over how many bullets are on the screen
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
     timePassed += dt;
     threshold = 10.0f / 60.0f;
 
-    // if (timePassed >= threshold && !enemiesArray[ranNum].enemyBullet.hasShot)
     if (!enemiesArray[ranNum].enemyBullet.hasShot)
     {
         ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
-        // timePassed = 0;
     }
 
     for (int i = 0; i < enemiesArraySize; i++)
@@ -68,11 +66,19 @@ void LevelManager::Update(float dt)
         ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
     }
 
-    // for (int i = 0; i < enemiesArraySize; i++)
-    // {
-    //     std::cout << i << ": " << enemyAliveArray[i] << " ";
-    // }
-    // std::cout << std::endl;
+    amtDead = 0;
+    for (int i = 0; i < enemiesArraySize; i++)
+    {
+        if (enemyAliveArray[i] == 0)
+        {
+            amtDead++;
+        }
+    }
+
+    if (amtDead == enemiesArraySize)
+    {
+        gameWinState = true;
+    }
 }
 
 void LevelManager::Draw()
@@ -80,5 +86,10 @@ void LevelManager::Draw()
     for (int i = 0; i < enemiesArraySize; i++)
     {
         enemiesArray[i].Draw();
+    }
+
+    if (gameWinState)
+    {
+        DrawText("You Have Won!", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
     }
 }

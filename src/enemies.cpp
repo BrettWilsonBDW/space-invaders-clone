@@ -72,6 +72,7 @@ void Enemies::CheckCollision()
                 // bullets[i].collided = true;
                 bullets[i].canShootAgain = false;
                 bullets[i].collided = true;
+                
             }
         }
     }

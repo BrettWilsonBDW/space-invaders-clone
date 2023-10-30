@@ -115,7 +115,7 @@ void Player::TrackPlayerLives()
 {
     lifeCtr++;
 
-    //for some reason collision increments are in 2, the below is to combat this
+    // for some reason collision increments are in 2, the below is to combat this
     if (lifeCtr >= 2)
     {
         lifeCtrDown--;
@@ -125,52 +125,52 @@ void Player::TrackPlayerLives()
     if (lifeCtrDown == 0)
     {
         playerIsAlive = false;
-    } 
+    }
 }
 
 void Player::UpdatePlayer()
 {
-    playerControls();
-
-    if (IsKeyPressed(KEY_SPACE))
+    if (playerIsAlive)
     {
-        if (!bullets[shootCtr].canShootAgain)
-        {
-            bullets[shootCtr].hasShot = true;
-            bullets[shootCtr].x = shipDestRect.x + shipDestRect.width / 2;
-            bullets[shootCtr].y = shipDestRect.y;
-        }
+        playerControls();
 
-        if (bullets[shootCtr].collided)
+        if (IsKeyPressed(KEY_SPACE))
         {
-            bullets[shootCtr].collided = false;
-        }
+            if (!bullets[shootCtr].canShootAgain)
+            {
+                bullets[shootCtr].hasShot = true;
+                bullets[shootCtr].x = shipDestRect.x + shipDestRect.width / 2;
+                bullets[shootCtr].y = shipDestRect.y;
+            }
 
-        shootCtr++;
+            if (bullets[shootCtr].collided)
+            {
+                bullets[shootCtr].collided = false;
+            }
 
-        if (shootCtr >= maxBullets)
-        {
-            shootCtr = 0;
+            shootCtr++;
+
+            if (shootCtr >= maxBullets)
+            {
+                shootCtr = 0;
+            }
         }
+        Shoot();
+
+        screenPos = playerPosX;
+
+        screenPos = (screenPos * gameUtils->GetScale());
+
+        shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
+        shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
+
+        CheckPlayerCollision();
     }
-    Shoot();
-
-    screenPos = playerPosX;
-
-    screenPos = (screenPos * gameUtils->GetScale());
-
-    shipRect = {0, 0, static_cast<float>(ship.width), static_cast<float>(ship.height)};
-    shipDestRect = {static_cast<float>(screenPos), static_cast<float>(GetScreenHeight() - ship.height * scale), static_cast<float>(ship.width * scale), static_cast<float>(ship.height * scale)};
 
     if (IsKeyDown(KEY_R) && IsKeyDown(KEY_P))
     {
         playerIsAlive = true;
         lifeCtrDown = 3;
-    }
-
-    if (playerIsAlive)
-    {
-        CheckPlayerCollision();
     }
 }
 
@@ -230,8 +230,8 @@ void Player::DrawPlayer()
         DrawText(("Player Lives: " + std::to_string(lifeCtrDown)).c_str(), (GetScreenWidth() - 165), 10, 20, WHITE);
     }
 
-    if (playerCollision)
+    if (!playerIsAlive)
     {
-        DrawText("Player Collision", GetScreenWidth() / 2, GetScreenHeight() / 2, 20, RED);
+        DrawText("You are dead", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
     }
 }
