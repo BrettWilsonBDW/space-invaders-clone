@@ -4,6 +4,8 @@
 #include "raymath.h"
 #include "Enemies.hpp"
 
+#include "levels/LevelOne.hpp"
+
 class LevelManager
 {
 public:
@@ -21,11 +23,6 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
-    int GetRanNum()
-    
-    {
-        return ranNum;
-    }
 
     void Init();
     void Unload();
@@ -40,16 +37,5 @@ private:
     Bullets *bullets;
     Enemies *enemiesArray;
 
-    int enemiesArraySize{};
-
-    float timePassed{};
-
-    int ranNum{};
-
-    float threshold{};
-
-    int *enemyAliveArray{};
-    int amtDead{};
-
-    bool gameWinState{};
+    LevelOne levelOne;
 };
