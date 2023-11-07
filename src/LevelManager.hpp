@@ -39,5 +39,13 @@ private:
 
     LevelOne levelOne;
 
+    LevelOne levelTwo;
+
+    LevelOne levelThree;
+
+    LevelOne levelThreeHalf;
+
+
+
     int nextLevelNum{};
 };

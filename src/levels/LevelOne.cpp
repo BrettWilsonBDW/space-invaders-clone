@@ -5,11 +5,11 @@ LevelOne::LevelOne()
 }
 
 void LevelOne::Init(int x, int y)
-// void LevelOne::Init()
 {
     std::cout << "Level One Init" << std::endl;
 
-    enemiesArraySize = 5;
+    // enemiesArraySize = 5;
+    enemiesArraySize = enemyAmt;
     enemiesArray = new Enemies[enemiesArraySize];
     enemyAliveArray = new int[enemiesArraySize];
 
@@ -22,8 +22,8 @@ void LevelOne::Init(int x, int y)
         enemiesArray[i].Init();
 
         // TODO adjust placement logic
-        // enemiesArray[i].PostionPlacement(x + i * 200, y);
-        enemiesArray[i].PostionPlacement(300 + i * 200, 100);
+        enemiesArray[i].PostionPlacement(x + i * 200, y);
+        // enemiesArray[i].PostionPlacement(300 + i * 200, 100);
 
         enemyAliveArray[i] = 1;
     }

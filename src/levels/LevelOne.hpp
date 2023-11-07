@@ -33,6 +33,10 @@ public:
     {
         return gameWinState;
     }
+    void SetEnemyAmt(int amt)
+    {
+        enemyAmt = amt;
+    }
 
     void Init(int x = 300, int y = 100);
     // void Init();
@@ -64,4 +68,6 @@ private:
     // bool gameWinState{};
 
     bool toggleWinCondition{true};
+
+    int enemyAmt{};
 };
