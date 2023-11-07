@@ -1,6 +1,6 @@
 #pragma once
 
-#include "iostream"
+#include <iostream>
 #include "../Enemies.hpp"
 #include "raylib.h"
 // #include "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invaders-clone/src/Enemies.hpp"
@@ -29,11 +29,19 @@ public:
     {
         return ranNum;
     }
+    bool GetWinState()
+    {
+        return gameWinState;
+    }
 
-    void Init();
+    void Init(int x = 300, int y = 100);
+    // void Init();
     void Unload();
     void update(float dt);
     void draw();
+
+    bool gameWinState{};
+
 
 private:
     Player *player;
@@ -53,5 +61,7 @@ private:
     int *enemyAliveArray{};
     int amtDead{};
 
-    bool gameWinState{};
+    // bool gameWinState{};
+
+    bool toggleWinCondition{true};
 };

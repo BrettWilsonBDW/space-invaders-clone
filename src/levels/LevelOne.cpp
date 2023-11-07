@@ -4,7 +4,8 @@ LevelOne::LevelOne()
 {
 }
 
-void LevelOne::Init()
+void LevelOne::Init(int x, int y)
+// void LevelOne::Init()
 {
     std::cout << "Level One Init" << std::endl;
 
@@ -21,6 +22,7 @@ void LevelOne::Init()
         enemiesArray[i].Init();
 
         // TODO adjust placement logic
+        // enemiesArray[i].PostionPlacement(x + i * 200, y);
         enemiesArray[i].PostionPlacement(300 + i * 200, 100);
 
         enemyAliveArray[i] = 1;
@@ -77,9 +79,10 @@ void LevelOne::update(float dt)
         }
     }
 
-    if (amtDead == enemiesArraySize)
+    if (amtDead == enemiesArraySize && toggleWinCondition)
     {
         gameWinState = true;
+        toggleWinCondition = false;
     }
 }
 
@@ -92,6 +95,6 @@ void LevelOne::draw()
 
     if (gameWinState)
     {
-        DrawText("You Have Won!", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+        DrawText("You Have Won! next level", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
     }
 }

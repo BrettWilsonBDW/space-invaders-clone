@@ -38,4 +38,6 @@ private:
     Enemies *enemiesArray;
 
     LevelOne levelOne;
+
+    int nextLevelNum{};
 };
