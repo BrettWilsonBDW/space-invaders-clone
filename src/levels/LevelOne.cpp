@@ -6,9 +6,6 @@ LevelOne::LevelOne()
 
 void LevelOne::Init(int x, int y)
 {
-    std::cout << "Level One Init" << std::endl;
-
-    // enemiesArraySize = 5;
     enemiesArraySize = enemyAmt;
     enemiesArray = new Enemies[enemiesArraySize];
     enemyAliveArray = new int[enemiesArraySize];
@@ -37,7 +34,6 @@ void LevelOne::Unload()
 
 void LevelOne::update(float dt)
 {
-    // TODO gain more control over how many bullets are on the screen
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
     timePassed += dt;
@@ -88,13 +84,11 @@ void LevelOne::update(float dt)
 
 void LevelOne::draw()
 {
-    for (int i = 0; i < enemiesArraySize; i++)
+    if (!unloadToggle)
     {
-        enemiesArray[i].Draw();
-    }
-
-    if (gameWinState)
-    {
-        DrawText("You Have Won! next level", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+        for (int i = 0; i < enemiesArraySize; i++)
+        {
+            enemiesArray[i].Draw();
+        }
     }
 }

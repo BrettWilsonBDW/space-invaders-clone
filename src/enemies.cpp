@@ -143,7 +143,7 @@ void Enemies::Draw()
     if (enemyIsActive)
     {
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
-        DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
+        // DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
     }
 
     // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);

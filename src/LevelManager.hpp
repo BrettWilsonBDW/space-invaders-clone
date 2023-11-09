@@ -29,6 +29,8 @@ public:
     void Update(float dt);
     void Draw();
 
+    int nextLevelNumPublic{};
+    bool publicToggle{};
 
 private:
     Player *player;
@@ -37,15 +39,17 @@ private:
     Bullets *bullets;
     Enemies *enemiesArray;
 
-    LevelOne levelOne;
+    // LevelOne *level
 
-    LevelOne levelTwo;
+    LevelOne levels[4];
 
-    LevelOne levelThree;
+    // LevelOne levelOne; 
 
-    LevelOne levelThreeHalf;
+    // LevelOne levelTwo;
 
+    // LevelOne levelThree;
 
+    // LevelOne levelThreeHalf;
 
     int nextLevelNum{};
 };

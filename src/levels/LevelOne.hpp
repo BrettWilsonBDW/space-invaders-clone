@@ -45,6 +45,7 @@ public:
     void draw();
 
     bool gameWinState{};
+    bool unloadToggle{};
 
 
 private:

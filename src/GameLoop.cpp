@@ -136,6 +136,13 @@ void GameLoop::DebugStatements()
 
         DrawRectangleLines(player.GetPlayerRect().x, player.GetPlayerRect().y, player.GetPlayerRect().width, player.GetPlayerRect().height, RED);
         DrawLine(GetScreenWidth() / 2, 0, GetScreenWidth() / 2, GetScreenHeight(), RED);
+
+        if (IsKeyPressed(KEY_RIGHT_ALT))
+        {
+            levelManager.publicToggle = true;
+            levelManager.nextLevelNumPublic++;
+        }
+        
     }
 }
 
