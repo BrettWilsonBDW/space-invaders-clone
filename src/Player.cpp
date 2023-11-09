@@ -74,9 +74,9 @@ void Player::playerControls()
     playerPosX = static_cast<int>(playerPosX + static_cast<int>(velocity.x));
 }
 
-void Player::Shoot()
+void Player::Shoot(float dt)
 {
-    int speed{500};
+    int speed{700};
     for (auto &bullet : bullets)
     {
         if (bullet.y < 0)
@@ -91,7 +91,7 @@ void Player::Shoot()
 
         if (bullet.canShootAgain)
         {
-            bullet.y -= speed * gameUtils->GetDeltaTime();
+            bullet.y -= speed * dt;
             bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
         }
     }
@@ -128,7 +128,7 @@ void Player::TrackPlayerLives()
     }
 }
 
-void Player::UpdatePlayer()
+void Player::Update(float dt)
 {
     if (playerIsAlive)
     {
@@ -155,7 +155,7 @@ void Player::UpdatePlayer()
                 shootCtr = 0;
             }
         }
-        Shoot();
+        Shoot(dt);
 
         screenPos = playerPosX;
 

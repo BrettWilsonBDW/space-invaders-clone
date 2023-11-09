@@ -44,10 +44,10 @@ public:
     void Unload();
     void playerControls();
     void CheckPlayerBounds();
-    void Shoot();
+    void Shoot(float dt);
     void CheckPlayerCollision();
     void TrackPlayerLives();
-    void UpdatePlayer();
+    void Update(float dt);
     void updatePlayerPersistance();
     void DrawPlayer();
 

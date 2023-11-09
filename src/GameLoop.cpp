@@ -81,7 +81,7 @@ void GameLoop::Update()
 
     // SetWindowSize(windowWidth, windowHeight);
 
-    player.UpdatePlayer();
+    player.Update(dt);
     // enemies.Update();
     levelManager.Update(dt);
 }
@@ -141,8 +141,7 @@ void GameLoop::DebugStatements()
         {
             levelManager.publicToggle = true;
             levelManager.nextLevelNumPublic++;
-        }
-        
+        }   
     }
 }
 
@@ -203,12 +202,10 @@ void GameLoop::MainLoopHelper(void *userData)
 
     if (gameLoop->isPaused)
     {
-        // if (IsKeyPressed(KEY_ONE))
-        // {
-        //     ToggleFullscreen();
-        // }
+        //do things while paused
     }
 
+    //TODO merge the two functions
     gameLoop->UpdateWhilePaused();
     gameLoop->Draw();
 }

@@ -48,6 +48,7 @@ void LevelManager::Update(float dt)
 {
     if (publicToggle)
     {
+        // increments in game loop
         nextLevelNum = nextLevelNumPublic;
     }
 
@@ -60,7 +61,7 @@ void LevelManager::Update(float dt)
             level.gameWinState = false;
         }
     }
-    std::cout << nextLevelNum << std::endl;
+    // std::cout << nextLevelNum << std::endl;
 
     switch (nextLevelNum)
     {
