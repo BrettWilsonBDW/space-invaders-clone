@@ -188,11 +188,26 @@ CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.s"
 	C:\emsdk\upstream\emscripten\em++.bat $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\enemies.cpp -o CMakeFiles\space-invaders-clone.dir\src\enemies.cpp.s
 
+CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o: CMakeFiles/space-invaders-clone.dir/flags.make
+CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o: CMakeFiles/space-invaders-clone.dir/includes_CXX.rsp
+CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o: C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/levels/LevelBasic.cpp
+CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o: CMakeFiles/space-invaders-clone.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o"
+	C:\emsdk\upstream\emscripten\em++.bat $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o -MF CMakeFiles\space-invaders-clone.dir\src\levels\LevelBasic.cpp.o.d -o CMakeFiles\space-invaders-clone.dir\src\levels\LevelBasic.cpp.o -c C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\levels\LevelBasic.cpp
+
+CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.i"
+	C:\emsdk\upstream\emscripten\em++.bat $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\levels\LevelBasic.cpp > CMakeFiles\space-invaders-clone.dir\src\levels\LevelBasic.cpp.i
+
+CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.s"
+	C:\emsdk\upstream\emscripten\em++.bat $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\levels\LevelBasic.cpp -o CMakeFiles\space-invaders-clone.dir\src\levels\LevelBasic.cpp.s
+
 CMakeFiles/space-invaders-clone.dir/src/main.cpp.o: CMakeFiles/space-invaders-clone.dir/flags.make
 CMakeFiles/space-invaders-clone.dir/src/main.cpp.o: CMakeFiles/space-invaders-clone.dir/includes_CXX.rsp
 CMakeFiles/space-invaders-clone.dir/src/main.cpp.o: C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/main.cpp
 CMakeFiles/space-invaders-clone.dir/src/main.cpp.o: CMakeFiles/space-invaders-clone.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/space-invaders-clone.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/space-invaders-clone.dir/src/main.cpp.o"
 	C:\emsdk\upstream\emscripten\em++.bat $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/space-invaders-clone.dir/src/main.cpp.o -MF CMakeFiles\space-invaders-clone.dir\src\main.cpp.o.d -o CMakeFiles\space-invaders-clone.dir\src\main.cpp.o -c C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\main.cpp
 
 CMakeFiles/space-invaders-clone.dir/src/main.cpp.i: cmake_force
@@ -213,6 +228,7 @@ space__invaders__clone_OBJECTS = \
 "CMakeFiles/space-invaders-clone.dir/src/Player.cpp.o" \
 "CMakeFiles/space-invaders-clone.dir/src/SceneManager.cpp.o" \
 "CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.o" \
+"CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o" \
 "CMakeFiles/space-invaders-clone.dir/src/main.cpp.o"
 
 # External object files for target space-invaders-clone
@@ -226,13 +242,14 @@ space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/src/LevelManager.
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/src/Player.cpp.o
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/src/SceneManager.cpp.o
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.o
+space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/src/main.cpp.o
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/build.make
 space-invaders-clone.html: _deps/raylib-build/raylib/libraylib.a
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/linkLibs.rsp
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/objects1.rsp
 space-invaders-clone.html: CMakeFiles/space-invaders-clone.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable space-invaders-clone.html"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable space-invaders-clone.html"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\space-invaders-clone.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

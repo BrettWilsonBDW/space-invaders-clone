@@ -1,4 +1,5 @@
 #include "LevelManager.hpp"
+#include <iostream>
 
 LevelManager::LevelManager()
 {
@@ -6,90 +7,116 @@ LevelManager::LevelManager()
 
 void LevelManager::Init()
 {
-    enemiesArraySize = 5;
-    enemiesArray = new Enemies[enemiesArraySize];
-    enemyAliveArray = new int[enemiesArraySize];
-
-    for (int i = 0; i < enemiesArraySize; i++)
+    for (auto &level : levels)
     {
-        enemiesArray[i].SetPlayer(player);
-        enemiesArray[i].SetAssetManager(assetManager);
-        enemiesArray[i].SetGameUtils(gameUtils);
-
-        enemiesArray[i].Init();
-
-        // TODO adjust placement logic
-        enemiesArray[i].PostionPlacement(300 + i * 200, 100);
-
-        enemyAliveArray[i] = 1;
+        level.SetPlayer(player);
+        level.SetAssetManager(assetManager);
+        level.SetGameUtils(gameUtils);
     }
+
+    levels[0].SetEnemyAmt(5);
+    levels[0].Init();
+
+    levels[1].SetEnemyAmt(8);
+    levels[1].Init();
+
+    levels[2].SetEnemyAmt(5);
+    levels[2].Init();
+
+    levels[3].SetEnemyAmt(5);
+    levels[3].Init(300, 300);
+
+    levels[4].SetEnemyAmt(7);
+    levels[4].Init();
+
+    levels[5].SetEnemyAmt(3);
+    levels[5].Init();
+
+    levels[6].SetEnemyAmt(5);
+    levels[6].Init();
 }
 
 void LevelManager::Unload()
 {
-    delete[] enemiesArray;
-    delete[] enemyAliveArray;
+    for (auto &level : levels)
+    {
+        level.Unload();
+    }
 }
 
 void LevelManager::Update(float dt)
 {
-    // TODO gain more control over how many bullets are on the screen
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
-    timePassed += dt;
-    threshold = 10.0f / 60.0f;
-
-    if (!enemiesArray[ranNum].enemyBullet.hasShot)
+    if (publicToggle)
     {
-        ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
+        nextLevelNum = nextLevelNumPublic;
     }
 
-    for (int i = 0; i < enemiesArraySize; i++)
+    if (levels[0].gameWinState || levels[1].gameWinState || (levels[2].gameWinState && levels[3].gameWinState) || levels[4].gameWinState || levels[5].gameWinState || levels[6].gameWinState)
     {
-        enemiesArray[i].SetDeltaTime(dt);
-        enemiesArray[i].Movement();
-        enemiesArray[i].Update();
+        nextLevelNum++;
 
-        if (!enemiesArray[i].GetAliveState())
+        for (auto &level : levels)
         {
-            enemyAliveArray[i] = 0;
+            level.gameWinState = false;
         }
     }
+    // std::cout << nextLevelNum << std::endl;
 
-    if (enemyAliveArray[ranNum] == 1 && timePassed >= threshold)
+    switch (nextLevelNum)
     {
-        enemiesArray[ranNum].SetShootState(true);
-        timePassed = 0;
-    }
-    else
-    {
-        ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
-    }
+    case 0:
+        levels[0].update(dt);
+        break;
 
-    amtDead = 0;
-    for (int i = 0; i < enemiesArraySize; i++)
-    {
-        if (enemyAliveArray[i] == 0)
-        {
-            amtDead++;
-        }
-    }
+    case 1:
+        // be mindful that this code unloads the previous level not the current one soo in this case level num 0 is the previous level
+        levels[0].unloadToggle = true;
 
-    if (amtDead == enemiesArraySize)
-    {
-        gameWinState = true;
+        levels[1].update(dt);
+        break;
+
+    case 2:
+        levels[1].unloadToggle = true;
+
+        levels[2].update(dt);
+        levels[3].update(dt);
+        break;
+
+    case 3:
+        levels[2].unloadToggle = true;
+        levels[3].unloadToggle = true;
+
+        levels[4].update(dt, 15);
+        break;
+
+    case 4:
+        levels[4].unloadToggle = true;
+
+        levels[5].update(dt, 10, 1000);
+        break;
+
+    case 5:
+        levels[5].unloadToggle = true;
+
+        levels[6].update(dt, 15, 750);
+        break;
+
+    case 6:
+        levels[6].unloadToggle = true;
+
+        // levels[7].update(dt, 15, 750);
+        break;
+
+    default:
+        std::cout << "error in logic the level with number: " << nextLevelNum << " is not found" << std::endl;
+        break;
     }
 }
 
 void LevelManager::Draw()
 {
-    for (int i = 0; i < enemiesArraySize; i++)
+    for (auto &level : levels)
     {
-        enemiesArray[i].Draw();
-    }
-
-    if (gameWinState)
-    {
-        DrawText("You Have Won!", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+        level.draw();
     }
 }

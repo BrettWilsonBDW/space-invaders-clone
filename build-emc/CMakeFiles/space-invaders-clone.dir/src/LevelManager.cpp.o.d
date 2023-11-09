@@ -672,4 +672,6 @@ CMakeFiles/space-invaders-clone.dir/src/LevelManager.cpp.o: \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\locale \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\streambuf \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__bsd_locale_fallbacks.h \
-  C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\cstdarg
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\cstdarg \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\levels\LevelBasic.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\levels\..\Enemies.hpp

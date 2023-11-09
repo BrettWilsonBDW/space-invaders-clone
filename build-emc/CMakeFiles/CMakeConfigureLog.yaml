@@ -4,25 +4,25 @@ events:
   -
     kind: "message-v1"
     backtrace:
-      - "C:/mingw64/share/cmake-3.26/Modules/CMakeDetermineSystem.cmake:199 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:206 (message)"
       - "CMakeLists.txt:3 (project)"
     message: |
       The target system is: Emscripten - 1 - x86
-      The host system is: Windows - 6.2.9200 - AMD64
+      The host system is: Windows - 10.0.19045 - AMD64
   -
     kind: "try_compile-v1"
     backtrace:
-      - "C:/mingw64/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
-      - "C:/mingw64/share/cmake-3.26/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
-      - "C:/mingw64/share/cmake-3.26/Modules/CheckCCompilerFlag.cmake:40 (cmake_check_compiler_flag)"
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/CheckCCompilerFlag.cmake:51 (cmake_check_compiler_flag)"
       - "build-emc/_deps/raylib-src/cmake/AddIfFlagCompiles.cmake:3 (CHECK_C_COMPILER_FLAG)"
       - "build-emc/_deps/raylib-src/cmake/CompilerFlags.cmake:5 (add_if_flag_compiles)"
       - "build-emc/_deps/raylib-src/CMakeLists.txt:29 (include)"
     checks:
       - "Performing Test COMPILER_HAS_THOSE_TOGGLES"
     directories:
-      source: "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-m7o11u"
-      binary: "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-m7o11u"
+      source: "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-mb7n2a"
+      binary: "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-mb7n2a"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_MODULE_PATH: "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/_deps/raylib-src/cmake"
@@ -30,28 +30,17 @@ events:
       variable: "COMPILER_HAS_THOSE_TOGGLES"
       cached: true
       stdout: |
-        Change Dir: C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-m7o11u
+        Change Dir: 'C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-mb7n2a'
         
-        Run Build Command(s):C:/mingw64/bin/cmake.exe -E env VERBOSE=1 C:/mingw64/bin/mingw32-make.exe -f Makefile cmTC_fc79a/fast && C:/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_fc79a.dir\\build.make CMakeFiles/cmTC_fc79a.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-m7o11u'
-        Building C object CMakeFiles/cmTC_fc79a.dir/src.c.o
-        C:\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_fc79a.dir/src.c.o -MF CMakeFiles\\cmTC_fc79a.dir\\src.c.o.d -o CMakeFiles\\cmTC_fc79a.dir\\src.c.o -c C:\\Users\\brend\\Nextcloud\\sources\\repos\\gamedev\\raylibGames\\space-invader-clone-webDepoy\\space-invaders-clone\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-m7o11u\\src.c
-        Linking C executable cmTC_fc79a.js
-        C:\\mingw64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_fc79a.dir\\link.txt --verbose=1
-        C:\\emsdk\\upstream\\emscripten\\emcc.bat @CMakeFiles\\cmTC_fc79a.dir\\objects1.rsp -o cmTC_fc79a.js 
-        mingw32-make[1]: Leaving directory 'C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-m7o11u'
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/mingw64/bin/mingw32-make.exe -f Makefile cmTC_d7f48/fast
+        C:/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_d7f48.dir\\build.make CMakeFiles/cmTC_d7f48.dir/build
+        mingw32-make.exe[1]: Entering directory 'C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-mb7n2a'
+        Building C object CMakeFiles/cmTC_d7f48.dir/src.c.o
+        C:\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_d7f48.dir/src.c.o -MF CMakeFiles\\cmTC_d7f48.dir\\src.c.o.d -o CMakeFiles\\cmTC_d7f48.dir\\src.c.o -c C:\\Users\\brend\\Nextcloud\\sources\\repos\\gamedev\\raylibGames\\space-invader-clone-webDepoy\\space-invaders-clone\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-mb7n2a\\src.c
+        Linking C executable cmTC_d7f48.js
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_d7f48.dir\\link.txt --verbose=1
+        C:\\emsdk\\upstream\\emscripten\\emcc.bat @CMakeFiles\\cmTC_d7f48.dir\\objects1.rsp -o cmTC_d7f48.js 
+        mingw32-make.exe[1]: Leaving directory 'C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/build-emc/CMakeFiles/CMakeScratch/TryCompile-mb7n2a'
         
       exitCode: 0
-...
-
----
-events:
-  -
-    kind: "message-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:206 (message)"
-      - "CMakeLists.txt:3 (project)"
-    message: |
-      The target system is: Emscripten - 1 - x86
-      The host system is: Windows - 10.0.19045 - AMD64
 ...

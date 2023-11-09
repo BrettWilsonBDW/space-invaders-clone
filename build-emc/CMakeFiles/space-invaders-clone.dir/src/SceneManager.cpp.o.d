@@ -674,4 +674,6 @@ CMakeFiles/space-invaders-clone.dir/src/SceneManager.cpp.o: \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\_deps\raylib-src\src\raymath.h \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\Enemies.hpp \
   C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\LevelManager.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\levels\LevelBasic.hpp \
+  C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\src\levels\..\Enemies.hpp \
   C:\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\sstream

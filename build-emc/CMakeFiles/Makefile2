@@ -114,12 +114,12 @@ CMakeFiles/space-invaders-clone.dir/all: CMakeFiles/copyAssetsOver.dir/all
 CMakeFiles/space-invaders-clone.dir/all: _deps/raylib-build/raylib/CMakeFiles/raylib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=10,11,12,13,14,15,16,17,18,19 "Built target space-invaders-clone"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles --progress-num=10,11,12,13,14,15,16,17,18,19,20 "Built target space-invaders-clone"
 .PHONY : CMakeFiles/space-invaders-clone.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/space-invaders-clone.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/space-invaders-clone.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\brend\Nextcloud\sources\repos\gamedev\raylibGames\space-invader-clone-webDepoy\space-invaders-clone\build-emc\CMakeFiles 0
 .PHONY : CMakeFiles/space-invaders-clone.dir/rule

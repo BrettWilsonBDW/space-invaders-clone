@@ -412,6 +412,30 @@ src/enemies.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.s
 .PHONY : src/enemies.cpp.s
 
+src/levels/LevelBasic.o: src/levels/LevelBasic.cpp.o
+.PHONY : src/levels/LevelBasic.o
+
+# target to build an object file
+src/levels/LevelBasic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o
+.PHONY : src/levels/LevelBasic.cpp.o
+
+src/levels/LevelBasic.i: src/levels/LevelBasic.cpp.i
+.PHONY : src/levels/LevelBasic.i
+
+# target to preprocess a source file
+src/levels/LevelBasic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.i
+.PHONY : src/levels/LevelBasic.cpp.i
+
+src/levels/LevelBasic.s: src/levels/LevelBasic.cpp.s
+.PHONY : src/levels/LevelBasic.s
+
+# target to generate assembly for a file
+src/levels/LevelBasic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\space-invaders-clone.dir\build.make CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.s
+.PHONY : src/levels/LevelBasic.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -477,6 +501,9 @@ help:
 	@echo ... src/enemies.o
 	@echo ... src/enemies.i
 	@echo ... src/enemies.s
+	@echo ... src/levels/LevelBasic.o
+	@echo ... src/levels/LevelBasic.i
+	@echo ... src/levels/LevelBasic.s
 	@echo ... src/main.o
 	@echo ... src/main.i
 	@echo ... src/main.s

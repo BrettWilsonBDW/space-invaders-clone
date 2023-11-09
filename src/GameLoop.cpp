@@ -81,7 +81,7 @@ void GameLoop::Update()
 
     // SetWindowSize(windowWidth, windowHeight);
 
-    player.UpdatePlayer();
+    player.Update(dt);
     // enemies.Update();
     levelManager.Update(dt);
 }
@@ -132,11 +132,17 @@ void GameLoop::DebugStatements()
         debug.PassItems("playerX: %d\n", player.GetplayerPosX());
         debug.PassItems("num of bullets %d\n", player.GetBulletCount());
         debug.PassItems("player collision: %d\n", player.playerCollisionCtr);
-        debug.PassItems("random num: %d\n", levelManager.GetRanNum());
         debug.DrawItems(3, 3, 16, 0, 2, RED);
 
         DrawRectangleLines(player.GetPlayerRect().x, player.GetPlayerRect().y, player.GetPlayerRect().width, player.GetPlayerRect().height, RED);
         DrawLine(GetScreenWidth() / 2, 0, GetScreenWidth() / 2, GetScreenHeight(), RED);
+
+        if (IsKeyPressed(KEY_RIGHT_ALT))
+        {
+            levelManager.publicToggle = true;
+            levelManager.nextLevelNumPublic++;
+        }
+        
     }
 }
 

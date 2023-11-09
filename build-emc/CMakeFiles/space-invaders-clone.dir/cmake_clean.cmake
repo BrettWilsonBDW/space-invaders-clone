@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/space-invaders-clone.dir/src/SceneManager.cpp.o.d"
   "CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.o"
   "CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.o.d"
+  "CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o"
+  "CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o.d"
   "CMakeFiles/space-invaders-clone.dir/src/main.cpp.o"
   "CMakeFiles/space-invaders-clone.dir/src/main.cpp.o.d"
   "space-invaders-clone.html"

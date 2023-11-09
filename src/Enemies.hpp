@@ -22,10 +22,10 @@ public:
     {
         gameUtils = gameUtilsPass;
     }
-    void SetDeltaTime(float dtPass)
-    {
-        dt = dtPass;
-    }
+    // void SetDeltaTime(float dtPass)
+    // {
+    //     dt = dtPass;
+    // }
     bool GetAliveState()
     {
         return enemyIsActive;
@@ -39,14 +39,16 @@ public:
     void Init();
     void CheckCollision();
     void PostionPlacement(int x, int y);
-    void Shoot(bool shoot);
-    void Movement();
-    void Update();
+    void Shoot(float dt);
+    void Movement(int speed = 10);
+    void Update(float dt);
     void Draw();
 
     Bullets enemyBullet{};
 
 
+    int bulletSpeed{500};
+    
 private:
     Player *player;
     AssetManager *assetManager;
@@ -72,7 +74,9 @@ private:
 
     float scale{};
 
-    float dt{};
+    // float dt;
 
     bool toggleShootState{};
+
+    bool toggleDebug{};
 };

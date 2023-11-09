@@ -6,29 +6,19 @@ Debug::Debug()
     // font = LoadFont("assets/fonts/Roboto.ttf");
 }
 
+
 /**
- * Toggles the debug mode based on whether the backtick key is pressed. If the
- * backtick key is pressed, the toggleDebugKey is incremented and the
- * toggleDebugMenu is set to true. If the toggleDebugKey is greater than 1, it
- * is reset to 0 and the toggleDebugMenu is set to false. Returns the value of
- * toggleDebugMenu.
+ * Toggle the state of debugging.
  *
- * @return boolean - The value of toggleDebugMenu indicating whether the debug
- * mode is toggled on or off.
+ * @return The new state of debugging.
  */
 bool Debug::ToggleState()
 {
-    // 96 is backtick
     if (IsKeyPressed(96))
     {
-        toggleDebugKey++;
-        toggleDebugMenu = true;
+        toggleDebugMenu = !toggleDebugMenu;
     }
-    else if (toggleDebugKey > 1)
-    {
-        toggleDebugKey = 0;
-        toggleDebugMenu = false;
-    }
+
     currentState = toggleDebugMenu;
     return toggleDebugMenu;
 }

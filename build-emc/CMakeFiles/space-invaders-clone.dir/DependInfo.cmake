@@ -10,12 +10,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/AssetManager.cpp" "CMakeFiles/space-invaders-clone.dir/src/AssetManager.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/AssetManager.cpp.o.d"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/Debug.cpp" "CMakeFiles/space-invaders-clone.dir/src/Debug.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/Debug.cpp.o.d"
-  "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/enemies.cpp" "CMakeFiles/space-invaders-clone.dir/src/Enemies.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/Enemies.cpp.o.d"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/GameLoop.cpp" "CMakeFiles/space-invaders-clone.dir/src/GameLoop.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/GameLoop.cpp.o.d"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/GameUtils.cpp" "CMakeFiles/space-invaders-clone.dir/src/GameUtils.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/GameUtils.cpp.o.d"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/LevelManager.cpp" "CMakeFiles/space-invaders-clone.dir/src/LevelManager.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/LevelManager.cpp.o.d"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/Player.cpp" "CMakeFiles/space-invaders-clone.dir/src/Player.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/Player.cpp.o.d"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/SceneManager.cpp" "CMakeFiles/space-invaders-clone.dir/src/SceneManager.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/SceneManager.cpp.o.d"
+  "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/enemies.cpp" "CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/enemies.cpp.o.d"
+  "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/levels/LevelBasic.cpp" "CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/levels/LevelBasic.cpp.o.d"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/main.cpp" "CMakeFiles/space-invaders-clone.dir/src/main.cpp.o" "gcc" "CMakeFiles/space-invaders-clone.dir/src/main.cpp.o.d"
   )
 

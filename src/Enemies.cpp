@@ -24,10 +24,10 @@ void Enemies::Init()
     enemyBullet.collided = false;
 }
 
-void Enemies::Shoot(bool shoot)
+void Enemies::Shoot(float dt)
 {
-
-    int speed{500};
+    
+    int speed{bulletSpeed};
     if (!enemyBullet.hasShot)
     {
         enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
@@ -84,7 +84,7 @@ void Enemies::PostionPlacement(int x, int y)
     enemyY = y;
 }
 
-void Enemies::Movement()
+void Enemies::Movement(int speed)
 {
     if ((enemyX * scale) > GetScreenWidth() - enemiesDestRect.width)
     {
@@ -98,15 +98,15 @@ void Enemies::Movement()
 
     if (directionLR)
     {
-        enemyX -= 10;
+        enemyX -= speed;
     }
     else
     {
-        enemyX += 10;
+        enemyX += speed;
     }
 }
 
-void Enemies::Update()
+void Enemies::Update(float dt)
 {
     scale = gameUtils->GetScale();
 
@@ -128,7 +128,7 @@ void Enemies::Update()
     
     if (toggleShootState)
     {
-        Shoot(true);
+        Shoot(dt);
         // toggleShootState = false;
     }
 }
@@ -143,9 +143,17 @@ void Enemies::Draw()
     if (enemyIsActive)
     {
         DrawTexturePro(enemy1, sourceRect, enemiesDestRect, Vector2{0, 0}, 0, WHITE);
-        DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
     }
 
-    // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
-    // DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
+    if (IsKeyPressed(96))
+    {
+        toggleDebug = !toggleDebug;
+    }
+    
+    if (toggleDebug)
+    {
+        DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
+    }
+    
+
 }

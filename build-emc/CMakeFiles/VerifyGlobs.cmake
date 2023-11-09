@@ -13,6 +13,7 @@ set(OLD_GLOB
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/Player.cpp"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/SceneManager.cpp"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/enemies.cpp"
+  "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/levels/LevelBasic.cpp"
   "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invader-clone-webDepoy/space-invaders-clone/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
