@@ -6,7 +6,6 @@
 #include "AssetManager.hpp"
 #include "GameUtils.hpp"
 
-
 class Enemies
 {
 public:
@@ -47,7 +46,6 @@ public:
 
     Bullets enemyBullet{};
 
-
 private:
     Player *player;
     AssetManager *assetManager;
@@ -76,4 +74,6 @@ private:
     float dt{};
 
     bool toggleShootState{};
+
+    bool toggleDebug{};
 };
