@@ -1,10 +1,10 @@
-#include "LevelOne.hpp"
+#include "LevelBasic.hpp"
 
-LevelOne::LevelOne()
+LevelBasic::LevelBasic()
 {
 }
 
-void LevelOne::Init(int x, int y)
+void LevelBasic::Init(int x, int y)
 {
     enemiesArraySize = enemyAmt;
     enemiesArray = new Enemies[enemiesArraySize];
@@ -26,13 +26,13 @@ void LevelOne::Init(int x, int y)
     }
 }
 
-void LevelOne::Unload()
+void LevelBasic::Unload()
 {
     delete[] enemiesArray;
     delete[] enemyAliveArray;
 }
 
-void LevelOne::update(float dt)
+void LevelBasic::update(float dt, int speed, int bulletSpeed)
 {
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
@@ -46,9 +46,11 @@ void LevelOne::update(float dt)
 
     for (int i = 0; i < enemiesArraySize; i++)
     {
-        enemiesArray[i].SetDeltaTime(dt);
-        enemiesArray[i].Movement();
-        enemiesArray[i].Update();
+        // enemiesArray[i].SetDeltaTime(dt);
+        enemiesArray[i].Movement(speed);
+        enemiesArray[i].bulletSpeed = bulletSpeed;
+        enemiesArray[i].Update(dt);
+        
 
         if (!enemiesArray[i].GetAliveState())
         {
@@ -82,7 +84,7 @@ void LevelOne::update(float dt)
     }
 }
 
-void LevelOne::draw()
+void LevelBasic::draw()
 {
     if (!unloadToggle)
     {

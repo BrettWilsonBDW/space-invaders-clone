@@ -24,10 +24,10 @@ void Enemies::Init()
     enemyBullet.collided = false;
 }
 
-void Enemies::Shoot(bool shoot)
+void Enemies::Shoot(float dt)
 {
-
-    int speed{500};
+    
+    int speed{bulletSpeed};
     if (!enemyBullet.hasShot)
     {
         enemyBullet.x = (enemyX + (enemy1.width * 2)) * scale;
@@ -84,7 +84,7 @@ void Enemies::PostionPlacement(int x, int y)
     enemyY = y;
 }
 
-void Enemies::Movement()
+void Enemies::Movement(int speed)
 {
     if ((enemyX * scale) > GetScreenWidth() - enemiesDestRect.width)
     {
@@ -98,15 +98,15 @@ void Enemies::Movement()
 
     if (directionLR)
     {
-        enemyX -= 10;
+        enemyX -= speed;
     }
     else
     {
-        enemyX += 10;
+        enemyX += speed;
     }
 }
 
-void Enemies::Update()
+void Enemies::Update(float dt)
 {
     scale = gameUtils->GetScale();
 
@@ -128,7 +128,7 @@ void Enemies::Update()
     
     if (toggleShootState)
     {
-        Shoot(true);
+        Shoot(dt);
         // toggleShootState = false;
     }
 }

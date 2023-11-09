@@ -4,7 +4,7 @@
 #include "raymath.h"
 #include "Enemies.hpp"
 
-#include "levels/LevelOne.hpp"
+#include "levels/LevelBasic.hpp"
 
 class LevelManager
 {
@@ -39,17 +39,17 @@ private:
     Bullets *bullets;
     Enemies *enemiesArray;
 
-    // LevelOne *level
+    // LevelBasic *level
 
-    LevelOne levels[4];
+    LevelBasic levels[7];
 
-    // LevelOne levelOne; 
+    // LevelBasic levelOne; 
 
-    // LevelOne levelTwo;
+    // LevelBasic levelTwo;
 
-    // LevelOne levelThree;
+    // LevelBasic levelThree;
 
-    // LevelOne levelThreeHalf;
+    // LevelBasic levelThreeHalf;
 
     int nextLevelNum{};
 };

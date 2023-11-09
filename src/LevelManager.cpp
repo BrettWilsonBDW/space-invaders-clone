@@ -25,6 +25,15 @@ void LevelManager::Init()
 
     levels[3].SetEnemyAmt(5);
     levels[3].Init(300, 300);
+
+    levels[4].SetEnemyAmt(7);
+    levels[4].Init();
+
+    levels[5].SetEnemyAmt(3);
+    levels[5].Init();
+
+    levels[6].SetEnemyAmt(5);
+    levels[6].Init();
 }
 
 void LevelManager::Unload()
@@ -42,7 +51,7 @@ void LevelManager::Update(float dt)
         nextLevelNum = nextLevelNumPublic;
     }
 
-    if (levels[0].gameWinState || levels[1].gameWinState || (levels[2].gameWinState && levels[3].gameWinState))
+    if (levels[0].gameWinState || levels[1].gameWinState || (levels[2].gameWinState && levels[3].gameWinState) || levels[4].gameWinState || levels[5].gameWinState || levels[6].gameWinState)
     {
         nextLevelNum++;
 
@@ -51,31 +60,51 @@ void LevelManager::Update(float dt)
             level.gameWinState = false;
         }
     }
+    std::cout << nextLevelNum << std::endl;
 
     switch (nextLevelNum)
     {
     case 0:
-        levels[nextLevelNum].update(dt);
+        levels[0].update(dt);
         break;
 
     case 1:
-        levels[nextLevelNum].update(dt);
         // be mindful that this code unloads the previous level not the current one soo in this case level num 0 is the previous level
-        levels[nextLevelNum - 1].unloadToggle = true;
+        levels[0].unloadToggle = true;
+
+        levels[1].update(dt);
         break;
 
     case 2:
-        levels[nextLevelNum].update(dt);
-        levels[nextLevelNum + 1].update(dt);
-        levels[nextLevelNum - 1].unloadToggle = true;
+        levels[1].unloadToggle = true;
+
+        levels[2].update(dt);
+        levels[3].update(dt);
         break;
 
     case 3:
-        levels[nextLevelNum - 1].unloadToggle = true;
-        levels[nextLevelNum].unloadToggle = true;
+        levels[2].unloadToggle = true;
+        levels[3].unloadToggle = true;
+
+        levels[4].update(dt, 15);
         break;
 
     case 4:
+        levels[4].unloadToggle = true;
+
+        levels[5].update(dt, 10, 1000);
+        break;
+
+    case 5:
+        levels[5].unloadToggle = true;
+
+        levels[6].update(dt, 15, 750);
+        break;
+
+    case 6:
+        levels[6].unloadToggle = true;
+
+        // levels[7].update(dt, 15, 750);
         break;
 
     default:

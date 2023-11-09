@@ -5,10 +5,10 @@
 #include "raylib.h"
 // #include "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invaders-clone/src/Enemies.hpp"
 
-class LevelOne
+class LevelBasic
 {
 public:
-    LevelOne();
+    LevelBasic();
     void SetEnemiesArray(Enemies *enemiesArrayPass)
     {
         enemiesArray = enemiesArrayPass;
@@ -41,7 +41,7 @@ public:
     void Init(int x = 300, int y = 100);
     // void Init();
     void Unload();
-    void update(float dt);
+    void update(float dt, int speed = 10, int bulletSpeed = 500);
     void draw();
 
     bool gameWinState{};
