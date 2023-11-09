@@ -19,16 +19,24 @@ Debug::Debug()
 bool Debug::ToggleState()
 {
     // 96 is backtick
+    // if (IsKeyPressed(96))
+    // {
+    //     toggleDebugKey++;
+    //     toggleDebugMenu = true;
+    // }
+    // else if (toggleDebugKey > 1)
+    // {
+    //     toggleDebugKey = 0;
+    //     toggleDebugMenu = false;
+    // }
+    // currentState = toggleDebugMenu;
+    // return toggleDebugMenu;
+
     if (IsKeyPressed(96))
     {
-        toggleDebugKey++;
-        toggleDebugMenu = true;
+        toggleDebugMenu = !toggleDebugMenu;
     }
-    else if (toggleDebugKey > 1)
-    {
-        toggleDebugKey = 0;
-        toggleDebugMenu = false;
-    }
+
     currentState = toggleDebugMenu;
     return toggleDebugMenu;
 }

@@ -146,6 +146,4 @@ void Enemies::Draw()
         // DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
     }
 
-    // DrawRectangle(enemyBullet.x, 300, 10, 20, RED);
-    // DrawRectangle(enemyBullet.x, enemyBullet.y, (10 * scale) * 2, (20 * scale) * 2, RED);
 }

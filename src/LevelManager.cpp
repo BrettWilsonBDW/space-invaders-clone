@@ -7,58 +7,6 @@ LevelManager::LevelManager()
 
 void LevelManager::Init()
 {
-    // TODO improve this code
-
-    // levelOne.SetPlayer(player);
-    // levelOne.SetAssetManager(assetManager);
-    // levelOne.SetGameUtils(gameUtils);
-
-    // levelOne.SetEnemyAmt(5);
-    // levelOne.Init();
-
-    // levelTwo.SetPlayer(player);
-    // levelTwo.SetAssetManager(assetManager);
-    // levelTwo.SetGameUtils(gameUtils);
-
-    // levelTwo.SetEnemyAmt(8);
-    // levelTwo.Init();
-
-    // levelThree.SetPlayer(player);
-    // levelThree.SetAssetManager(assetManager);
-    // levelThree.SetGameUtils(gameUtils);
-
-    // levelThree.SetEnemyAmt(5);
-    // levelThree.Init();
-
-    // levelThreeHalf.SetPlayer(player);
-    // levelThreeHalf.SetAssetManager(assetManager);
-    // levelThreeHalf.SetGameUtils(gameUtils);
-
-    // levelThreeHalf.SetEnemyAmt(5);
-    // levelThreeHalf.Init(300, 300);
-
-    // Set common properties for all levels
-    // LevelOne *levels[] = {&levelOne, &levelTwo, &levelThree, &levelThreeHalf};
-
-    // levels = new LevelOne[4];
-
-    // for (auto level : levels)
-    // {
-    //     level->SetPlayer(player);
-    //     level->SetAssetManager(assetManager);
-    //     level->SetGameUtils(gameUtils);
-    // }
-    // // Initialize each level with specific properties
-    // levelOne.SetEnemyAmt(5);
-    // levelOne.Init();
-    // levelTwo.SetEnemyAmt(8);
-    // levelTwo.Init();
-    // levelThree.SetEnemyAmt(5);
-    // levelThree.Init();
-    // levelThreeHalf.SetEnemyAmt(5);
-    // levelThreeHalf.Init(300, 300);
-
-    // int lvlCtr{};
     for (auto &level : levels)
     {
         level.SetPlayer(player);
@@ -81,11 +29,6 @@ void LevelManager::Init()
 
 void LevelManager::Unload()
 {
-    // levelOne.Unload();
-    // levelTwo.Unload();
-    // levelThree.Unload();
-    // levelThreeHalf.Unload();
-
     for (auto &level : levels)
     {
         level.Unload();
@@ -94,87 +37,19 @@ void LevelManager::Unload()
 
 void LevelManager::Update(float dt)
 {
-    // if (publicToggle)
-    // {
-    //     nextLevelNum = nextLevelNumPublic;
-    // }
-
-    // if (levelOne.gameWinState || levelTwo.gameWinState || (levelThree.gameWinState && levelThreeHalf.gameWinState))
-    // {
-    //     nextLevelNum++;
-    //     levelOne.gameWinState = false;
-    //     levelTwo.gameWinState = false;
-    //     levelThree.gameWinState = false;
-    // }
-
-    // switch (nextLevelNum)
-    // {
-    // case 0:
-    //     levelOne.update(dt);
-    //     break;
-
-    // case 1:
-    //     levelTwo.update(dt);
-    //     levelOne.unloadToggle = true;
-    //     break;
-
-    // case 2:
-    //     levelThree.update(dt);
-    //     levelThreeHalf.update(dt);
-    //     levelTwo.unloadToggle = true;
-    //     break;
-
-    // case 3:
-    //     levelThree.unloadToggle = true;
-    //     levelThreeHalf.unloadToggle = true;
-    //     break;
-
-    // case 4:
-    //     break;
-
-    // default:
-    //     std::cout << "error in logic the level with number: " << nextLevelNum << " is not found" << std::endl;
-    //     break;
-    // }
-
     if (publicToggle)
     {
         nextLevelNum = nextLevelNumPublic;
     }
 
-    // for (auto level : levels)
-    // {
-    //     if (level.gameWinState || (levels[2].gameWinState && levels[3].gameWinState))
-    //     {
-    //         nextLevelNum++;
-    //         level.gameWinState = false;
-    //     }
-    // }
-
-    // bool anyGameWinState = false;
-    // bool levelThreeCombinedGameWinState = levels[2].gameWinState && levels[3].gameWinState;
-
-    // for (auto& level : levels)
-    // {
-    //     if (level.gameWinState)
-    //     {
-    //         anyGameWinState = true;
-    //         level.gameWinState = false;
-    //     }
-    // }
-
-    // if (anyGameWinState || levelThreeCombinedGameWinState)
-    // {
-    //     nextLevelNum++;
-    // }
-
     if (levels[0].gameWinState || levels[1].gameWinState || (levels[2].gameWinState && levels[3].gameWinState))
     {
         nextLevelNum++;
-        levels[0].gameWinState = false;
-        levels[1].gameWinState = false;
-        levels[2].gameWinState = false;
-        levels[3].gameWinState = false;
+
+        for (auto &level : levels)
+        {
+            level.gameWinState = false;
+        }
     }
 
     switch (nextLevelNum)
@@ -211,11 +86,6 @@ void LevelManager::Update(float dt)
 
 void LevelManager::Draw()
 {
-    // levelOne.draw();
-    // levelTwo.draw();
-    // levelThree.draw();
-    // levelThreeHalf.draw();
-
     for (auto &level : levels)
     {
         level.draw();
