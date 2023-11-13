@@ -128,9 +128,10 @@ void Player::TrackPlayerLives()
     }
 }
 
-void Player::Update(float dt)
+void Player::Update(float dt, bool canShoot)
 {
-    if (playerIsAlive)
+    playerCanMove = canShoot;
+    if (playerIsAlive && playerCanMove)
     {
         playerControls();
 
@@ -213,7 +214,7 @@ void Player::DrawPlayer()
 {
     for (auto &bullet : bullets)
     {
-        if (bullet.hasShot && !bullet.collided)
+        if (bullet.hasShot && !bullet.collided && playerCanMove)
         {
             DrawRectangle(bullet.x, bullet.y, 2 * scale, 5 * scale, RED);
         }

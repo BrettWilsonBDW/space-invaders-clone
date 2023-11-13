@@ -81,7 +81,13 @@ void GameLoop::Update()
 
     // SetWindowSize(windowWidth, windowHeight);
 
-    player.Update(dt);
+    player.Update(dt, levelManager.playerCanMove);
+    if (!levelManager.playerCanMove)
+    {
+        player.Init();
+    }
+    
+
     // enemies.Update();
     levelManager.Update(dt);
 }

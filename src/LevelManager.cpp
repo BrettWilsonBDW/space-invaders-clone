@@ -1,5 +1,5 @@
 #include "LevelManager.hpp"
-#include <iostream>
+// #include <iostream>
 
 LevelManager::LevelManager()
 {
@@ -44,8 +44,63 @@ void LevelManager::Unload()
     }
 }
 
+void LevelManager::handleStats()
+{
+    // int shootCtr{1};
+    // if (IsKeyPressed(KEY_SPACE))
+    // {
+    //     shootCtr++;
+    // }
+
+    // std::string levelText = "\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
+    // DrawText(levelText.c_str(), 10, 10, 20, WHITE);
+
+    // levelText = "you finished level " + std::to_string(nextLevelNum);
+    // DrawText(levelText.c_str(), 10, 50, 20, WHITE);
+
+    // levelText = "Press enter to continue";
+    // DrawText(levelText.c_str(), 10, 70, 20, WHITE);
+
+    // int screenWidth = GetScreenWidth();
+    // int screenHeight = GetScreenHeight();
+
+    // int textWidth = MeasureText("Stats Menu", 20);
+    // int textHeight = 20;
+
+    // int x = (screenWidth - textWidth) / 2;
+    // int y = (screenHeight - textHeight) / 2;
+
+    // DrawText("Stats Menu", x, y, 20, WHITE);
+
+    // std::string levelText = "\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
+    // DrawText(levelText.c_str(), 10, 10, 20, WHITE);
+
+    statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
+}
+
+void LevelManager::HandleStatsMenu(bool toggle)
+{
+    if (toggle)
+    {
+        toggleStatsMenu = true;
+    }
+
+    if (IsKeyPressed(KEY_ENTER))
+    {
+        toggleStatsMenu = false;
+        handleStatsToggle = false;
+    }
+}
+
 void LevelManager::Update(float dt)
 {
+    if (IsKeyPressed(KEY_SPACE) && !toggleStatsMenu)
+    {
+        shootCtr++;
+    }
+
+    playerCanMove = !toggleStatsMenu;
+
     if (publicToggle)
     {
         // increments in game loop
@@ -55,6 +110,7 @@ void LevelManager::Update(float dt)
     if (levels[0].gameWinState || levels[1].gameWinState || (levels[2].gameWinState && levels[3].gameWinState) || levels[4].gameWinState || levels[5].gameWinState || levels[6].gameWinState)
     {
         nextLevelNum++;
+        handleStatsToggle = true;
 
         for (auto &level : levels)
         {
@@ -73,37 +129,64 @@ void LevelManager::Update(float dt)
         // be mindful that this code unloads the previous level not the current one soo in this case level num 0 is the previous level
         levels[0].unloadToggle = true;
 
-        levels[1].update(dt);
+        HandleStatsMenu(handleStatsToggle);
+
+        if (!toggleStatsMenu)
+        {
+            levels[1].update(dt);
+        }
         break;
 
     case 2:
         levels[1].unloadToggle = true;
 
-        levels[2].update(dt);
-        levels[3].update(dt);
+        HandleStatsMenu(handleStatsToggle);
+
+        if (!toggleStatsMenu)
+        {
+            levels[2].update(dt);
+            levels[3].update(dt);
+        }
         break;
 
     case 3:
         levels[2].unloadToggle = true;
         levels[3].unloadToggle = true;
 
-        levels[4].update(dt, 15);
+        HandleStatsMenu(handleStatsToggle);
+
+        if (!toggleStatsMenu)
+        {
+            levels[4].update(dt, 15);
+        }
         break;
 
     case 4:
         levels[4].unloadToggle = true;
 
-        levels[5].update(dt, 10, 1000);
+        HandleStatsMenu(handleStatsToggle);
+
+        if (!toggleStatsMenu)
+        {
+            levels[5].update(dt, 10, 1000);
+        }
         break;
 
     case 5:
         levels[5].unloadToggle = true;
 
-        levels[6].update(dt, 15, 750);
+        HandleStatsMenu(handleStatsToggle);
+
+        if (!toggleStatsMenu)
+        {
+            levels[6].update(dt, 15, 750);
+        }
         break;
 
     case 6:
         levels[6].unloadToggle = true;
+
+        HandleStatsMenu(handleStatsToggle);
 
         // levels[7].update(dt, 15, 750);
         break;
@@ -119,5 +202,21 @@ void LevelManager::Draw()
     for (auto &level : levels)
     {
         level.draw();
+    }
+
+    if (toggleStatsMenu)
+    {
+        // DrawText("Stats Menu", 10, 10, 20, WHITE);
+
+        handleStats();
+
+        int textWidth = MeasureText(statsString.c_str(), 20);
+        // int textHeight = 20;
+
+        int x = (GetScreenWidth() - textWidth) / 2;
+        // int y = (GetScreenHeight() - textHeight) / 2;
+        int y = 100;
+
+        DrawText(statsString.c_str(), x, y, 20, WHITE);
     }
 }

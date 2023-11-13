@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "Enemies.hpp"
+#include <iostream>
 
 #include "levels/LevelBasic.hpp"
 
@@ -26,11 +27,15 @@ public:
 
     void Init();
     void Unload();
+    void handleStats();
+    void HandleStatsMenu(bool toggle);
     void Update(float dt);
     void Draw();
 
     int nextLevelNumPublic{};
     bool publicToggle{};
+
+    bool playerCanMove{true};
 
 private:
     Player *player;
@@ -39,17 +44,14 @@ private:
     Bullets *bullets;
     Enemies *enemiesArray;
 
-    // LevelBasic *level
-
     LevelBasic levels[7];
 
-    // LevelBasic levelOne; 
-
-    // LevelBasic levelTwo;
-
-    // LevelBasic levelThree;
-
-    // LevelBasic levelThreeHalf;
-
     int nextLevelNum{};
+
+    bool toggleStatsMenu{};
+    bool handleStatsToggle{true};
+
+    int shootCtr{};
+
+    std::string statsString{};
 };
