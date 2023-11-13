@@ -79,6 +79,7 @@ void Player::Shoot(float dt)
     int speed{700};
     for (auto &bullet : bullets)
     {
+        //bullet bounds check
         if (bullet.y < 0)
         {
             bullet.canShootAgain = false;
@@ -131,6 +132,19 @@ void Player::TrackPlayerLives()
 void Player::Update(float dt, bool canShoot)
 {
     playerCanMove = canShoot;
+
+    //prevent the player from shooting "ghost bullets from previous levels into the next during pause"
+    if (!playerCanMove)
+    {
+        for (auto &bullet : bullets)
+        {
+            bullet.hasShot = true;
+            bullet.x = (shipDestRect.x + shipDestRect.width / 2) * 1000; // move the bullets of the screen this way there is no collision
+            bullet.y = shipDestRect.y;
+        }
+    }
+
+    //playerCanMove prevents the player shoot and move controls during pause events
     if (playerIsAlive && playerCanMove)
     {
         playerControls();
@@ -156,6 +170,7 @@ void Player::Update(float dt, bool canShoot)
                 shootCtr = 0;
             }
         }
+        //part of shoot logic in the above
         Shoot(dt);
 
         screenPos = playerPosX;
@@ -221,6 +236,7 @@ void Player::DrawPlayer()
     }
 
     // TODO fix jitter comes from the player is being drawn something to do with sub pixels aka the sprite is too small
+    // or multi thread look at the debugger
 
     if (playerIsAlive)
     {

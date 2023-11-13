@@ -46,35 +46,6 @@ void LevelManager::Unload()
 
 void LevelManager::handleStats()
 {
-    // int shootCtr{1};
-    // if (IsKeyPressed(KEY_SPACE))
-    // {
-    //     shootCtr++;
-    // }
-
-    // std::string levelText = "\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
-    // DrawText(levelText.c_str(), 10, 10, 20, WHITE);
-
-    // levelText = "you finished level " + std::to_string(nextLevelNum);
-    // DrawText(levelText.c_str(), 10, 50, 20, WHITE);
-
-    // levelText = "Press enter to continue";
-    // DrawText(levelText.c_str(), 10, 70, 20, WHITE);
-
-    // int screenWidth = GetScreenWidth();
-    // int screenHeight = GetScreenHeight();
-
-    // int textWidth = MeasureText("Stats Menu", 20);
-    // int textHeight = 20;
-
-    // int x = (screenWidth - textWidth) / 2;
-    // int y = (screenHeight - textHeight) / 2;
-
-    // DrawText("Stats Menu", x, y, 20, WHITE);
-
-    // std::string levelText = "\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
-    // DrawText(levelText.c_str(), 10, 10, 20, WHITE);
-
     statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
 }
 
@@ -206,17 +177,14 @@ void LevelManager::Draw()
 
     if (toggleStatsMenu)
     {
-        // DrawText("Stats Menu", 10, 10, 20, WHITE);
-
         handleStats();
 
         int textWidth = MeasureText(statsString.c_str(), 20);
-        // int textHeight = 20;
 
         int x = (GetScreenWidth() - textWidth) / 2;
-        // int y = (GetScreenHeight() - textHeight) / 2;
         int y = 100;
 
+        // TODO scale screen size text
         DrawText(statsString.c_str(), x, y, 20, WHITE);
     }
 }
