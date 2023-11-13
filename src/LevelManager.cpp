@@ -47,6 +47,7 @@ void LevelManager::Unload()
 void LevelManager::handleStats()
 {
     statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
+
 }
 
 void LevelManager::HandleStatsMenu(bool toggle)
@@ -60,6 +61,7 @@ void LevelManager::HandleStatsMenu(bool toggle)
     {
         toggleStatsMenu = false;
         handleStatsToggle = false;
+        shootCtr = 0;
     }
 }
 
@@ -88,7 +90,6 @@ void LevelManager::Update(float dt)
             level.gameWinState = false;
         }
     }
-    // std::cout << nextLevelNum << std::endl;
 
     switch (nextLevelNum)
     {
