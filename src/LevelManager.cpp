@@ -44,10 +44,25 @@ void LevelManager::Unload()
     }
 }
 
+void LevelManager::DisplayControls(float dt)
+{
+    // float timePassed{};
+    timePassed += dt;
+
+    if (timePassed > 7.5f)
+    {
+        toggleDisplayControls = !toggleDisplayControls;
+        timePassed = 0.0f;
+    }
+}
+
 void LevelManager::handleStats()
 {
-    statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nPress enter to continue";
+    // timePassed += gameUtils->GetDeltaTime();
+    // std::cout << timePassed << std::endl;
 
+    // statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nTime completed in: " + std::to_string(timePassed) + "\nPress enter to continue";
+    statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nTime completed in: " + std::to_string(timePassed) + " seconds\nPress enter to continue";
 }
 
 void LevelManager::HandleStatsMenu(bool toggle)
@@ -62,6 +77,7 @@ void LevelManager::HandleStatsMenu(bool toggle)
         toggleStatsMenu = false;
         handleStatsToggle = false;
         shootCtr = 0;
+        timePassed = 0.0f;
     }
 }
 
@@ -70,6 +86,11 @@ void LevelManager::Update(float dt)
     if (IsKeyPressed(KEY_SPACE) && !toggleStatsMenu)
     {
         shootCtr++;
+    }
+
+    if (!toggleStatsMenu)
+    {
+        timePassed += dt;
     }
 
     playerCanMove = !toggleStatsMenu;
@@ -94,7 +115,15 @@ void LevelManager::Update(float dt)
     switch (nextLevelNum)
     {
     case 0:
-        levels[0].update(dt);
+        if (!toggleDisplayControls)
+        {
+            DisplayControls(dt);
+        }
+        else
+        {
+            levels[0].update(dt);
+        }
+
         break;
 
     case 1:
@@ -187,5 +216,17 @@ void LevelManager::Draw()
 
         // TODO scale screen size text
         DrawText(statsString.c_str(), x, y, 20, WHITE);
+    }
+
+    if (!toggleDisplayControls)
+    {
+        std::string text = "Controls: w d space";
+        int textWidth = MeasureText(text.c_str(), 20);
+
+        int x = (GetScreenWidth() - textWidth) / 2;
+        int y = (GetScreenHeight() - 200) * gameUtils->GetScale();
+
+        // TODO scale screen size text
+        DrawText(text.c_str(), x, y, 20, WHITE);
     }
 }

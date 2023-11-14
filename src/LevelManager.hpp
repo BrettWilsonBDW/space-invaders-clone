@@ -29,6 +29,7 @@ public:
     void Unload();
     void handleStats();
     void HandleStatsMenu(bool toggle);
+    void DisplayControls(float dt);
     void Update(float dt);
     void Draw();
 
@@ -54,4 +55,9 @@ private:
     int shootCtr{};
 
     std::string statsString{};
+
+    bool toggleDisplayControls{};
+
+    float timePassed{};
+
 };
