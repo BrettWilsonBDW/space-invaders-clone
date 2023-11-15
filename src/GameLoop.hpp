@@ -42,4 +42,6 @@ private:
     int useDebug{};
 
     bool isPaused{};
+
+    bool resetGame{};
 };

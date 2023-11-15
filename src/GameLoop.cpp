@@ -89,6 +89,11 @@ void GameLoop::Update()
 
     // enemies.Update();
     levelManager.Update(dt);
+
+    if (IsKeyPressed(KEY_ENTER) && player.playerIsDead)
+    {
+        resetGame = true;
+    }
 }
 
 void GameLoop::Reset()
@@ -96,6 +101,7 @@ void GameLoop::Reset()
     levelManager.Reset();
     // levelManager.Init();
     player.Reset();
+    resetGame = false;
 }
 
 /**
@@ -221,7 +227,7 @@ void GameLoop::MainLoopHelper(void *userData)
     gameLoop->UpdateWhilePaused();
     gameLoop->Draw();
 
-    if (IsKeyPressed(KEY_ENTER) && gameLoop->player.playerIsDead)
+    if (gameLoop->resetGame)
     {
         gameLoop->Reset();
     }
