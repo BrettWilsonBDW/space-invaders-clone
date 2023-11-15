@@ -31,6 +31,7 @@ public:
     void HandleStatsMenu(bool toggle);
     void DisplayControls(float dt);
     void Update(float dt);
+    void Reset();
     void Draw();
 
     int nextLevelNumPublic{};

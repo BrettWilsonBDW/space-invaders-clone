@@ -80,7 +80,7 @@ void Player::Shoot(float dt)
     int speed{1200};
     for (auto &bullet : bullets)
     {
-        //bullet bounds check
+        // bullet bounds check
         if (bullet.y < 0)
         {
             bullet.canShootAgain = false;
@@ -134,7 +134,7 @@ void Player::Update(float dt, bool canShoot)
 {
     playerCanMove = canShoot;
 
-    //prevent the player from shooting "ghost bullets from previous levels into the next during pause"
+    // prevent the player from shooting "ghost bullets from previous levels into the next during pause"
     if (!playerCanMove)
     {
         for (auto &bullet : bullets)
@@ -145,7 +145,7 @@ void Player::Update(float dt, bool canShoot)
         }
     }
 
-    //playerCanMove prevents the player shoot and move controls during pause events
+    // playerCanMove prevents the player shoot and move controls during pause events
     if (playerIsAlive && playerCanMove)
     {
         playerControls();
@@ -171,7 +171,7 @@ void Player::Update(float dt, bool canShoot)
                 shootCtr = 0;
             }
         }
-        //part of shoot logic in the above
+        // part of shoot logic in the above
         Shoot(dt);
 
         screenPos = playerPosX;
@@ -189,6 +189,14 @@ void Player::Update(float dt, bool canShoot)
         playerIsAlive = true;
         lifeCtrDown = 3;
     }
+}
+
+void Player::Reset()
+{
+    Init();
+    playerIsAlive = true;
+    lifeCtrDown = 3;
+    playerIsDead = false;
 }
 
 void Player::updatePlayerPersistance()
@@ -250,6 +258,16 @@ void Player::DrawPlayer()
 
     if (!playerIsAlive)
     {
-        DrawText("You are dead", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+        // DrawText("You are dead\nPress enter to restart", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+
+        std::string text = "You are dead\nPress enter to restart";
+        int textWidth = MeasureText(text.c_str(), 20);
+
+        int x = (GetScreenWidth() - textWidth) / 2;
+        int y = (GetScreenHeight()) / 2;
+
+        // TODO scale screen size text
+        DrawText(text.c_str(), x, y, 20, RED);
+        playerIsDead = true;
     }
 }

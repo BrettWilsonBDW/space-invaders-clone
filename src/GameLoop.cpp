@@ -86,10 +86,16 @@ void GameLoop::Update()
     {
         player.Init();
     }
-    
 
     // enemies.Update();
     levelManager.Update(dt);
+}
+
+void GameLoop::Reset()
+{
+    levelManager.Reset();
+    // levelManager.Init();
+    player.Reset();
 }
 
 /**
@@ -147,7 +153,7 @@ void GameLoop::DebugStatements()
         {
             levelManager.publicToggle = true;
             levelManager.nextLevelNumPublic++;
-        }   
+        }
     }
 }
 
@@ -208,12 +214,17 @@ void GameLoop::MainLoopHelper(void *userData)
 
     if (gameLoop->isPaused)
     {
-        //do things while paused
+        // do things while paused
     }
 
-    //TODO merge the two functions
+    // TODO merge the two functions
     gameLoop->UpdateWhilePaused();
     gameLoop->Draw();
+
+    if (IsKeyPressed(KEY_ENTER) && gameLoop->player.playerIsDead)
+    {
+        gameLoop->Reset();
+    }
 }
 
 /**

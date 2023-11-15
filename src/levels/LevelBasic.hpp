@@ -42,6 +42,7 @@ public:
     // void Init();
     void Unload();
     void update(float dt, int speed = 10, int bulletSpeed = 500);
+    void Reset();
     void draw();
 
     bool gameWinState{};

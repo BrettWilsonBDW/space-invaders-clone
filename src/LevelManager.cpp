@@ -46,27 +46,17 @@ void LevelManager::Unload()
 
 void LevelManager::DisplayControls(float dt)
 {
-    // float timePassed{};
-    // timePassed += dt;
-
     playerCanMove = false;
-    
 
-    // if (timePassed > 7.5f || IsKeyPressed(KEY_ENTER))
     if (IsKeyPressed(KEY_ENTER))
     {
         toggleDisplayControls = !toggleDisplayControls;
-        // timePassed = 0.0f;
         playerCanMove = true;
     }
 }
 
 void LevelManager::handleStats()
 {
-    // timePassed += gameUtils->GetDeltaTime();
-    // std::cout << timePassed << std::endl;
-
-    // statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nTime completed in: " + std::to_string(timePassed) + "\nPress enter to continue";
     statsString = "Stats Menu\nbullets fired " + std::to_string(shootCtr) + "\nLevels finished " + std::to_string(nextLevelNum) + "\nTime completed in: " + std::to_string(timePassed) + " seconds\nPress enter to continue";
 }
 
@@ -200,6 +190,22 @@ void LevelManager::Update(float dt)
     default:
         std::cout << "error in logic the level with number: " << nextLevelNum << " is not found" << std::endl;
         break;
+    }
+}
+
+void LevelManager::Reset()
+{
+    nextLevelNum = 0;
+    toggleStatsMenu = false;
+    timePassed = 0.0f;
+    shootCtr = 0;
+    handleStatsToggle = false;
+
+    Unload();
+    Init();
+    for (auto &level : levels)
+    {
+        level.Reset();
     }
 }
 

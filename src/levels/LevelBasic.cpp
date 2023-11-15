@@ -84,6 +84,13 @@ void LevelBasic::update(float dt, int speed, int bulletSpeed)
     }
 }
 
+void LevelBasic::Reset()
+{
+    toggleWinCondition = true;
+    gameWinState = false;
+    unloadToggle = false;
+}
+
 void LevelBasic::draw()
 {
     if (!unloadToggle)

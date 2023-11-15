@@ -48,6 +48,7 @@ public:
     void CheckPlayerCollision();
     void TrackPlayerLives();
     void Update(float dt, bool canShoot = true);
+    void Reset();
     void updatePlayerPersistance();
     void DrawPlayer();
     void GetPlayerCanMove(bool canShoot)
@@ -57,6 +58,7 @@ public:
 
 
     int playerCollisionCtr{};
+    bool playerIsDead{};
 
 private:
     void CalcScale();

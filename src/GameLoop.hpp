@@ -19,6 +19,7 @@ public:
     GameLoop();
     void Init();
     void Update();
+    void Reset();
     void UpdateWhilePaused();
     void Draw();
     void DebugStatements();
