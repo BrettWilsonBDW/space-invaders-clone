@@ -36,7 +36,7 @@ void Enemies::Shoot(float dt)
 
     enemyBullet.hasShot = true;
     // enemyBullet.canShootAgain = true;
-    enemyBullet.y += speed * dt;
+    enemyBullet.y += ((speed * dt) * gameUtils->GetScale()) * 3;
 
     if (enemyBullet.y > GetScreenHeight())
     {

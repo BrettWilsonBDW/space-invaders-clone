@@ -47,12 +47,17 @@ void LevelManager::Unload()
 void LevelManager::DisplayControls(float dt)
 {
     // float timePassed{};
-    timePassed += dt;
+    // timePassed += dt;
 
-    if (timePassed > 7.5f)
+    playerCanMove = false;
+    
+
+    // if (timePassed > 7.5f || IsKeyPressed(KEY_ENTER))
+    if (IsKeyPressed(KEY_ENTER))
     {
         toggleDisplayControls = !toggleDisplayControls;
-        timePassed = 0.0f;
+        // timePassed = 0.0f;
+        playerCanMove = true;
     }
 }
 
@@ -220,7 +225,7 @@ void LevelManager::Draw()
 
     if (!toggleDisplayControls)
     {
-        std::string text = "Controls: w d space";
+        std::string text = "\nControls: w d space\npress enter to start game";
         int textWidth = MeasureText(text.c_str(), 20);
 
         int x = (GetScreenWidth() - textWidth) / 2;

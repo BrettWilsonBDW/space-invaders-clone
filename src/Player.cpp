@@ -76,7 +76,8 @@ void Player::playerControls()
 
 void Player::Shoot(float dt)
 {
-    int speed{700};
+    // int speed{700};
+    int speed{1200};
     for (auto &bullet : bullets)
     {
         //bullet bounds check
@@ -92,7 +93,7 @@ void Player::Shoot(float dt)
 
         if (bullet.canShootAgain)
         {
-            bullet.y -= speed * dt;
+            bullet.y -= (speed * dt) * gameUtils->GetScale();
             bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
         }
     }
