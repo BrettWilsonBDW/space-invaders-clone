@@ -76,9 +76,11 @@ void Player::playerControls()
 
 void Player::Shoot(float dt)
 {
-    int speed{700};
+    // int speed{700};
+    int speed{1200};
     for (auto &bullet : bullets)
     {
+        // bullet bounds check
         if (bullet.y < 0)
         {
             bullet.canShootAgain = false;
@@ -91,7 +93,7 @@ void Player::Shoot(float dt)
 
         if (bullet.canShootAgain)
         {
-            bullet.y -= speed * dt;
+            bullet.y -= (speed * dt) * gameUtils->GetScale();
             bullet.rect = {static_cast<float>(bullet.x), static_cast<float>(bullet.y), 2 * scale, 5 * scale};
         }
     }
@@ -128,9 +130,23 @@ void Player::TrackPlayerLives()
     }
 }
 
-void Player::Update(float dt)
+void Player::Update(float dt, bool canShoot)
 {
-    if (playerIsAlive)
+    playerCanMove = canShoot;
+
+    // prevent the player from shooting "ghost bullets from previous levels into the next during pause"
+    if (!playerCanMove)
+    {
+        for (auto &bullet : bullets)
+        {
+            bullet.hasShot = true;
+            bullet.x = (shipDestRect.x + shipDestRect.width / 2) * 1000; // move the bullets of the screen this way there is no collision
+            bullet.y = shipDestRect.y;
+        }
+    }
+
+    // playerCanMove prevents the player shoot and move controls during pause events
+    if (playerIsAlive && playerCanMove)
     {
         playerControls();
 
@@ -155,6 +171,7 @@ void Player::Update(float dt)
                 shootCtr = 0;
             }
         }
+        // part of shoot logic in the above
         Shoot(dt);
 
         screenPos = playerPosX;
@@ -171,6 +188,34 @@ void Player::Update(float dt)
     {
         playerIsAlive = true;
         lifeCtrDown = 3;
+    }
+
+    if (IsKeyDown(KEY_R) && IsKeyDown(KEY_P) && IsKeyDown(96))
+    {
+        keepPlayerAlive = !keepPlayerAlive;
+    }
+
+    if (keepPlayerAlive)
+    {
+        playerIsAlive = true;
+        lifeCtrDown = 3;
+    }
+    
+    
+}
+
+void Player::Reset()
+{
+    Init();
+    playerIsAlive = true;
+    lifeCtrDown = 3;
+    playerIsDead = false;
+
+    for (auto &bullet : bullets)
+    {
+        bullet.hasShot = true;
+        bullet.x = (shipDestRect.x + shipDestRect.width / 2) * 1000; // move the bullets of the screen this way there is no collision
+        bullet.y = shipDestRect.y;
     }
 }
 
@@ -213,13 +258,14 @@ void Player::DrawPlayer()
 {
     for (auto &bullet : bullets)
     {
-        if (bullet.hasShot && !bullet.collided)
+        if (bullet.hasShot && !bullet.collided && playerCanMove)
         {
             DrawRectangle(bullet.x, bullet.y, 2 * scale, 5 * scale, RED);
         }
     }
 
     // TODO fix jitter comes from the player is being drawn something to do with sub pixels aka the sprite is too small
+    // or multi thread look at the debugger
 
     if (playerIsAlive)
     {
@@ -232,6 +278,16 @@ void Player::DrawPlayer()
 
     if (!playerIsAlive)
     {
-        DrawText("You are dead", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+        // DrawText("You are dead\nPress enter to restart", (GetScreenWidth() / 2) - 100, GetScreenHeight() / 2, 30, RED);
+
+        std::string text = "You are dead\nPress enter to restart";
+        int textWidth = MeasureText(text.c_str(), 20);
+
+        int x = (GetScreenWidth() - textWidth) / 2;
+        int y = (GetScreenHeight()) / 2;
+
+        // TODO scale screen size text
+        DrawText(text.c_str(), x, y, 20, RED);
+        playerIsDead = true;
     }
 }

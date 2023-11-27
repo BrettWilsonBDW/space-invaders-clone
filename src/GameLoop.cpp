@@ -81,9 +81,27 @@ void GameLoop::Update()
 
     // SetWindowSize(windowWidth, windowHeight);
 
-    player.Update(dt);
+    player.Update(dt, levelManager.playerCanMove);
+    if (!levelManager.playerCanMove)
+    {
+        player.Init();
+    }
+
     // enemies.Update();
     levelManager.Update(dt);
+
+    if ((IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) && player.playerIsDead)
+    {
+        resetGame = true;
+    }
+}
+
+void GameLoop::Reset()
+{
+    levelManager.Reset();
+    // levelManager.Init();
+    player.Reset();
+    resetGame = false;
 }
 
 /**
@@ -142,7 +160,6 @@ void GameLoop::DebugStatements()
             levelManager.publicToggle = true;
             levelManager.nextLevelNumPublic++;
         }
-        
     }
 }
 
@@ -203,14 +220,17 @@ void GameLoop::MainLoopHelper(void *userData)
 
     if (gameLoop->isPaused)
     {
-        // if (IsKeyPressed(KEY_ONE))
-        // {
-        //     ToggleFullscreen();
-        // }
+        // do things while paused
     }
 
+    // TODO merge the two functions
     gameLoop->UpdateWhilePaused();
     gameLoop->Draw();
+
+    if (gameLoop->resetGame)
+    {
+        gameLoop->Reset();
+    }
 }
 
 /**

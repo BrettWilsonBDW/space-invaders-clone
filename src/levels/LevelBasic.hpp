@@ -3,7 +3,7 @@
 #include <iostream>
 #include "../Enemies.hpp"
 #include "raylib.h"
-// #include "C:/Users/brend/Nextcloud/sources/repos/gamedev/raylibGames/space-invaders-clone/src/Enemies.hpp"
+#include <algorithm>
 
 class LevelBasic
 {
@@ -42,13 +42,16 @@ public:
     // void Init();
     void Unload();
     void update(float dt, int speed = 10, int bulletSpeed = 500);
+    void Reset();
     void draw();
 
     bool gameWinState{};
     bool unloadToggle{};
-
+    bool ignoreSpecialAbilities{};
 
 private:
+    int findLastEnemyArrayPos(int* array, int size);
+
     Player *player;
     AssetManager *assetManager;
     GameUtils *gameUtils;
@@ -71,4 +74,6 @@ private:
     bool toggleWinCondition{true};
 
     int enemyAmt{};
+
+    float timeWaited{};
 };

@@ -48,6 +48,8 @@ public:
 
 
     int bulletSpeed{500};
+
+    bool lastEnemy{};
     
 private:
     Player *player;

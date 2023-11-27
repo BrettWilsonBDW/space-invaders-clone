@@ -19,6 +19,7 @@ public:
     GameLoop();
     void Init();
     void Update();
+    void Reset();
     void UpdateWhilePaused();
     void Draw();
     void DebugStatements();
@@ -41,4 +42,6 @@ private:
     int useDebug{};
 
     bool isPaused{};
+
+    bool resetGame{};
 };
