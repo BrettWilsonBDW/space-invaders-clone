@@ -105,4 +105,6 @@ private:
     bool playerIsAlive{true};
 
     bool playerCanMove{true};
+
+    bool keepPlayerAlive{};
 };

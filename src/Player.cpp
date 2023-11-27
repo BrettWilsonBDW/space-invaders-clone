@@ -189,6 +189,19 @@ void Player::Update(float dt, bool canShoot)
         playerIsAlive = true;
         lifeCtrDown = 3;
     }
+
+    if (IsKeyDown(KEY_R) && IsKeyDown(KEY_P) && IsKeyDown(96))
+    {
+        keepPlayerAlive = !keepPlayerAlive;
+    }
+
+    if (keepPlayerAlive)
+    {
+        playerIsAlive = true;
+        lifeCtrDown = 3;
+    }
+    
+    
 }
 
 void Player::Reset()
@@ -197,6 +210,13 @@ void Player::Reset()
     playerIsAlive = true;
     lifeCtrDown = 3;
     playerIsDead = false;
+
+    for (auto &bullet : bullets)
+    {
+        bullet.hasShot = true;
+        bullet.x = (shipDestRect.x + shipDestRect.width / 2) * 1000; // move the bullets of the screen this way there is no collision
+        bullet.y = shipDestRect.y;
+    }
 }
 
 void Player::updatePlayerPersistance()

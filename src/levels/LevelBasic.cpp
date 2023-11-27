@@ -26,6 +26,23 @@ void LevelBasic::Init(int x, int y)
     }
 }
 
+int LevelBasic::findLastEnemyArrayPos(int* array, int size)
+{
+    int target = 1;
+
+    auto position = std::find(array, array + size, target);
+
+    if (position != array + size)
+    {
+        return position - array;
+    }
+    else
+    {
+        std::cout << "The target " << target << " is not found in the array." << std::endl;
+        return -1;
+    }
+}
+
 void LevelBasic::Unload()
 {
     delete[] enemiesArray;
@@ -37,6 +54,7 @@ void LevelBasic::update(float dt, int speed, int bulletSpeed)
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
     timePassed += dt;
+    timeWaited += dt;
     threshold = 10.0f / 60.0f;
 
     if (!enemiesArray[ranNum].enemyBullet.hasShot)
@@ -50,7 +68,6 @@ void LevelBasic::update(float dt, int speed, int bulletSpeed)
         enemiesArray[i].Movement(speed);
         enemiesArray[i].bulletSpeed = bulletSpeed;
         enemiesArray[i].Update(dt);
-        
 
         if (!enemiesArray[i].GetAliveState())
         {
@@ -58,16 +75,22 @@ void LevelBasic::update(float dt, int speed, int bulletSpeed)
         }
     }
 
-    if (enemyAliveArray[ranNum] == 1 && timePassed >= threshold)
+    // wait a set time before giving enemy a chance to shoot
+    if (timeWaited >= 1.0f)
     {
-        enemiesArray[ranNum].SetShootState(true);
-        timePassed = 0;
-    }
-    else
-    {
-        ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
+        if (enemyAliveArray[ranNum] == 1 && timePassed >= threshold)
+        {
+            enemiesArray[ranNum].SetShootState(true);
+            timePassed = 0;
+        }
+        else
+        {
+            // attempt to skip dead enemies
+            ranNum = gameUtils->GetRandomNumber(0, enemiesArraySize - 1);
+        }
     }
 
+    // count amt of dead enemies if all dead set win condition
     amtDead = 0;
     for (int i = 0; i < enemiesArraySize; i++)
     {
@@ -77,10 +100,18 @@ void LevelBasic::update(float dt, int speed, int bulletSpeed)
         }
     }
 
+    //handle enemy win condition
     if (amtDead == enemiesArraySize && toggleWinCondition)
     {
         gameWinState = true;
         toggleWinCondition = false;
+    }
+
+    // handle last enemy standing condition
+    if (amtDead == enemiesArraySize - 1)
+    {
+        // set last enemy
+        enemiesArray[findLastEnemyArrayPos(enemyAliveArray, enemiesArraySize)].lastEnemy = true;
     }
 }
 
@@ -89,6 +120,7 @@ void LevelBasic::Reset()
     toggleWinCondition = true;
     gameWinState = false;
     unloadToggle = false;
+    timeWaited = 0;
 }
 
 void LevelBasic::draw()

@@ -90,7 +90,7 @@ void GameLoop::Update()
     // enemies.Update();
     levelManager.Update(dt);
 
-    if (IsKeyPressed(KEY_ENTER) && player.playerIsDead)
+    if ((IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) && player.playerIsDead)
     {
         resetGame = true;
     }

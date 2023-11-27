@@ -48,7 +48,7 @@ void LevelManager::DisplayControls(float dt)
 {
     playerCanMove = false;
 
-    if (IsKeyPressed(KEY_ENTER))
+    if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE))
     {
         toggleDisplayControls = !toggleDisplayControls;
         playerCanMove = true;
@@ -67,7 +67,7 @@ void LevelManager::HandleStatsMenu(bool toggle)
         toggleStatsMenu = true;
     }
 
-    if (IsKeyPressed(KEY_ENTER))
+    if ((IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) && handleStatsToggle)
     {
         toggleStatsMenu = false;
         handleStatsToggle = false;
@@ -201,6 +201,7 @@ void LevelManager::Reset()
     shootCtr = 0;
     handleStatsToggle = false;
 
+    // reset all levels
     Unload();
     Init();
     for (auto &level : levels)
@@ -231,7 +232,7 @@ void LevelManager::Draw()
 
     if (!toggleDisplayControls)
     {
-        std::string text = "\nControls: w d space\npress enter to start game";
+        std::string text = "\nControls: a d space\npress enter to start game";
         int textWidth = MeasureText(text.c_str(), 20);
 
         int x = (GetScreenWidth() - textWidth) / 2;

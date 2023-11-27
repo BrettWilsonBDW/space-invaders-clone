@@ -26,7 +26,7 @@ void Enemies::Init()
 
 void Enemies::Shoot(float dt)
 {
-    
+
     int speed{bulletSpeed};
     if (!enemyBullet.hasShot)
     {
@@ -49,7 +49,6 @@ void Enemies::Shoot(float dt)
     {
         enemyBullet.hasShot = false;
     }
-    
 
     enemyBullet.rect = {static_cast<float>(enemyBullet.x), static_cast<float>(enemyBullet.y), static_cast<float>(enemyBullet.width), static_cast<float>(enemyBullet.height)};
 
@@ -72,7 +71,6 @@ void Enemies::CheckCollision()
                 // bullets[i].collided = true;
                 bullets[i].canShootAgain = false;
                 bullets[i].collided = true;
-                
             }
         }
     }
@@ -86,14 +84,31 @@ void Enemies::PostionPlacement(int x, int y)
 
 void Enemies::Movement(int speed)
 {
-    if ((enemyX * scale) > GetScreenWidth() - enemiesDestRect.width)
+    if (!lastEnemy)
     {
-        directionLR = true;
-    }
+        //swap direction if side wall is hit
+        if ((enemyX * scale) > GetScreenWidth() - enemiesDestRect.width)
+        {
+            directionLR = true;
+        }
 
-    if (enemyX * scale < 0)
+        if (enemyX * scale < 0)
+        {
+            directionLR = false;
+        }
+    }
+    else
     {
-        directionLR = false;
+        // if the enemy is the last enemy keep it above the player
+        if (player->GetPlayerRect().x > enemiesDestRect.x)
+        {
+            directionLR = false;
+        }
+        
+        if (player->GetPlayerRect().x < enemiesDestRect.x)
+        {
+            directionLR = true;
+        }
     }
 
     if (directionLR)
@@ -125,11 +140,15 @@ void Enemies::Update(float dt)
 
     CheckCollision();
 
-    
     if (toggleShootState)
     {
         Shoot(dt);
         // toggleShootState = false;
+    }
+
+    if (lastEnemy)
+    {
+        Shoot(dt);
     }
 }
 
@@ -149,11 +168,9 @@ void Enemies::Draw()
     {
         toggleDebug = !toggleDebug;
     }
-    
+
     if (toggleDebug)
     {
         DrawRectangleLines(enemiesRect.x, enemiesRect.y, enemiesRect.width, enemiesRect.height, RED);
     }
-    
-
 }
