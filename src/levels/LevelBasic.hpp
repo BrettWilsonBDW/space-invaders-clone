@@ -47,7 +47,7 @@ public:
 
     bool gameWinState{};
     bool unloadToggle{};
-
+    bool ignoreSpecialAbilities{};
 
 private:
     int findLastEnemyArrayPos(int* array, int size);

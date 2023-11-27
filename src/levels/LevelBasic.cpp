@@ -38,7 +38,7 @@ int LevelBasic::findLastEnemyArrayPos(int* array, int size)
     }
     else
     {
-        std::cout << "The target " << target << " is not found in the array." << std::endl;
+        std::cout << "error " << target << " is not found in the array." << std::endl;
         return -1;
     }
 }
@@ -108,7 +108,7 @@ void LevelBasic::update(float dt, int speed, int bulletSpeed)
     }
 
     // handle last enemy standing condition
-    if (amtDead == enemiesArraySize - 1)
+    if (amtDead == enemiesArraySize - 1 && !ignoreSpecialAbilities)
     {
         // set last enemy
         enemiesArray[findLastEnemyArrayPos(enemyAliveArray, enemiesArraySize)].lastEnemy = true;

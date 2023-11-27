@@ -20,11 +20,17 @@ void LevelManager::Init()
     levels[1].SetEnemyAmt(8);
     levels[1].Init();
 
+    //TODO make the two levels below below
+
+    //part of a double stacked level
     levels[2].SetEnemyAmt(5);
     levels[2].Init();
+    levels[2].ignoreSpecialAbilities = true;
 
+    // part of the above stack 
     levels[3].SetEnemyAmt(5);
     levels[3].Init(300, 300);
+    levels[3].ignoreSpecialAbilities = true;
 
     levels[4].SetEnemyAmt(7);
     levels[4].Init();
