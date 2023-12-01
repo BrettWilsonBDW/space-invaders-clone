@@ -22,9 +22,7 @@ function(add_git_dependency libName gitURL gitTag buildEnabled)
         )
         FetchContent_MakeAvailable(${libName})
 
-        if(NOT "${libName}" STREQUAL "BULLET_PHYSICS")
-            target_compile_options(${libName} PRIVATE "-w")
-        endif()
+        target_compile_options(${libName} PRIVATE "-w")
 
     endif()
 endfunction()
@@ -42,52 +40,6 @@ add_git_dependency(
     # master
     4.5.0
     ${useRaylib}
-)
-
-# toggle
-set(useLDtkLoader OFF)
-# Add LDtkLoader
-add_git_dependency(
-    LDtkLoader
-    https://github.com/Madour/LDtkLoader.git
-    head
-    ${useLDtkLoader}
-)
-
-# toggle
-set(useBox2d OFF)
-# Add Box2d
-set(BOX2D_BUILD_TESTBED OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-set(BOX2D_BUILD_UNIT_TESTS OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-add_git_dependency(
-    box2d
-    https://github.com/erincatto/box2d.git
-    head
-    ${useBox2d}
-)
-
-# toggle
-set(useFmt OFF)
-# Add {fmt} library
-add_git_dependency(
-    fmt
-    https://github.com/fmtlib/fmt.git
-    head
-    ${useFmt}
-)
-
-# toggle
-set(useBullet3 OFF)
-# add bullet3
-set(BUILD_EXTRAS OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-set(BUILD_CPU_DEMOS OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-set(BUILD_UNIT_TESTS OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-set(BUILD_BULLET2_DEMOS OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-add_git_dependency(
-    BULLET_PHYSICS
-    https://github.com/bulletphysics/bullet3.git
-    head
-    ${useBullet3}
 )
 
 ##########################################################################################
@@ -112,24 +64,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE})
 
 if(useRaylib)
     target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-endif()
-
-if(useLDtkLoader)
-    target_link_libraries(${PROJECT_NAME} PRIVATE LDtkLoader)
-endif()
-
-if(useBox2d)
-    target_link_libraries(${PROJECT_NAME} PRIVATE box2d)   
-endif()
-
-if(useFmt)
-    target_link_libraries(${PROJECT_NAME} PRIVATE fmt)
-endif()
-
-if(useBullet3)
-    # build bullet submodules
-    include_directories(RECURSE build/_deps/bullet_physics-src/src)
-    target_link_libraries(${PROJECT_NAME} PRIVATE BulletDynamics BulletCollision LinearMath BulletSoftBody)
 endif()
 
 ##########################################################################################
