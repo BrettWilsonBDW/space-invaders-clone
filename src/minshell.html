@@ -1,48 +1,39 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    
-    <title>space-invaders-clone</title>
-    
-    <meta name="title" content="space-invaders-clone">
-    <meta name="description" content="space-invaders-clone, videogame, developed using raylib videogames library">
-    <meta name="keywords" content="space-invaders-clone, raylib, games, html5, programming, C, C++, library, learn, videogames">
-    <meta name="viewport" content="width=device-width">
-    
-    <!-- Open Graph metatags for sharing -->
-    <!-- <meta property="og:title" content="raylib web game">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image" content="https://www.raylib.com/common/img/raylib_logo.png">
-    <meta property="og:site_name" content="raylib.com">
-    <meta property="og:url" content="https://www.raylib.com/games.html">
-    <meta property="og:description" content="New raylib web videogame, developed using raylib videogames library"> -->
 
-    <!-- Twitter metatags for sharing -->
-    <!-- <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@raysan5">
-    <meta name="twitter:title" content="raylib web game">
-    <meta name="twitter:image" content="https://www.raylib.com/common/raylib_logo.png">
-    <meta name="twitter:url" content="https://www.raylib.com/games.html">
-    <meta name="twitter:description" content="New raylib web game, developed using raylib videogames library"> -->
-    
+    <title>liner programming solver tool</title>
+
+    <meta name="title" content="lp solver">
+    <meta name="description" content="liner program solver">
+    <meta name="keywords" content="lp solver, liner program solver tool, atbdw, html5, programming, C, C++">
+    <meta name="viewport" content="width=device-width">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="https://www.brettwilsondev.com/assets/images/favicon.ico">
-    
+
     <style>
-        body { 
+        body {
             margin: 0px;
             text-align: center;
+            background-color: #131313;
         }
-        canvas.emscripten { border: 0px none; background-color: black; }
 
         canvas.emscripten {
-            width: 98%;
-            height: 98%;
+            border: 0px none;
+            background-color: black;
+        }
+
+        canvas.emscripten {
+            width: 99.99%;
+            height: 98.39%;
         }
     </style>
-    <script type='text/javascript' src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/dist/FileSaver.min.js"> </script>
+    <script type='text/javascript'
+        src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/dist/FileSaver.min.js"> </script>
     <script type='text/javascript'>
         function saveFileFromMEMFSToDisk(memoryFSname, localFSname)     // This can be called by C/C++ code
         {
@@ -61,30 +52,32 @@
             saveAs(blob, localFSname);
         }
     </script>
-    </head>
-    <body>
-        <canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
-        <p id="output" />
-        <script>
-            var Module = {
-                print: (function() {
-                    var element = document.getElementById('output');
-                    if (element) element.value = ''; // clear browser cache
-                    return function(text) {
-                        if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-                        console.log(text);
-                        if (element) {
-                          element.value += text + "\n";
-                          element.scrollTop = element.scrollHeight; // focus on bottom
-                        }
-                    };
-                })(),            
-                canvas: (function() {
-                    var canvas = document.getElementById('canvas');
-                    return canvas;
-                })()
-            };
-        </script>
-        {{{ SCRIPT }}}
-    </body>
+</head>
+
+<body>
+    <canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
+    <p id="output" />
+    <script>
+        var Module = {
+            print: (function () {
+                var element = document.getElementById('output');
+                if (element) element.value = ''; // clear browser cache
+                return function (text) {
+                    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                    console.log(text);
+                    if (element) {
+                        element.value += text + "\n";
+                        element.scrollTop = element.scrollHeight; // focus on bottom
+                    }
+                };
+            })(),
+            canvas: (function () {
+                var canvas = document.getElementById('canvas');
+                return canvas;
+            })()
+        };
+    </script>
+    {{{ SCRIPT }}}
+</body>
+
 </html>
