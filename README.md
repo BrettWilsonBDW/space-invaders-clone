@@ -54,8 +54,8 @@ cmake --build . --config Release
 cd C:\
 git clone https://github.com/emscripten-core/emsdk.git
 cd emsdk
-./emsdk.bat install latest
-./emsdk.bat activate latest --permanent
+.\emsdk.bat install latest
+.\emsdk.bat activate latest --permanent
 
 ## on linux
 cd /usr/local
