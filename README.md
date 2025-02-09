@@ -29,10 +29,10 @@ Play the game online [Space Invaders Clone Web Version](https://www.atbdw.com/sp
 
 ```bash
 ## Clone the repository
-git clone https://github.com/BrettWilsonBDW/lpr-solver-tool
+git clone https://github.com/BrettWilsonBDW/space-invaders-clone.git
 
 ## Navigate to the project directory
-cd lpr-solver-tool
+cd space-invaders-clone
 
 ## Create a build directory
 mkdir build
@@ -45,11 +45,6 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 
 ## Build the project using Visual Studio (you can also use Ninja or MinGW)
 cmake --build . --config Release
-
-## Run the game
-.\Release\SpaceInvadersClone.exe
-## or in bash
-./SpaceInvadersClone
 
 ```
 ## Building for the Web
