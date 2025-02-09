@@ -1,5 +1,11 @@
 # Space Invaders Clone
 
+-------------------------------------------
+
+This is among the first game development projects I undertook. A better version can be found at [space invaders mk2](https://github.com/BrettWilsonBDW/space-invaders-mk2)
+
+-------------------------------------------
+
 ![Space Invaders Clone](https://www.brettwilsondev.com//assets/images/space-invaders-clone.webp)
 
 ## Description
