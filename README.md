@@ -29,7 +29,7 @@ Play the game online [Space Invaders Clone Web Version](https://www.atbdw.com/sp
 
 ```bash
 ## Clone the repository
-git clone https://github.com/BrettWilsonBDW/space-invaders-clone.git
+git clone https://github.com/BrettWilsonDev/space-invaders-clone.git
 
 ## Navigate to the project directory
 cd space-invaders-clone
