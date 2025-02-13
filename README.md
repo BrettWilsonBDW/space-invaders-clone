@@ -2,7 +2,7 @@
 
 -------------------------------------------
 
-This is among the first game development projects I undertook. A better version can be found at [space invaders mk2](https://github.com/BrettWilsonBDW/space-invaders-mk2)
+This is among the first game development projects I undertook. A better version can be found at [space invaders mk2](https://github.com/BrettWilsonDev/space-invaders-mk2)
 
 -------------------------------------------
 
